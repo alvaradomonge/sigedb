@@ -20,7 +20,7 @@
 					</div>
 					<br>
 					<button class="btn btn-primary btn-lg btn-block">Actualizar</button>
-					<a class="btn btn-secondary btn-lg btn-block" href="{{route('anio_lectivo.index',$anio_lectivo)}}">Cancelar</a> 
+					<a class="btn btn-secondary btn-lg btn-block" href="{{route('anio_lectivo.index',$anio_lectivo)}}">cancelar</a> 
 				</form>
 			</div>
 		</div>
