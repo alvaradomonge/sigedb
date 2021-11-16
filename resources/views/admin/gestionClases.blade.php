@@ -1,0 +1,18 @@
+@extends ('plantilla')
+
+@section('titulo','Gestion de Grupos y Materias')
+
+@section ('contenido')
+	<div class="container">
+		<div class="">
+			<h2 class="display-8 mb-0">Periodos activos </h2>
+				
+			<h2 class="display-8 mb-0">Herramientas</h2>
+			<ul>
+				<li>Estado de Periodo</li>
+				<li>Estado de Materias</li>
+				<li>Mantenimiento de Materias</li>
+			</ul>
+		</div>
+	</div>
+@endsection
