@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class periodo extends Model
 {
+    public $timestamps = false;
+    protected $guarded = [];
+    protected $table = 'periodo';
     use HasFactory;
 }
