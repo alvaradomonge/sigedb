@@ -40,18 +40,19 @@ class LoginController extends Controller
     }
 
     public function redirectTo(){
-        switch(Auth::user()->id_rol_usuario){
-            case 1:
-            $redirectTo = 'adminDashboard';
-            return $redirectTo;
-                break;
-            case 1:
-            $redirectTo = 'docenteDashboard';
-            return $redirectTo;
-                break;
-            default:
-                $redirectTo = '/';
-                return $redirectTo;
-        }
+        // switch(Auth::user()->id_rol_usuario){
+        //     case 1:
+        //     $redirectTo = 'adminDashboard';
+        //     return $redirectTo;
+        //         break;
+        //     case 1:
+        //     $redirectTo = 'docenteDashboard';
+        //     return $redirectTo;
+        //         break;
+        //     default:
+        //         $redirectTo = '/';
+        //         return $redirectTo;
+        // }
+        return "inicio";
     }
 }
