@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\periodo;
+use App\Models\anio_lectivo;
+use App\Controllers\Rel_anio_periodo_controller;
 use Illuminate\Http\Request;
 
 class PeriodoController extends Controller
@@ -24,7 +26,9 @@ class PeriodoController extends Controller
      */
     public function create()
     {
-        //
+        $anio = anio_lectivo::latest('nombre');
+        return view('periodo.create',['periodo' => new periodo,'anio_lectivo'=>$anio]
+        );
     }
 
     /**
@@ -35,7 +39,9 @@ class PeriodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        periodo::create($request->validated());
+
+        return redirect()->route('admin.gestionAniosPeriodos')->with('status','Periodo creado exitósamente');
     }
 
     /**
@@ -44,9 +50,11 @@ class PeriodoController extends Controller
      * @param  \App\Models\periodo  $periodo
      * @return \Illuminate\Http\Response
      */
-    public function show(periodo $periodo)
+    public function show($id)
     {
-        //
+        return view('Estudiante.show',[
+            'estudiante'=>Estudiante::findOrFail($id)
+        ]);
     }
 
     /**
@@ -57,7 +65,9 @@ class PeriodoController extends Controller
      */
     public function edit(periodo $periodo)
     {
-        //
+        return view('periodo.edit',[
+            'periodo' => $periodo,
+        ]);
     }
 
     /**
@@ -69,7 +79,8 @@ class PeriodoController extends Controller
      */
     public function update(Request $request, periodo $periodo)
     {
-        //
+        $periodo->update($request->validated());
+        return redirect()->route('periodo.show',$periodo)->with('status','Actualización completada exitósamente');
     }
 
     /**
@@ -80,6 +91,7 @@ class PeriodoController extends Controller
      */
     public function destroy(periodo $periodo)
     {
-        //
+        $periodo->delete();
+        return redirect()->route('admin.gestionAniosPeriodos')->with('status','Se ha realizado la eliminación');
     }
 }

@@ -5,11 +5,12 @@
 </li>
 <li class="nav-item">
 	<a class="nav-link"
-	href="{{route('inicio')}}">Usuarios</a>
+	href="{{route('admin.gestionAniosPeriodos')}}">Años y periodos</a>
 </li>
+{{-- 
 <li class="nav-item">
 	<a class="nav-link"
-	href="{{route('admin.gestionAniosPeriodos')}}">Años y periodos</a>
+	href="{{route('inicio')}}">Usuarios</a>
 </li>
 <li class="nav-item">
 	<a class="nav-link"
@@ -22,4 +23,4 @@
 <li class="nav-item">
 	<a class="nav-link"
 	href="{{route('inicio')}}">Conducta</a>
-</li>
+</li> --}}

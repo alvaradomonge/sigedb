@@ -17,7 +17,8 @@ Route::view('/admin.gestionClases','admin.gestionClases')->name('admin.gestionCl
 Route::get('/admin.gestionAniosPeriodos','App\Http\Controllers\AdminController@index')->name('admin.gestionAniosPeriodos');
 
 Route::resource('anio_lectivo','App\Http\Controllers\AnioLectivoController');
-
+Route::resource('periodo','App\Http\Controllers\PeriodoController');
+Route::resource('rel_anio_periodo','App\Http\Controllers\Rel_anio_periodo_Controller');
 //Route::resource('admin','App\Http\Controllers\AdminController');
 //Route::get('/admin/{anio_lectivo}','App\Http\Controllers\AdminController@show')->name('admin.show');
 //Route::get('admin/create_anio_lectivo','App\Http\Controllers\AdminController@create')->name('admin.create');
