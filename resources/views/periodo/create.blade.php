@@ -21,7 +21,6 @@
 					  		@forelse ($anio_lectivo as $anio_lectivo_Item)
 								<option value="{{$anio_lectivo_Item->id}}">
 									{{$anio_lectivo_Item->nombre}}
-									{{$lolo=$anio_lectivo_Item}}
 								</option>
 							@empty
 								<option>Cree primero un año lectivo</option>
