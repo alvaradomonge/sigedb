@@ -39,7 +39,10 @@ class Rel_anio_periodo_controller extends Controller
     {
         rel_anio_periodo::create($request->validated());
     }
-
+    public function store(rel_anio_periodo $rel)
+    {
+        rel_anio_periodo::create($rel);
+    }
     /**
      * Display the specified resource.
      *

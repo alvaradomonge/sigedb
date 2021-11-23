@@ -10,7 +10,8 @@
 				@if($errors->any())
 					@include('partials.validation-errors')
 				@endif
-				<form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{route('periodo.store')}}">
+				{{$lolo=""}}
+				<form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{route('periodo.store',$lolo)}}">
 					@csrf 
 					<h2 class="display-8">Nuevo Periodo</h2>
 					<hr>
@@ -18,7 +19,10 @@
 					  	<label>Seleccione un Año Lectivo</label>
 					  	<select class="form-control">
 					  		@forelse ($anio_lectivo as $anio_lectivo_Item)
-									<option value="{{$anio_lectivo_Item->id}}">{{$anio_lectivo_Item->nombre}}</option>
+								<option value="{{$anio_lectivo_Item->id}}">
+									{{$anio_lectivo_Item->nombre}}
+									{{$lolo=$anio_lectivo_Item}}
+								</option>
 							@empty
 								<option>Cree primero un año lectivo</option>
 							@endforelse
