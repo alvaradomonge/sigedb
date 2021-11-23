@@ -9,6 +9,7 @@ Route::view('/informenotas','informenotas')->name('informenotas');
 
 Route::resource('estudiante','App\Http\Controllers\EstudianteControlador');
 
+
 Auth::routes();
 Auth::routes(['register'=>false]);
 
@@ -19,6 +20,9 @@ Route::get('/admin.gestionAniosPeriodos','App\Http\Controllers\AdminController@i
 Route::resource('anio_lectivo','App\Http\Controllers\AnioLectivoController');
 Route::resource('periodo','App\Http\Controllers\PeriodoController');
 Route::resource('rel_anio_periodo','App\Http\Controllers\Rel_anio_periodo_Controller');
+
+Route::resource('materia','App\Http\Controllers\MateriaController')->parameters(['materia' => 'materia']);
+
 //Route::resource('admin','App\Http\Controllers\AdminController');
 //Route::get('/admin/{anio_lectivo}','App\Http\Controllers\AdminController@show')->name('admin.show');
 //Route::get('admin/create_anio_lectivo','App\Http\Controllers\AdminController@create')->name('admin.create');
