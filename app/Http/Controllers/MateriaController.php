@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\materia;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\SaveMateriaRequest;
 class MateriaController extends Controller
 {
     /**
@@ -11,9 +12,14 @@ class MateriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+
+        $this->middleware('auth')->except('index','show');
+    }
     public function index()
     {
-        //
+         $materia = materia::latest('nombre')->paginate(15);
+        return view('materia',compact('materia'));
     }
 
     /**
@@ -23,7 +29,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('materia.create',['materia' => new materia]);
     }
 
     /**
@@ -32,53 +38,60 @@ class MateriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveMateriaRequest $request)
     {
-        //
+        materia::create($request->validated());
+
+        return redirect()->route('materia.index')->with('status','materia creado exitósamente');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\materia  $materia
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        return view('materia.show',[
+            'materia'=>materia::findOrFail($id)
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(materia $materia)
     {
-        //
+        return view('materia.edit',[
+            'materia' => $materia]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SaveMateriaRequest $request, materia $materia)
     {
-        //
+        $materia->update($request->validated());
+        return redirect()->route('materia.show',$materia)->with('status','Actualización completada exitósamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(materia $materia)
     {
-        //
+         $materia->delete();
+        return redirect()->route('materia.index')->with('status','Se ha realizado la eliminación');
     }
 }
