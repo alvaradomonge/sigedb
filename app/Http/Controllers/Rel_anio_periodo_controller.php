@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveRelPeriodoAnioRequest;
 use App\Models\periodo;
 use App\Models\rel_anio_periodo;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class Rel_anio_periodo_controller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveRelPeriodoAnioRequest $request)
     {
         rel_anio_periodo::create($request->validated());
     }

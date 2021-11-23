@@ -40,7 +40,6 @@ class PeriodoController extends Controller
     public function store(SavePeriodoRequest $request)
     {
         periodo::create($request->validated());
-
         return redirect()->route('admin.gestionAniosPeriodos')->with('status','Periodo creado exitósamente');
     }
 

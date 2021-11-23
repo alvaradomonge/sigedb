@@ -15,27 +15,14 @@
 					<h2 class="display-8">Nuevo Periodo</h2>
 					<hr>
 					<div class="form-group">
-						<div class="dropdown">
-							<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-						    	Seleccione...
-						  	</a>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-								@forelse ($anio_lectivo as $anio_lectivo_Item)
-									<li>
-										<a class="dropdown-item" href="{{route('anio_lectivo.show',$anio_lectivo_Item)}}">
-											<span class="font-weight-bold">
-												{{$anio_lectivo_Item->nombre}} 
-											</span>
-										</a>
-									</li>
-								@empty
-									<li>
-										Cree primero un año lectivo
-									</li>
-								@endforelse
-								
-							</ul>
-						</div>
+					  	<label>Seleccione un Año Lectivo</label>
+					  	<select class="form-control">
+					  		@forelse ($anio_lectivo as $anio_lectivo_Item)
+									<option value="{{$anio_lectivo_Item->id}}">{{$anio_lectivo_Item->nombre}}</option>
+							@empty
+								<option>Cree primero un año lectivo</option>
+							@endforelse
+					  	</select>
 						<label for="nombre">
 							Nombre{!!$errors->first('nombre','(*)')!!}
 						</label>
