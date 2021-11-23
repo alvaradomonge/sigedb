@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\periodo;
-use App\Models\anio_lectivo;
 use App\Controllers\Rel_anio_periodo_controller;
+use App\Http\Requests\SavePeriodoRequest;
+use App\Models\anio_lectivo;
+use App\Models\periodo;
 use Illuminate\Http\Request;
 
 class PeriodoController extends Controller
@@ -26,9 +27,8 @@ class PeriodoController extends Controller
      */
     public function create()
     {
-        $anio = anio_lectivo::latest('nombre');
-        return view('periodo.create',['periodo' => new periodo,'anio_lectivo'=>$anio]
-        );
+        $anio_lectivo = anio_lectivo::all();
+        return view('periodo.create',compact('anio_lectivo'))->with('periodo',new periodo);
     }
 
     /**
@@ -37,7 +37,7 @@ class PeriodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SavePeriodoRequest $request)
     {
         periodo::create($request->validated());
 
