@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Controllers\Rel_anio_periodo_controller;
 use App\Http\Requests\SavePeriodoRequest;
 use App\Models\anio_lectivo;
+use App\Controllers\AnioLectivoController;
 use App\Models\periodo;
 use App\Models\rel_anio_periodo;
 use Illuminate\Http\Request;
@@ -38,14 +39,12 @@ class PeriodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SavePeriodoRequest $request,anio_lectivo $anio_lectivo)
+    public function store(SavePeriodoRequest $request)
     {
-        $id=periodo::create($request->validated())->id;
-        $rel= new rel_anio_periodo;
-        $rel->id_periodo=$id;
-        $rel->id_anio=$anio_lectivo->id;
-        route('rel_anio_periodo.store',['rel'=>'rel']);
-        return redirect()->route('admin.gestionAniosPeriodos')->with('status',$anio_lectivo);
+        $id_per=periodo::create($request->validated())->id;
+        $anio = anio_lectivo::where('id',$request->anio)->get();
+        $anio->periodo()->create(['id_periodo'=>'id_per']);
+        return redirect()->route('admin.gestionAniosPeriodos')->with('status',$anio);
     }
 
     /**

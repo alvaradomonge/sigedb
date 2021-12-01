@@ -11,4 +11,8 @@ class periodo extends Model
     protected $guarded = [];
     protected $table = 'periodo';
     use HasFactory;
+
+    public function anio_lectivo(){
+        return $this->belongsToMany('App\Models\anio_lectivo','rel_anio_periodo','id_periodo','id_anio');
+    }
 }
