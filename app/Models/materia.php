@@ -11,4 +11,8 @@ class materia extends Model
     protected $guarded = [];
     protected $table = 'materia';
     use HasFactory;
+
+    public function periodos(){
+        return $this->belongsToMany(periodo::class, 'rel_periodo_materia','id_materia','id_periodo');
+    }
 }

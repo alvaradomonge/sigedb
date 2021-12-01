@@ -1,5 +1,4 @@
 @extends ('plantilla')
-
 @section('titulo','Nuevo Periodo-SIGEDB')
 
 @section ('contenido')
@@ -10,12 +9,13 @@
 				@if($errors->any())
 					@include('partials.validation-errors')
 				@endif
-				{{$lolo=""}}
+			{{$lolo=""}}	
 				<form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{route('periodo.store',$lolo)}}">
 					@csrf 
 					<h2 class="display-8">Nuevo Periodo</h2>
 					<hr>
 					<div class="form-group">
+						
 					  	<label>Seleccione un Año Lectivo</label>
 					  	<select class="form-control">
 					  		@forelse ($anio_lectivo as $anio_lectivo_Item)
@@ -26,6 +26,7 @@
 								<option>Cree primero un año lectivo</option>
 							@endforelse
 					  	</select>
+					  	periodo.
 						<label for="nombre">
 							Nombre{!!$errors->first('nombre','(*)')!!}
 						</label>

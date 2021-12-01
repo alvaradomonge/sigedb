@@ -10,7 +10,7 @@
 			<h2 class="display-8 mb-0">Herramientas</h2>
 			<ul>
 				<li>Estado de Periodo</li>
-				<li>Estado de Materias</li>
+				<li> <a href="{{route('materia.index')}}"> Administrar Materias </a></li>
 				<li>Mantenimiento de Materias</li>
 			</ul>
 		</div>

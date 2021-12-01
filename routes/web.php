@@ -23,6 +23,9 @@ Route::resource('rel_anio_periodo','App\Http\Controllers\Rel_anio_periodo_Contro
 
 Route::resource('materia','App\Http\Controllers\MateriaController')->parameters(['materia' => 'materia']);
 
+
+Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');
+
 //Route::resource('admin','App\Http\Controllers\AdminController');
 //Route::get('/admin/{anio_lectivo}','App\Http\Controllers\AdminController@show')->name('admin.show');
 //Route::get('admin/create_anio_lectivo','App\Http\Controllers\AdminController@create')->name('admin.create');
