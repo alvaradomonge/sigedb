@@ -13,7 +13,7 @@ class periodo extends Model
     use HasFactory;
 
     public function anio_lectivo(){
-        return $this->belongsToMany('App\Models\anio_lectivo','rel_anio_periodo','id_periodo','id_anio');
+        return $this->belongsToMany(anio_lectivo::class,'rel_anio_periodo','id_periodo','id_anio')->withPivot('es_final','activo','valor_porcentual')->as('relacion');
     }
 
     public function materias(){
