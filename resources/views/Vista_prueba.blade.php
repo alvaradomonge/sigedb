@@ -15,6 +15,7 @@
 					<thead class="bg-primary text-white">
 						   <th> ID Mater</th>
 						   <th> nombre </th>
+						   <th> perido </th>
 					</thead>
 					<tbody>
 
@@ -22,7 +23,8 @@
 							<tr>
 								<td>{{$materiaItem->id}}</td>	
 								<td>{{$materiaItem->nombre}}</td>
-								<td>{{$materiaItem->periodo}}</td>								
+								<td>{{$materiaItem->periodo}}</td>
+								<td>{{$peri->nombre}}</td>								
 							</tr>
 						@endforeach
 
