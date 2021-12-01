@@ -12,6 +12,12 @@
 	</label>
 	<br>
 	<input id="EsGuia" class="form-control border-0 bg-light shadow-sm" type="text" name="es_guia" value="{{old('es_guia',$materia->es_guia)}}">
+	
+	{{--  Sección de valor  
+	 <select class="form-control">
+		<option value="{{"1"}}">{{1}}</option>
+		<option value="{{"0"}}">{{0}}</option>
+	</select> --}}
 </div>
 
 <br>

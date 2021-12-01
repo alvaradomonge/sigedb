@@ -24,5 +24,5 @@
 					
 				@endauth
 			</div>
-	</div>
+		</div>
 @endsection
