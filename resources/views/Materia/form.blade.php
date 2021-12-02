@@ -22,10 +22,6 @@
 	{{-- <input id="es_guia" class="form-control border-0 bg-light shadow-sm" type="text" name="es_guia" value="{{old('es_guia',$materia->es_guia)}}"> --}}
 
 
-
-
-
-
 </div>
 
 <br>

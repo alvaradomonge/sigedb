@@ -26,6 +26,7 @@ class SaveRelPeriodoAnioRequest extends FormRequest
         return [
             'id_anio'=> 'required',
             'id_periodo'=> 'required',
+            'es_final'=>'required',
             'valor_porcentual'=>'required'
         ];
     }

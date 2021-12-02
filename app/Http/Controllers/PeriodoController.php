@@ -41,10 +41,16 @@ class PeriodoController extends Controller
      */
     public function store(SavePeriodoRequest $request)
     {
-        $id_per=periodo::create($request->validated())->id;
+        $id_per=periodo::create($request->validated());
         $anio = anio_lectivo::where('id',$request->anio)->get();
-        $anio->periodo()->create(['id_periodo'=>'id_per']);
-        return redirect()->route('admin.gestionAniosPeriodos')->with('status',$anio);
+        rel_anio_periodo::create(
+            [
+                'id_anio'=>$request->anio,
+                'id_periodo'=>$id_per->id,
+                'es_final'=>1,
+                'valor_porcentual'=>25,
+            ]);
+        return redirect()->route('admin.gestionAniosPeriodos')->with('status',$id_per->anio_lectivo);
     }
 
     /**

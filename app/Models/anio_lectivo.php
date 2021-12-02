@@ -12,8 +12,8 @@ class anio_lectivo extends Model
     protected $table = 'anio_lectivo';
     use HasFactory;
 
-    public function periodo()
+    public function periodos()
     {
-        return $this->belongsToMany('App\Models\periodo','rel_anio_periodo','id_anio','id_periodo');
+        return $this->belongsToMany(periodo::class,'rel_anio_periodo','id_anio','id_periodo')->withPivot('es_final','activo','valor_porcentual')->as('relacion');
     }
 }
