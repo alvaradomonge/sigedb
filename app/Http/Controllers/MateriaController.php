@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\materia;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaveMateriaRequest;
-class MateriaController extends Controller
+class materiaController extends Controller
 {
     /**
      * Display a listing of the resource.
