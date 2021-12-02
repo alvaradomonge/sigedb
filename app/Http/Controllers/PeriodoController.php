@@ -30,7 +30,8 @@ class PeriodoController extends Controller
     public function create()
     {
         $anio_lectivo = anio_lectivo::all();
-        return view('periodo.create',compact('anio_lectivo'))->with('periodo',new periodo);
+        $periodo=new periodo;
+        return view('periodo.create',compact('anio_lectivo','periodo'));
     }
 
     /**
@@ -47,8 +48,8 @@ class PeriodoController extends Controller
             [
                 'id_anio'=>$request->anio,
                 'id_periodo'=>$id_per->id,
-                'es_final'=>1,
-                'valor_porcentual'=>25,
+                'es_final'=>$request->es_final,
+                'valor_porcentual'=>$request->valor_porcentual,
             ]);
         return redirect()->route('admin.gestionAniosPeriodos')->with('status',$id_per->anio_lectivo);
     }
@@ -66,6 +67,11 @@ class PeriodoController extends Controller
         ]);
     }
 
+    public function showPeriodosActivos()
+    {
+        $query=periodo::find()->relacion()->where('activo',1);
+        return $query;
+    }
     /**
      * Show the form for editing the specified resource.
      *

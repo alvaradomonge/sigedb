@@ -27,24 +27,15 @@
 						{{$anio_lectivo->links()}}
 					</ul>
 				</div>
-				{{-- <ul class="list-group">
-					@forelse ($anio_lectivo as $anio_lectivo_Item)
-						<li class="list-group-item border-0 mb-2 shadow-sm">
-							<a class="li_element text-secondary d-flex justify-content-between align-items-center" href="{{route('anio_lectivo.show',$anio_lectivo_Item)}}">
-								<span class="font-weight-bold">
-									{{$anio_lectivo_Item->nombre}} 
-								</span>
-							</a>
-						</li>
-					@empty
-						<li>
-							Cree primero un año lectivo
-						</li>
-					@endforelse
-					{{$anio_lectivo->links()}}
-				</ul> --}}
 			<h2 class="display-8 mb-0">Periodos activos</h2>
-				
+				<div>{{$query}}</div>
+				{{-- @forelse ($anio_lectivo as $anio_lectivo_Item)
+					<option value="{{$anio_lectivo_Item->id}}">
+						{{$anio_lectivo_Item->nombre}}
+					</option>
+				@empty
+					<option>Cree primero un año lectivo</option>
+				@endforelse --}}
 			<h2 class="display-8 mb-0">Herramientas</h2>
 				<a class="btn btn-primary" href="{{route('anio_lectivo.create')}}">Crear año lectivo</a>
 				<a class="btn btn-secondary" href="{{route('periodo.create',$anio_lectivo)}}">Crear Periodo</a>
