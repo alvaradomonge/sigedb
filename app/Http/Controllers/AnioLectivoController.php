@@ -77,11 +77,11 @@ class AnioLectivoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SaveAnioLectivo $request, anio_lectivo $anio)
+    public function update(SaveAnioLectivo $request, anio_lectivo $anio_lectivo)
     {
         //$anio = anio_lectivo::findOrFail($id);
-        $anio->update($request->validated());
-        return redirect()->route('admin.anioLectivoShow',$anio)->with('status','Actualización completada exitósamente');
+        $anio_lectivo->update($request->validated());
+        return redirect()->route('anio_lectivo.index',$anio_lectivo)->with('status','Actualización completada exitósamente');
         //return $anio;
     }
 
