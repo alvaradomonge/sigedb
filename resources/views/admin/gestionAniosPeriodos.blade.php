@@ -28,7 +28,7 @@
 					</ul>
 				</div>
 			<h2 class="display-8 mb-0">Periodos activos</h2>
-				<div>{{$query}}</div>
+				
 				{{-- @forelse ($anio_lectivo as $anio_lectivo_Item)
 					<option value="{{$anio_lectivo_Item->id}}">
 						{{$anio_lectivo_Item->nombre}}

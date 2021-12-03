@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rel_anio_periodo extends Model
+class rel_periodo_grupo_guia extends Model
 {
-    public $timestamps = false;
     protected $guarded = [];
-    protected $table = 'rel_anio_periodo';
+    protected $table = 'rel_periodo_grupo_guia';
     use HasFactory;
 }

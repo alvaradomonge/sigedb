@@ -13,10 +13,10 @@ class periodo extends Model
     use HasFactory;
 
     public function anio_lectivo(){
-        return $this->belongsToMany(anio_lectivo::class,'rel_anio_periodo','id_periodo','id_anio')->withPivot('es_final','activo','valor_porcentual')->as('relacion');
+        return $this->belongsTo(anio_lectivo::class);
     }
 
-    public function materias(){
-        return $this->belongsToMany(materia::class, 'rel_periodo_materia','id_periodo','id_materia');
+    public function materias(){//se debe agregar el modelo de gurpo guia y su tabla de relación con periodo
+        //return $this->belongsToMany(materia::class, 'rel_periodo_materia','id_periodo','id_materia');
     }
 }

@@ -14,6 +14,6 @@ class anio_lectivo extends Model
 
     public function periodos()
     {
-        return $this->belongsToMany(periodo::class,'rel_anio_periodo','id_anio','id_periodo')->withPivot('es_final','activo','valor_porcentual')->as('relacion');
+        return $this->hasMany(periodo::class,'id_anio');
     }
 }

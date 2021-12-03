@@ -22,40 +22,32 @@ class Core extends Migration
             $table->string('nombre',20);
             $table->date('fecha_inicio')->nullable();
             $table->date('fecha_fin')->nullable();
-        });
-        Schema::create('rel_anio_periodo', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->foreignId('id_anio')->constrained('anio_lectivo');
-            $table->foreignId('id_periodo')->constrained('periodo');
-            $table->boolean('es_final');
-            $table->boolean('activo')->default('1');
-            $table->unsignedTinyInteger('valor_porcentual');
         });
-        Schema::create('materia', function (Blueprint $table) {
+        Schema::create('grupo_guia', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',50);
-            $table->boolean('es_guia');
         });
         Schema::create('estado_materia', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',50);
         });
-        Schema::create('rel_periodo_materia', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->foreignId('id_materia')->constrained('materia');
-            $table->foreignId('id_periodo')->constrained('periodo');
-            $table->foreignId('id_estado')->constrained('estado_materia');
-            $table->foreignId('id_grupo_guia')->nullable()->constrained('materia');
-        });
-        Schema::create('rel_materia_docente', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->foreignId('id_materia')->constrained('materia');
-            $table->foreignId('id_user')->constrained('users');
-        });
         Schema::create('libro_notas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('id_materia')->constrained('rel_periodo_materia');
             $table->boolean('es_cualitativo');
+        });
+        Schema::create('materia', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre',50);
+            $table->foreignId('id_grupo_guia')->nullable()->constrained('grupo_guia');
+            $table->foreignId('id_libro_notas')->nullable()->constrained('libro_notas');
+            $table->foreignId('id_user')->nullable()->constrained('users');
+            $table->foreignId('id_estado')->nullable()->constrained('estado_materia');
+        });
+        Schema::create('rel_periodo_grupo_guia', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->foreignId('id_periodo')->constrained('periodo');
+            $table->foreignId('id_grupo_guia')->nullable()->constrained('grupo_guia');
         });
         Schema::create('rubro', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -86,7 +78,6 @@ class Core extends Migration
             $table->bigIncrements('id');
             $table->foreignId('id_estud')->constrained('users');
             $table->foreignId('id_libro_notas')->constrained('libro_notas');
-            $table->foreignId('id_rubro')->constrained('rubro');
             $table->foreignId('id_asig')->constrained('asignacion');
             $table->unsignedTinyInteger('nota')->default(0);
             $table->foreignId('id_rubro_cualit')->nullable()->constrained('rubro_escala_cualitativa');
@@ -106,6 +97,6 @@ class Core extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(['materia','rel_anio_periodo','periodo','anio_lectivo','rol_usuario','estado_materia','rel_periodo_materia','rel_materia_docente','libro_notas','promedio_estud_libro_cuanti','rel_estud_libro_rubro_asig','asignacion','rel_escala_cualit_rubro_cualit','rubro_escala_cualitativa','escala_cualitativa','rubro','']);
+        Schema::dropIfExists(['materia','periodo','grupo_guia','anio_lectivo','rol_usuario','estado_materia','rel_periodo_grupo_guia','rel_materia_docente','libro_notas','promedio_estud_libro_cuanti','rel_estud_libro_rubro_asig','asignacion','rel_escala_cualit_rubro_cualit','rubro_escala_cualitativa','escala_cualitativa','rubro']);
     }
 }

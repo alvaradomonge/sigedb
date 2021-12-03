@@ -24,13 +24,15 @@ class SavePeriodoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=> 'required'
+            'nombre'=> 'required',
+            'id_anio'=> 'required'
         ];
     }
     public function messages()
     {
         return [
-            'id_anio'=>'Por favor ingrese el nombre',
+            'nombre'=>'Por favor ingrese el nombre',
+            'id_anio'=>'Por favor seleccione el año'
         ];
     }
 }

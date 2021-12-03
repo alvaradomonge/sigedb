@@ -65,9 +65,9 @@ class AnioLectivoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(anio_lectivo $anio_lectivo)
     {
-        return view('admin.edit_anio',['anio_lectivo' => anio_lectivo::findOrFail($id)]);
+        return view('admin.edit_anio',['anio_lectivo' => $anio_lectivo]);
     }
 
     /**
@@ -77,11 +77,11 @@ class AnioLectivoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(anio_lectivo $anio)
+    public function update(SaveAnioLectivo $request, anio_lectivo $anio)
     {
         //$anio = anio_lectivo::findOrFail($id);
         $anio->update($request->validated());
-        return redirect()->route('anio_lectivo.index',$anio)->with('status','Actualización completada exitósamente');
+        return redirect()->route('admin.anioLectivoShow',$anio)->with('status','Actualización completada exitósamente');
         //return $anio;
     }
 

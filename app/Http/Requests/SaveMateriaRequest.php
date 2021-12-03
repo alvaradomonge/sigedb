@@ -24,15 +24,13 @@ class SaveMateriaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=> 'required',
-            'es_guia'=>'required',
+            'nombre'=> 'required'
         ];
     }
     public function messages()
     {
         return [
             'nombre.required'=>'Por favor ingrese el nombre',
-            'es_guia.required'=>'Por favor indicar el la condición de la materia',
         ];
     }
 }

@@ -21,7 +21,7 @@
 						<br>
 						<input id="nombre" class="form-control border-0 bg-light shadow-sm" type="text" name="nombre" value="{{old('nombre',$periodo->nombre)}}">
 					  	<label>Año Lectivo al que pertenece</label>
-					  	<select name="anio" class="form-control">
+					  	<select name="id_anio" class="form-control">
 					  		@forelse ($anio_lectivo as $anio_lectivo_Item)
 								<option value="{{$anio_lectivo_Item->id}}">
 									{{$anio_lectivo_Item->nombre}}

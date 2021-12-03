@@ -12,7 +12,8 @@ class materia extends Model
     protected $table = 'materia';
     use HasFactory;
 
-    public function periodos(){
-        return $this->belongsToMany(periodo::class, 'rel_periodo_materia','id_materia','id_periodo');
-    }
+    //crear modelo y dependencias de la tabla grupo_guia
+    //public function periodos(){
+    //    return $this->belongsToMany(periodo::class, 'rel_periodo_materia','id_materia','id_periodo');
+    //}
 }

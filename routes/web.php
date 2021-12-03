@@ -19,7 +19,6 @@ Route::get('/admin.gestionAniosPeriodos','App\Http\Controllers\AdminController@i
 
 Route::resource('anio_lectivo','App\Http\Controllers\AnioLectivoController');
 Route::resource('periodo','App\Http\Controllers\PeriodoController');
-Route::resource('rel_anio_periodo','App\Http\Controllers\Rel_anio_periodo_Controller');
 
 Route::resource('materia','App\Http\Controllers\MateriaController')->parameters(['materia' => 'materia']);
 
