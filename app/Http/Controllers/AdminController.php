@@ -20,7 +20,7 @@ class AdminController extends Controller
     }
     public function indexGestionAniosPeriodos()
     {
-        $query=periodo::showPeriodosActivos();
+        //$query=anio_lectivo::latest('nombre')->where('periodos.');
         $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
         return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
     }

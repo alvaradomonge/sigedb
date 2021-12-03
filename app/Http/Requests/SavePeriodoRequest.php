@@ -25,14 +25,16 @@ class SavePeriodoRequest extends FormRequest
     {
         return [
             'nombre'=> 'required',
-            'id_anio'=> 'required'
+            'id_anio'=> 'required',
+            'activo'=> 'required'
         ];
     }
     public function messages()
     {
         return [
             'nombre'=>'Por favor ingrese el nombre',
-            'id_anio'=>'Por favor seleccione el año'
+            'id_anio'=>'Por favor seleccione el año',
+            'activo'=> 'Agregue la condición'
         ];
     }
 }

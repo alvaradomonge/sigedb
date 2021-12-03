@@ -52,6 +52,15 @@
 								Si
 							</option>
 					  	</select>
+					  	<label>Estado del periodo</label>
+						<select name="activo" class="form-control">
+							<option value="1">
+								Crear como activo
+							</option>
+							<option value="0">
+								Crear como inactivo
+							</option>
+					  	</select>
 					</div>
 					<br>
 					<button class="btn btn-primary btn-lg btn-block">Crear</button>

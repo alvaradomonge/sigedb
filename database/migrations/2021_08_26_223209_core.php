@@ -23,6 +23,7 @@ class Core extends Migration
             $table->date('fecha_inicio')->nullable();
             $table->date('fecha_fin')->nullable();
             $table->foreignId('id_anio')->constrained('anio_lectivo');
+            $table->boolean('activo');
         });
         Schema::create('grupo_guia', function (Blueprint $table) {
             $table->bigIncrements('id');
