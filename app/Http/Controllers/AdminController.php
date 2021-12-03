@@ -14,7 +14,7 @@ class AdminController extends Controller
     }
     public function index()
     {
-        $query=periodo::find('1')->relacion;
+        $query=periodo::all()->where('activo','1');
         $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
         return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
     }
@@ -30,16 +30,6 @@ class AdminController extends Controller
     }
     public function store(SaveAnioLectivo $request)
     {
-        
-        // $nombre= request('nombre');
-        // $apellido1= request('apellido1');
-        // $apellido2= request('apellido2');
-        // $email= request('email');
-        // $cedula= request('cedula');
-        // $tel= request('tel');
-        // $estado= request('estado');
-        // $direccion= request('direccion');
-
         anio_lectivo::create($request->validated());
 
         return redirect()->route('admin.index')->with('status','Año creado exitósamente'); 

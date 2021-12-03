@@ -24,13 +24,14 @@ class SaveAnioLectivo extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=> 'required',
+            'nombre'=> 'required|max:4',
         ];
     }
     public function messages()
     {
         return [
-            'nombre.required'=>'Por favor ingrese el nombre',
+            'nombre.required'=>'Por favor ingrese el nombre, con longitud de 4 caracteres',
+            'nombre.max'=>'No debe exceder de 4 caracteres',
         ];
     }
 }

@@ -14,6 +14,6 @@ class anio_lectivo extends Model
 
     public function periodos()
     {
-        return $this->hasMany(periodo::class,'id_anio');
+        return $this->hasMany(periodo::class);
     }
 }

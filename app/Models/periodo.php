@@ -13,7 +13,7 @@ class periodo extends Model
     use HasFactory;
 
     public function anio_lectivo(){
-        return $this->belongsTo(anio_lectivo::class);
+        return $this->belongsTo(anio_lectivo::class,'id_anio');
     }
 
     public function materias(){//se debe agregar el modelo de gurpo guia y su tabla de relación con periodo

@@ -24,13 +24,14 @@ class SaveMateriaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=> 'required'
+            'nombre'=> 'required|max:50'
         ];
     }
     public function messages()
     {
         return [
             'nombre.required'=>'Por favor ingrese el nombre',
+            'nombre.max'=>'El nombre no debe exceder los 50 caracteres',
         ];
     }
 }

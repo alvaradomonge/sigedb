@@ -28,14 +28,27 @@
 					</ul>
 				</div>
 			<h2 class="display-8 mb-0">Periodos activos</h2>
-				
-				{{-- @forelse ($anio_lectivo as $anio_lectivo_Item)
-					<option value="{{$anio_lectivo_Item->id}}">
-						{{$anio_lectivo_Item->nombre}}
-					</option>
-				@empty
-					<option>Cree primero un año lectivo</option>
-				@endforelse --}}
+				<div class="dropdown">
+					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+				    	Seleccione...
+				  	</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						@forelse ($query as $query_Item)
+							<li>
+								<a class="dropdown-item" href="{{route('periodo.show',$query_Item)}}">
+									<span class="font-weight-bold">
+										{{$query_Item->anio_lectivo->nombre}}-{{$query_Item->nombre}} 
+									</span>
+								</a>
+							</li>
+						@empty
+							<li>
+								No hay periodos activos
+							</li>
+						@endforelse
+						{{$anio_lectivo->links()}}
+					</ul>
+				</div>
 			<h2 class="display-8 mb-0">Herramientas</h2>
 				<a class="btn btn-primary" href="{{route('anio_lectivo.create')}}">Crear año lectivo</a>
 				<a class="btn btn-secondary" href="{{route('periodo.create',$anio_lectivo)}}">Crear Periodo</a>

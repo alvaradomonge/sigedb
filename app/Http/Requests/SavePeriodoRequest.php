@@ -24,7 +24,7 @@ class SavePeriodoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=> 'required',
+            'nombre'=> 'required|max:20',
             'id_anio'=> 'required',
             'activo'=> 'required'
         ];
@@ -33,6 +33,7 @@ class SavePeriodoRequest extends FormRequest
     {
         return [
             'nombre'=>'Por favor ingrese el nombre',
+            'nombre.max'=>'El nombre no debe exceder los 20 caracteres',
             'id_anio'=>'Por favor seleccione el año',
             'activo'=> 'Agregue la condición'
         ];

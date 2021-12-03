@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\SaveAnioLectivo;
 use App\Models\anio_lectivo;
+use App\Models\periodo;
 use Illuminate\Http\Request;
 
 class AnioLectivoController extends Controller
@@ -19,8 +20,9 @@ class AnioLectivoController extends Controller
 
     public function index()
     {
+        $query=periodo::all()->where('activo','1')->sortBy('anio_lectivo->nombre');
         $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
-        return view('admin.gestionAniosPeriodos',compact('anio_lectivo'));
+        return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
     }
 
     /**
