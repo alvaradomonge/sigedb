@@ -7,14 +7,7 @@
 		<div class="bg-white p-4 shadow rounded">
 			<h2 class="display-8">Datos de la materia</h2>
 			<p class="text-black">Nombre de materia: {{$materia->nombre}}</p>
-			
-			@foreach ($grupo_guia as $grupo_guia_Item)
-					@if($grupo_guia_Item->id==$materia->id_grupo_guia)
-					<p class="text-black">Grupo: {{ $grupo_guia_Item->nombre}}</p>
-					@endif
-				</option>
-			@endforeach
-			
+			<p class="text-black">Grupo: {{$materia->grupos_guias->nombre}}</p>
 			<p class="text-black">Libro de notas: {{$materia->id_libro_notas}}</p>
 			<p class="text-black">Docente: {{$materia->id_user}}</p>
 			<p class="text-black">Estado de materia : {{$materia->id_estado}}</p>
