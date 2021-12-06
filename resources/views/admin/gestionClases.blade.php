@@ -12,6 +12,7 @@
 				<li>Estado de Periodo</li>
 				<li> <a href="{{route('materia.index')}}"> Administrar Materias </a></li>
 				<li>Mantenimiento de Materias</li>
+				<li> <a href="{{route('grupo_guia.index')}}">Mantenimiento de Gupos guías</li>
 			</ul>
 		</div>
 	</div>

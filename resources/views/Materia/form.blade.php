@@ -14,7 +14,6 @@
 	<br>
 	
 	 <select name="id_libro_nota" class="form-control">
-		<option value="">---Elegir una opción---</option>
 		<option value="{{" "}}">Libro 1</option>
 		<option value="{{" "}}">libro 2</option>
 	</select>
@@ -27,10 +26,15 @@
 	</label>
 	<br>
 	
+
 	 <select name="id_grupo_guia" class="form-control">
-		<option value="">---Elegir una opción---</option>
-		<option value="{{" "}}">Grupo 1</option>
-		<option value="{{" "}}">Grupo 2</option>
+		@forelse ($grupo_guia as $grupo_guia_Item)
+			<option value="{{$grupo_guia_Item->id}}">
+				{{$grupo_guia_Item->nombre}}
+			</option>
+		@empty
+			<option>No existen grupos</option>
+		@endforelse
 	</select>
 </div>
 
@@ -41,7 +45,6 @@
 	<br>
 	
 	 <select name="id_docente" class="form-control">
-		<option value="">---Elegir una opción---</option>
 		<option value="{{" "}}">Docente 1</option>
 		<option value="{{" "}}">Docente 2</option>
 	</select>
@@ -54,9 +57,9 @@
 	<br>
 	
 	 <select name="id_estado" class="form-control">
-		<option value="">---Elegir una opción---</option>
-		<option value="{{" "}}">Estado 1</option>
-		<option value="{{" "}}">Estado 2</option>
+		<option value="{{"1"}}">Activo</option>
+		<option value="{{"2"}}">Bloqueado</option>
+		<option value="{{"3"}}">Finalizado</option>
 	</select>
 </div>
 

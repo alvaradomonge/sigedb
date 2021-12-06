@@ -20,7 +20,10 @@ Route::get('/admin.gestionAniosPeriodos','App\Http\Controllers\AdminController@i
 Route::resource('anio_lectivo','App\Http\Controllers\AnioLectivoController');
 Route::resource('periodo','App\Http\Controllers\PeriodoController');
 
+Route::resource('grupo_guia','App\Http\Controllers\grupoGuiaController')->parameters(['grupo_guia' => 'grupo_guia']);
+
 Route::resource('materia','App\Http\Controllers\MateriaController')->parameters(['materia' => 'materia']);
+
 
 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');

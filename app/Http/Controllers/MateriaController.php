@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\materia;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaveMateriaRequest;
+use App\Controllers\grupoGuiaController;
+use App\Models\grupo_guia;
 class materiaController extends Controller
 {
     /**
@@ -29,7 +31,9 @@ class materiaController extends Controller
      */
     public function create()
     {
-        return view('materia.create',['materia' => new materia]);
+        $grupo_guia = grupo_guia::all();
+        $materia=new materia;
+        return view('materia.create',compact('grupo_guia','materia'));
     }
 
     /**
@@ -53,9 +57,17 @@ class materiaController extends Controller
      */
     public function show($id)
     {
-        return view('materia.show',[
-            'materia'=>materia::findOrFail($id)
-        ]);
+        $materia=materia::findOrFail($id);
+       
+        $grupo_guia = grupo_guia::all();
+     
+        return view('materia.show',compact('grupo_guia','materia'));
+
+
+
+        // return view('materia.show',[
+        //     'materia'=>
+        // ]);
     }
 
     /**
@@ -66,8 +78,9 @@ class materiaController extends Controller
      */
     public function edit(materia $materia)
     {
-        return view('materia.edit',[
-            'materia' => $materia]);
+        $grupo_guia = grupo_guia::all();
+        $materia= $materia;
+        return view('materia.edit',compact('grupo_guia','materia'));
     }
 
     /**

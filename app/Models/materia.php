@@ -13,7 +13,7 @@ class materia extends Model
     use HasFactory;
 
     //crear modelo y dependencias de la tabla grupo_guia
-    //public function periodos(){
-    //    return $this->belongsToMany(periodo::class, 'rel_periodo_materia','id_materia','id_periodo');
-    //}
+    public function grupos_guias(){
+        return $this->belongsTo(grupo_guia::class,'id_grupo_guia');
+    }
 }
