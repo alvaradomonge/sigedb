@@ -20,10 +20,12 @@ class Core extends Migration
         Schema::create('periodo', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',20);
+            $table->unsignedTinyInteger('valor_porcentual')->nullable();
             $table->date('fecha_inicio')->nullable();
             $table->date('fecha_fin')->nullable();
             $table->foreignId('id_anio')->constrained('anio_lectivo');
             $table->boolean('activo');
+            $table->boolean('es_final');
         });
         Schema::create('grupo_guia', function (Blueprint $table) {
             $table->bigIncrements('id');

@@ -17,7 +17,10 @@ class PeriodoController extends Controller
      */
     public function index()
     {
-        //
+        $query=periodo::latest('id_anio')->where('activo','1')->orderBy('id_anio','asc')->get();
+        //$query=periodo::all()->sortBy('anio_lectivo->nombre')->where('activo','1');
+        $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
+        return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
     }
 
     /**
@@ -60,16 +63,11 @@ class PeriodoController extends Controller
      */
     public function show($id)
     {
-        return view('Estudiante.show',[
-            'estudiante'=>Estudiante::findOrFail($id)
+        return view('Periodo.show',[
+            'periodo'=>periodo::findOrFail($id)
         ]);
     }
 
-    public function showPeriodosActivos()
-    {
-        $query=periodo::find()->relacion()->where('activo',1);
-        return $query;
-    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -90,7 +88,7 @@ class PeriodoController extends Controller
      * @param  \App\Models\periodo  $periodo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, periodo $periodo)
+    public function update(SavePeriodoRequest $request, periodo $periodo)
     {
         $periodo->update($request->validated());
         return redirect()->route('periodo.show',$periodo)->with('status','Actualización completada exitósamente');
