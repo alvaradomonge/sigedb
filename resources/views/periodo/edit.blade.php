@@ -18,6 +18,11 @@
 						</label>
 						<br>
 						<input id="nombre" class="form-control border-0 bg-light shadow-sm" type="text" name="nombre" value="{{old('nombre',$periodo->nombre)}}">
+						<label for="id_anio">
+							Año Lectivo al que pertenece{!!$errors->first('id_anio','(*)')!!}
+						</label>
+						<br>
+						<input id="id_anio" class="form-control border-0 bg-light shadow-sm" type="text" name="id_anio" value="{{old('nombre',$periodo->anio_lectivo->nombre)}}">
 						<label for="valor_porcentual">
 							Valor porcentual{!!$errors->first('valor_porcentual','(*)')!!}
 						</label>
