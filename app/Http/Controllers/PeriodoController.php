@@ -17,7 +17,7 @@ class PeriodoController extends Controller
      */
     public function index()
     {
-        $query=periodo::latest('id_anio')->where('activo','1')->orderBy('id_anio','asc')->get();
+        $query=periodo::where('activo','1')->orderBy('id_anio','desc')->get();
         //$query=periodo::all()->sortBy('anio_lectivo->nombre')->where('activo','1');
         $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
         return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
@@ -76,8 +76,10 @@ class PeriodoController extends Controller
      */
     public function edit(periodo $periodo)
     {
+        $anio_lectivo = anio_lectivo::all();
         return view('periodo.edit',[
             'periodo' => $periodo,
+            'anio_lectivo'=>$anio_lectivo,
         ]);
     }
 

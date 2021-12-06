@@ -58,7 +58,8 @@ class AnioLectivoController extends Controller
     public function show($id)
     {
         return view('admin.anioLectivoShow',[
-           'anio_lectivo'=>anio_lectivo::findOrFail($id)
+           'anio_lectivo'=>anio_lectivo::findOrFail($id),
+           'query'=>periodo::where('id_anio',$id)->get()
         ]);    
     }
 

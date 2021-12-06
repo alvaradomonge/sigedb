@@ -26,7 +26,8 @@ class SavePeriodoRequest extends FormRequest
         return [
             'nombre'=> 'required|max:20',
             'id_anio'=> 'required',
-            'activo'=> 'required'
+            'activo'=> 'required',
+            'es_final'=> 'required'
         ];
     }
     public function messages()
@@ -35,7 +36,8 @@ class SavePeriodoRequest extends FormRequest
             'nombre'=>'Por favor ingrese el nombre',
             'nombre.max'=>'El nombre no debe exceder los 20 caracteres',
             'id_anio'=>'Por favor seleccione el año',
-            'activo'=> 'Agregue la condición'
+            'activo'=> 'Agregue la condición',
+            'es_final'=> 'Espacio requerido'
         ];
     }
 }

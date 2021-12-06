@@ -22,22 +22,43 @@
 							Año Lectivo al que pertenece{!!$errors->first('id_anio','(*)')!!}
 						</label>
 						<br>
-						<input id="id_anio" class="form-control border-0 bg-light shadow-sm" type="text" name="id_anio" value="{{old('nombre',$periodo->anio_lectivo->nombre)}}">
+						<select name="id_anio" class="form-control">
+							@forelse ($anio_lectivo as $anio_lectivo_Item)
+								<option value="{{$anio_lectivo_Item->id}}" @if($anio_lectivo_Item->id==$periodo->id_anio) selected @endif>
+									{{$anio_lectivo_Item->nombre}}
+								</option>
+							@empty
+								<option>
+									Agregue primero un año lectivo
+								</option>
+							@endforelse
+					  	</select>
+						{{-- <input id="id_anio" class="form-control border-0 bg-light shadow-sm" type="text" name="id_anio" value="{{old('id_anio',$periodo->anio_lectivo->nombre)}}"> --}}
 						<label for="valor_porcentual">
 							Valor porcentual{!!$errors->first('valor_porcentual','(*)')!!}
 						</label>
 						<br>
-						<input id="valor_porcentual" class="form-control border-0 bg-light shadow-sm" type="text" name="valor_porcentual" value="{{old('nombre',$periodo->valor_porcentual)}}">
-						<label for="es_final">
-							¿Es un periodo final?{!!$errors->first('valor_porcentual','(*)')!!}
-						</label>
+						<input id="valor_porcentual" class="form-control border-0 bg-light shadow-sm" type="text" name="valor_porcentual" value="{{old('valor_porcentual',$periodo->valor_porcentual)}}">
 						<br>
-						<input id="es_final" class="form-control border-0 bg-light shadow-sm" type="text" name="es_final" value="{{old('es_final',$periodo->es_final)}}">
-						<label for="activo">
-							¿Es periodo Activo?{!!$errors->first('es_final','(*)')!!}
-						</label>
+						<label>¿Es un periodo final?</label>
+					  	<select name="es_final" class="form-control">
+							<option value="1" @if($periodo->es_final=='1') selected @endif>
+								Si
+							</option>
+							<option value="0" @if($periodo->es_final=='0') selected @endif>
+								NO
+							</option>
+					  	</select>
 						<br>
-						<input id="activo" class="form-control border-0 bg-light shadow-sm" type="text" name="activo" value="{{old('activo',$periodo->activo)}}">
+						<label>¿Periodo Activo?</label>
+						<select name="activo" class="form-control">
+							<option value="1" @if($periodo->activo=='1') selected @endif>
+								Si
+							</option>
+							<option value="0" @if($periodo->activo=='0') selected @endif>
+								NO
+							</option>
+					  	</select>
 					</div>
 					<br>
 					<button class="btn btn-primary btn-lg btn-block">Actualizar</button>

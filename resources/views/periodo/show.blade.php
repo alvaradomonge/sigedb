@@ -25,7 +25,7 @@
 						<a class="btn btn-primary" href="{{route('periodo.edit',$periodo)}}">Editar</a> 
 						<a class="btn btn-danger" href="#" onclick="document.getElementById('delete').submit()">Eliminar</a>
 					</div>
-					<form id="delete" class="d-none" method="POST" action="{{route('admin.gestionAniosPeriodos')}}">
+					<form id="delete" class="d-none" method="POST" action="{{route('periodo.destroy',$periodo->id)}}">
 						@csrf @method('DELETE')
 					</form>
 					
