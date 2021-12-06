@@ -53,6 +53,6 @@ class LoginController extends Controller
         //         $redirectTo = '/';
         //         return $redirectTo;
         // }
-        return "inicio";
+        return '/';
     }
 }

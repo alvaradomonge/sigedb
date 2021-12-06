@@ -20,7 +20,8 @@ class AnioLectivoController extends Controller
 
     public function index()
     {
-        $query=periodo::all()->where('activo','1')->sortBy('anio_lectivo->nombre');
+        $query=periodo::latest('id_anio')->where('activo','1')->orderBy('id_anio','asc')->get();
+        //$query=periodo::all()->sortBy('anio_lectivo->nombre')->where('activo','1');
         $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
         return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
     }
