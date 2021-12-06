@@ -57,17 +57,14 @@ class materiaController extends Controller
      */
     public function show($id)
     {
-        $materia=materia::findOrFail($id);
-       
-        $grupo_guia = grupo_guia::all();
+        // $materia=materia::findOrFail($id);
      
-        return view('materia.show',compact('grupo_guia','materia'));
+        // return view('materia.show',compact('materia'));
 
+        return view('materia.show',[
+            'materia'=>materia::findOrFail($id)
+        ]);
 
-
-        // return view('materia.show',[
-        //     'materia'=>
-        // ]);
     }
 
     /**

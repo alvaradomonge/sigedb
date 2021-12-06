@@ -9,8 +9,8 @@
 			<p class="text-black">Nombre de materia: {{$materia->nombre}}</p>
 			<p class="text-black">Grupo: {{$materia->grupos_guias->nombre}}</p>
 			<p class="text-black">Libro de notas: {{$materia->id_libro_notas}}</p>
-			<p class="text-black">Docente: {{$materia->id_user}}</p>
-			<p class="text-black">Estado de materia : {{$materia->id_estado}}</p>
+			<p class="text-black">Docente: {{$materia->docentes->name}} {{$materia->docentes->apellido1}} {{$materia->docentes->apellido2}}</p>
+			<p class="text-black">Estado de materia: {{$materia->id_estado}}</p>
 			
 			<div class="d-flex justify-content-between align-items-center">
 				<a href="{{route('materia.index')}}">Regresar</a>

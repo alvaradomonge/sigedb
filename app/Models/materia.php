@@ -16,4 +16,10 @@ class materia extends Model
     public function grupos_guias(){
         return $this->belongsTo(grupo_guia::class,'id_grupo_guia');
     }
+    public function docentes(){
+        return $this->belongsTo(user::class,'id');
+    }
+    public function estados(){
+        return $this->belongsTo(estado_materia::class,'id');
+    }
 }
