@@ -9,12 +9,12 @@
 				@include('partials.validation-errors')
 				<form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{route('grupo_guia.update',$grupo_guia)}}">
 					@csrf
-					<h2 class="display-8">Editar grupo guia</h2> 
+					<h2 class="display-8">Editar grupo guía</h2> 
 					<hr>
 					@method('PATCH')
 					<div class="form-group">
 						<label for="nombre">
-							Año{!!$errors->first('nombre','(*)')!!}
+							Grupo guía{!!$errors->first('nombre','(*)')!!}
 						</label>
 						<br>
 						<input id="nombre" class="form-control border-0 bg-light shadow-sm" type="text" name="nombre" value="{{old('nombre',$grupo_guia->nombre)}}">

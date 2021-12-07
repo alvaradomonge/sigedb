@@ -17,9 +17,9 @@ class materia extends Model
         return $this->belongsTo(grupo_guia::class,'id_grupo_guia');
     }
     public function docentes(){
-        return $this->belongsTo(user::class,'id');
+        return $this->belongsTo(User::class,'id_user');
     }
     public function estados(){
-        return $this->belongsTo(estado_materia::class,'id');
+        return $this->belongsTo(estado_materia::class,'id_estado');
     }
 }
