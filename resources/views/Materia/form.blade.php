@@ -44,7 +44,7 @@
 	
 	 <select name="id_user" class="form-control">
 		@forelse ($user as $user_Item)
-			<option value="{{$user_Item->id}}" >
+			<option value="{{$user_Item->id}}" @if($user_Item->id==$materia->id_user) selected @endif>
 				{{$user_Item->name}} {{$user_Item->apellido1}} {{$user_Item->apellido2}}
 			</option>
 		@empty

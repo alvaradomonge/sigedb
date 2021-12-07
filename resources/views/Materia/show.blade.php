@@ -13,7 +13,7 @@
 			<p class="text-black">Estado de materia: {{$materia->id_estado}}</p>
 			
 			<div class="d-flex justify-content-between align-items-center">
-				<a href="{{route('materia.index')}}">Regresar</a>
+				<a  class="btn btn-primary" href="{{route('materia.index')}}">Regresar</a>
 				@auth 
 					<div class="btn-group btn-group-sm">
 						<a class="btn btn-primary" href="{{route('materia.edit',$materia)}}">Editar</a> 

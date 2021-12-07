@@ -9,7 +9,7 @@
 			<p class="text-black">Nombre: {{$grupo_guia->nombre}}</p>
 			
 			<div class="d-flex justify-content-between align-items-center">
-				<a href="{{route('grupo_guia.index')}}">Regresar</a>
+				<a  class="btn btn-primary" href="{{route('grupo_guia.index')}}">Regresar</a>
 				@auth 
 					<div class="btn-group btn-group-sm">
 						<a class="btn btn-primary" href="{{route('grupo_guia.edit',$grupo_guia)}}">Editar</a> 
