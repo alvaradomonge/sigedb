@@ -29,7 +29,7 @@
 						 <select name="id_periodo" class="form-control">
 							@forelse ($periodo as $periodo_Item)
 								<option value="{{$periodo_Item->id}}" @if($periodo_Item->id==$grupo_guia->id_periodo) selected @endif>
-									{{$periodo_Item->nombre}}
+									{{$periodo_Item->anio_lectivo->nombre}} -- {{$periodo_Item->nombre}}
 								</option>
 							@empty
 								<option>No existen peridos</option>
