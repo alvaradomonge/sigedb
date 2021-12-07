@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class asignacion extends Model
 {
+    public $timestamps = false;
+    protected $guarded = [];
+    protected $table = 'asignacion';
     use HasFactory;
 }

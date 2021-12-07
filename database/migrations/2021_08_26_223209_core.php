@@ -32,6 +32,11 @@ class Core extends Migration
             $table->string('nombre',50);
             $table->foreignId('id_periodo')->constrained('periodo');
         });
+        Schema::create('rel_grupo_guia_estudiante', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->foreignId('id_grupo_guia')->constrained('grupo_guia');
+            $table->foreignId('id_user')->constrained('users');
+        });
         Schema::create('estado_materia', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',50);
