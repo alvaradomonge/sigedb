@@ -7,7 +7,7 @@
 	<input id="nombre" class="form-control border-0 bg-light shadow-sm" type="text" name="nombre" value="{{old('nombre',$materia->nombre)}}">
 </div>
 
-<div class="form-group">
+{{-- <div class="form-group">
 	<label for="id_libro_nota">
 		Seleccione el libro de nota {!!$errors->first('id_libro_nota','(*)')!!}
 	</label>
@@ -18,18 +18,16 @@
 		<option value="{{" "}}">libro 2</option>
 	</select>
 </div>
-
+ --}}
 
 <div class="form-group">
 	<label for="id_grupo_guia">
 		Seleccione el grupo guía {!!$errors->first('id_grupo_guia','(*)')!!}
 	</label>
 	<br>
-	
-
 	 <select name="id_grupo_guia" class="form-control">
 		@forelse ($grupo_guia as $grupo_guia_Item)
-			<option value="{{$grupo_guia_Item->id}}">
+			<option value="{{$grupo_guia_Item->id}}" @if($grupo_guia_Item->id==$materia->id_grupo_guia) selected @endif>
 				{{$grupo_guia_Item->nombre}}
 			</option>
 		@empty
@@ -39,14 +37,19 @@
 </div>
 
 <div class="form-group">
-	<label for="id_docente">
-		Seleccione el docente{!!$errors->first('id_docente','(*)')!!}
+	<label for="id_user">
+		Seleccione el docente{!!$errors->first('id_user','(*)')!!}
 	</label>
 	<br>
 	
-	 <select name="id_docente" class="form-control">
-		<option value="{{" "}}">Docente 1</option>
-		<option value="{{" "}}">Docente 2</option>
+	 <select name="id_user" class="form-control">
+		@forelse ($user as $user_Item)
+			<option value="{{$user_Item->id}}" @if($user_Item->id==$materia->id_user) selected @endif>
+				{{$user_Item->name}} {{$user_Item->apellido1}} {{$user_Item->apellido2}}
+			</option>
+		@empty
+			<option>No existen docentes</option>
+		@endforelse
 	</select>
 </div>
 

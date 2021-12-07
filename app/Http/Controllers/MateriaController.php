@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SaveMateriaRequest;
 use App\Controllers\grupoGuiaController;
 use App\Models\grupo_guia;
+use App\Models\User;
 class materiaController extends Controller
 {
     /**
@@ -33,7 +34,8 @@ class materiaController extends Controller
     {
         $grupo_guia = grupo_guia::all();
         $materia=new materia;
-        return view('materia.create',compact('grupo_guia','materia'));
+         $user=User::all();
+        return view('materia.create',compact('grupo_guia','materia','user'));
     }
 
     /**
@@ -77,7 +79,8 @@ class materiaController extends Controller
     {
         $grupo_guia = grupo_guia::all();
         $materia= $materia;
-        return view('materia.edit',compact('grupo_guia','materia'));
+        $user=User::all();
+        return view('materia.edit',compact('grupo_guia','materia','user'));
     }
 
     /**
