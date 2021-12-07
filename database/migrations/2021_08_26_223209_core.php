@@ -30,6 +30,7 @@ class Core extends Migration
         Schema::create('grupo_guia', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',50);
+            $table->foreignId('id_periodo')->constrained('periodo');
         });
         Schema::create('estado_materia', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -46,11 +47,6 @@ class Core extends Migration
             $table->foreignId('id_libro_notas')->nullable()->constrained('libro_notas');
             $table->foreignId('id_user')->nullable()->constrained('users');
             $table->foreignId('id_estado')->nullable()->constrained('estado_materia');
-        });
-        Schema::create('rel_periodo_grupo_guia', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->foreignId('id_periodo')->constrained('periodo');
-            $table->foreignId('id_grupo_guia')->nullable()->constrained('grupo_guia');
         });
         Schema::create('rubro', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -100,6 +96,6 @@ class Core extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(['materia','periodo','grupo_guia','anio_lectivo','rol_usuario','estado_materia','rel_periodo_grupo_guia','rel_materia_docente','libro_notas','promedio_estud_libro_cuanti','rel_estud_libro_rubro_asig','asignacion','rel_escala_cualit_rubro_cualit','rubro_escala_cualitativa','escala_cualitativa','rubro']);
+        Schema::dropIfExists(['materia','periodo','grupo_guia','anio_lectivo','rol_usuario','estado_materia','rel_materia_docente','libro_notas','promedio_estud_libro_cuanti','rel_estud_libro_rubro_asig','asignacion','rel_escala_cualit_rubro_cualit','rubro_escala_cualitativa','escala_cualitativa','rubro']);
     }
 }

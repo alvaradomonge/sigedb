@@ -16,7 +16,7 @@ class periodo extends Model
         return $this->belongsTo(anio_lectivo::class,'id_anio');
     }
 
-    public function materias(){//se debe agregar el modelo de gurpo guia y su tabla de relación con periodo
-        //return $this->belongsToMany(materia::class, 'rel_periodo_materia','id_periodo','id_materia');
+    public function grupos_guias(){
+        return $this->hasMany(grupos_guia::class);
     }
 }
