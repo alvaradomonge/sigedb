@@ -22,4 +22,7 @@ class materia extends Model
     public function estados(){
         return $this->belongsTo(estado_materia::class,'id');
     }
+    public function libro_notas(){
+        return $this->belongsTo(libro_notas::class,'id_libro_notas');
+    }
 }
