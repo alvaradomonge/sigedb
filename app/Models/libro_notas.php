@@ -16,4 +16,7 @@ class libro_notas extends Model
     {
         return $this->hasOne(materia::class);
     }
+    public function promedio_estudiante(){
+        return $this->belongsToMany(user::class,'promedio_estud_libro_cuanti','id_libro_notas','id_estudiante')->withPivot('promedio');
+    }
 }
