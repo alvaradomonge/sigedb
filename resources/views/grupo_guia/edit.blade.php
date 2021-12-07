@@ -19,6 +19,24 @@
 						<br>
 						<input id="nombre" class="form-control border-0 bg-light shadow-sm" type="text" name="nombre" value="{{old('nombre',$grupo_guia->nombre)}}">
 					</div>
+
+					<div class="form-group">
+						<label for="id_periodo">
+							Seleccione el periodo{!!$errors->first('id_periodo','(*)')!!}
+						</label>
+						<br>
+						
+						 <select name="id_periodo" class="form-control">
+							@forelse ($periodo as $periodo_Item)
+								<option value="{{$periodo_Item->id}}" @if($periodo_Item->id==$grupo_guia->id_periodo) selected @endif>
+									{{$periodo_Item->nombre}}
+								</option>
+							@empty
+								<option>No existen peridos</option>
+							@endforelse
+						</select>
+					</div>
+
 					<br>
 					<button class="btn btn-primary btn-lg btn-block">Actualizar</button>
 					<a class="btn btn-secondary btn-lg btn-block" href="{{route('grupo_guia.index',$grupo_guia)}}">Cancelar</a> 

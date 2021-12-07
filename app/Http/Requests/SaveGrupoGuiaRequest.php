@@ -24,7 +24,8 @@ class SaveGrupoGuiaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=> 'required|max:50'
+            'nombre'=> 'required|max:50',
+            'id_periodo'=> 'required|max:20'
         ];
     }
     public function messages()
@@ -32,6 +33,7 @@ class SaveGrupoGuiaRequest extends FormRequest
         return [
             'nombre.required'=>'Por favor ingrese el nombre',
             'nombre.max'=>'El nombre no debe exceder los 50 caracteres',
+            'id_periodo.required'=>'Por favor elegir el periodo',
         ];
     }
 }

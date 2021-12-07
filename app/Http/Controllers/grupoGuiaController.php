@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\grupo_guia;
+use App\Models\periodo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveGrupoGuiaRequest;
 use Illuminate\Http\Request;
@@ -32,7 +33,9 @@ class grupoGuiaController extends Controller
      */
     public function create()
     {
-        return view('grupo_guia.create',['grupo_guia' => new grupo_guia]);
+         $periodo=periodo::all();
+         $grupo_guia=new grupo_guia;
+        return view('grupo_guia.create',compact('grupo_guia','periodo'));
     }
 
     /**
@@ -69,7 +72,9 @@ class grupoGuiaController extends Controller
      */
     public function edit(grupo_guia $grupo_guia)
     {
-        return view('grupo_guia.edit',['grupo_guia' => $grupo_guia]);
+        $periodo=periodo::all();
+         $grupo_guia=$grupo_guia;
+        return view('grupo_guia.edit',compact('grupo_guia','periodo'));
     }
 
     /**

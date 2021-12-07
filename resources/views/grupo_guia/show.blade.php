@@ -7,6 +7,7 @@
 		<div class="bg-white p-4 shadow rounded">
 			<h2 class="display-8">Datos del grupo guía</h2>
 			<p class="text-black">Nombre: {{$grupo_guia->nombre}}</p>
+			<p class="text-black">Periodo: {{$grupo_guia->periodo->nombre}}</p>
 			
 			<div class="d-flex justify-content-between align-items-center">
 				<a  class="btn btn-primary" href="{{route('grupo_guia.index')}}">Regresar</a>
