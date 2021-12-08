@@ -55,4 +55,9 @@ class User extends Authenticatable
     public function libro_notas(){
         return $this->belongsToMany(libro_notas::class,'promedio_estud_libro_cuanti','id_estudiante','id_libro_notas')->withPivot('promedio');
     }
+
+    public function grupos_guias()
+    {
+        return $this->belongsToMany(grupo_guia::class,'rel_grupo_guia_estudiante','id_user','id_grupo_guia');
+    }
 }

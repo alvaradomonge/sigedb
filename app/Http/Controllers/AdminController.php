@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\SaveAnioLectivo;
 use App\Models\anio_lectivo;
+use App\Models\grupo_guia;
 use App\Models\periodo;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -18,16 +20,10 @@ class AdminController extends Controller
         $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
         return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
     }
-    public  function indexGestionClases()
+    public function gruposEstudiantes(grupo_guia $grupo_guia)
     {
-        $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
-        return view('admin.gestionClases',compact('anio_lectivo'));
-    }
-    public function indexGruposEstudiantes()
-    {
-        //$query=anio_lectivo::latest('nombre')->where('periodos.');
-        $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
-        return view('admin.gestionGruposEstudiantes',compact('anio_lectivo'));
+        //return $grupo_guia->estudiantes;
+        return view('admin.gruposEstudiantes',compact('grupo_guia'));
     }
     public function create()
     {

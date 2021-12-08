@@ -17,7 +17,7 @@ Auth::routes(['register'=>false]);
 Route::view('/admin.gestionClases','admin.gestionClases')->name('admin.gestionClases');
 //Route::get('/admin.gestionClases','App\Http\Controllers\AdminController@indexGestionClases')->name('admin.gestionClases');
 Route::get('/admin.gestionAniosPeriodos','App\Http\Controllers\AdminController@index')->name('admin.gestionAniosPeriodos');
-Route::get('/admin.gestionGruposEstudiantes','App\Http\Controllers\AdminController@indexGruposEstudiantes')->name('admin.gestionGruposEstudiantes');
+Route::get('/admin.gruposEstudiantes/{grupo_guia}','App\Http\Controllers\AdminController@gruposEstudiantes')->name('admin.gruposEstudiantes');
 
 Route::resource('anio_lectivo','App\Http\Controllers\AnioLectivoController');
 Route::resource('periodo','App\Http\Controllers\PeriodoController');
@@ -26,7 +26,7 @@ Route::resource('grupo_guia','App\Http\Controllers\grupoGuiaController')->parame
 
 Route::resource('materia','App\Http\Controllers\MateriaController')->parameters(['materia' => 'materia']);
 
-
+Route::get('search/estudiantes','App\Http\Controllers\searchController@estudiantes')->name('search.estudiantes');
 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');
 
