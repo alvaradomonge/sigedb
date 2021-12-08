@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Controllers\AnioLectivoController;
 use App\Http\Requests\SavePeriodoRequest;
 use App\Models\anio_lectivo;
-use App\Controllers\AnioLectivoController;
+use App\Models\grupo_guia;
 use App\Models\periodo;
 use Illuminate\Http\Request;
 
@@ -63,8 +64,10 @@ class PeriodoController extends Controller
      */
     public function show($id)
     {
+        $grupos=grupo_guia::where('id_periodo',$id)->get();
         return view('Periodo.show',[
-            'periodo'=>periodo::findOrFail($id)
+            'periodo'=>periodo::findOrFail($id),
+         'grupos_guia'=>$grupos,
         ]);
     }
 

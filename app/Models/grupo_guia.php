@@ -21,4 +21,9 @@ class grupo_guia extends Model
     {
         return $this->belongsTo(periodo::class,'id_periodo');
     }
+
+    public function estudiantes()
+    {
+        return $this->belongsToMany(user::class,'rel_grupo_guia_estudiante','id_grupo_guia','id_user');
+    }
 }
