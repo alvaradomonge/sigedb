@@ -26,7 +26,7 @@ Route::resource('grupo_guia','App\Http\Controllers\grupoGuiaController')->parame
 
 Route::resource('materia','App\Http\Controllers\MateriaController')->parameters(['materia' => 'materia']);
 
-
+Route::get('search/estudiantes','App\Http\Controllers\searchController@estudiantes')->name('search.estudiantes');
 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');
 
