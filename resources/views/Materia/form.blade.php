@@ -66,6 +66,18 @@
 	</select>
 </div>
 
+<div class="form-group">
+	<label for="es_cualitativo">
+		Seleccione el tipo de libro de notas{!!$errors->first('es_cualitativo','(*)')!!}
+	</label>
+	<br>
+	
+	 <select name="es_cualitativo" class="form-control">
+		<option value="{{1}}">Cuantitativo</option>
+		<option value="{{0}}">Cualitativo</option>
+	</select>
+</div>
+
 <br>
 <button class="btn btn-primary btn-lg btn-block">{{$btnText}}</button>
 <a class="btn btn-secondary btn-lg btn-block" href="{{route('materia.index',$materia)}}">Cancelar</a> 
