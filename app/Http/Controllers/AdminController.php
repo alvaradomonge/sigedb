@@ -18,11 +18,16 @@ class AdminController extends Controller
         $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
         return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
     }
-    public function indexGestionAniosPeriodos()
+    public  function indexGestionClases()
+    {
+        $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
+        return view('admin.gestionClases',compact('anio_lectivo'));
+    }
+    public function indexGruposEstudiantes()
     {
         //$query=anio_lectivo::latest('nombre')->where('periodos.');
         $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
-        return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
+        return view('admin.gestionGruposEstudiantes',compact('anio_lectivo'));
     }
     public function create()
     {

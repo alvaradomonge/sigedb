@@ -15,7 +15,9 @@ Auth::routes(['register'=>false]);
 
 
 Route::view('/admin.gestionClases','admin.gestionClases')->name('admin.gestionClases');
+//Route::get('/admin.gestionClases','App\Http\Controllers\AdminController@indexGestionClases')->name('admin.gestionClases');
 Route::get('/admin.gestionAniosPeriodos','App\Http\Controllers\AdminController@index')->name('admin.gestionAniosPeriodos');
+Route::get('/admin.gestionGruposEstudiantes','App\Http\Controllers\AdminController@indexGruposEstudiantes')->name('admin.gestionGruposEstudiantes');
 
 Route::resource('anio_lectivo','App\Http\Controllers\AnioLectivoController');
 Route::resource('periodo','App\Http\Controllers\PeriodoController');
