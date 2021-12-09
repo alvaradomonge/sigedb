@@ -26,7 +26,7 @@ class SaveMateriaRequest extends FormRequest
         return [
             'nombre'=> 'required|max:50',
             'id_grupo_guia'=> 'required|max:20',
-           'id_libro_notas'=> 'required|max:20',
+            'id_libro_notas'=> 'required|max:20',
             'id_user'=> 'required|max:20',
             'id_estado'=> 'required|max:20',
         ];

@@ -57,12 +57,17 @@ class materiaController extends Controller
                 'es_cualitativo' => $request->es_cualitativo,
             ]
         );
-        $request=Arr::add($request,'id_libro_notas',(string)$libro_notas);
        
-        materia::create(
-             $request->validated()
-        );
-       return  $request;
+     //$request->merge(['id_libro_notas'=>$libro_notas]);
+        $request2=$request->all();
+        $request2['id_libro_notas']=$libro_notas;
+        $request2;
+
+      $mat= new materia($request2);
+
+      // $mat->agregarLibro($mat, $libro_notas);
+
+       return  $mat;
        //return redirect()->route('materia.index')->with('status','materia creado exitósamente');
     }
 
@@ -122,4 +127,6 @@ class materiaController extends Controller
          $materia->delete();
         return redirect()->route('materia.index')->with('status','Se ha realizado la eliminación');
     }
+
+    
 }

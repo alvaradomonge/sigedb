@@ -25,4 +25,9 @@ class materia extends Model
     public function libro_notas(){
         return $this->belongsTo(libro_notas::class,'id_libro_notas');
     }
+    public function agregarLibro(materia $materia,libro_notas $id_libro){
+        $materia=materia::findOrFail($materia->id);
+        $materia->id_libro_notas=$id_libro->id;
+
+    }
 }
