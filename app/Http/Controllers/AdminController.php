@@ -35,17 +35,17 @@ class AdminController extends Controller
         $estudiante =user::find(strtok($request->get('id_user'), " "));
         $tiene= $grupo_guia->estudiantes->find($estudiante->id);
         if(empty($tiene)){
-            $grupo_guia->estudiantes()->attach($estudiante);
+            $grupo_guia->estudiantes()->save($estudiante);
             return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante añadido exitósamente');  
         }else{
             return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante ya existe en el grupo');
         }
     }
-    public function sacarEstudianteGrupo_guia(grupo_guia $grupo_guia,user $estudiante)
+    public function sacarEstudianteGrupo_guia(grupo_guia $grupo_guia,user $user)
     {
-        $grupo_guia->estudiantes()->detach($estudiante);
+        $grupo_guia->estudiantes()->detach($user->id);
         return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante eliminado');  
-
+        //return $user;
     }
     public function store(SaveAnioLectivo $request)
     {

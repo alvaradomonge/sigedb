@@ -29,7 +29,7 @@ Route::resource('materia','App\Http\Controllers\MateriaController')->parameters(
 Route::get('search/estudiantes','App\Http\Controllers\searchController@estudiantes')->name('search.estudiantes');
 Route::get('search/estudiantesData/{grupo_guia}','App\Http\Controllers\searchController@estudiantesData')->name('search.estudiantesData');
 Route::get('admin/storeGrupoGuiaEstudiante/{grupo_guia}','App\Http\Controllers\adminController@storeGrupoGuiaEstudiante')->name('admin.storeGrupoGuiaEstudiante');
-Route::get('admin/sacarEstudianteGrupo_guia/{grupo_guia,estudiante}','App\Http\Controllers\adminController@sacarEstudianteGrupo_guia')->name('admin.sacarEstudianteGrupo_guia');
+Route::get('admin/sacarEstudianteGrupo_guia/{grupo_guia}/{estudiante}','App\Http\Controllers\adminController@sacarEstudianteGrupo_guia')->name('admin.sacarEstudianteGrupo_guia');
 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');
 
