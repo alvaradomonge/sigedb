@@ -60,4 +60,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(grupo_guia::class,'rel_grupo_guia_estudiante','id_user','id_grupo_guia');
     }
+
+    public function getFullName(){
+        return "{$this->id} {$this->name} {$this->apellido1} {$this->apellido2}";
+    }
 }

@@ -17,10 +17,11 @@
 					<li class="list-group-item border-0 mb-2 shadow-sm" value="{{$estudiante_Item->id}}">
 						<a class="li_element text-secondary d-flex justify-content-between text-decoration-none" href="#">
 							<span class="font-weight-bold">
-								{{$estudiante_Item->name}} {{$estudiante_Item->apellido1}} {{$estudiante_Item->apellido2}} 
+								{{$estudiante_Item->name}} {{$estudiante_Item->apellido1}} {{$estudiante_Item->apellido2}} ({{$estudiante_Item->email}})
 							</span>
-							<span class="text-black-50">
-								{{$estudiante_Item->email}}
+							
+							<span>
+								<a class="btn btn-sm btn-outline-danger" href="#">borrar</a>
 							</span>
 						</a>
 					</li>
@@ -30,15 +31,22 @@
 					</li>
 				@endforelse
 			</ul>
-			<form class="bg-white py-3 px-4 shadow rounded" method="POST" action="">
-				@csrf
-				<input type="text" name="id_user" id="id_user" class="form-control">
-				<div class="input-group-append">
-					<button class="btn btn-danger">Agregar</button>
-				</div>
-			</form>
-			<div class="d-flex justify-content-between align-items-center">
-				<a class="btn btn-primary" href="{{route('periodo.show',$grupo_guia->periodo)}}">Regresar</a>
+			<div class="collapse" id="collapse">
+				<form class="bg-white py-4 px-5 shadow rounded" method="GET" action="{{route('admin.storeGrupoGuiaEstudiante',$grupo_guia)}}">
+					@csrf
+					<div class="input-group">
+						<input type="text" name="id_user" id="id_user" class="form-control">
+						<div class="input-group-append">
+							<button class="btn btn-danger">Agregar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<br>
+			<div class="d-flex align-items-center">
+				<a class="btn btn-success" href="{{route('periodo.show',$grupo_guia->periodo)}}">Regresar</a>
+				<a class="btn btn-info" href="#">Crear estudiante</a>
+				<a class="btn btn-dark" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse" href="#collapse">Vincular estudiante</a>
 			</div>
 		</div>
 	</div>
@@ -46,7 +54,8 @@
 @section('js')
 	<script src="{{asset('vendor/jquery-ui/jquery-ui.min.js')}}"></script>
 	<script>
-		$('#id_user').autocomplete({
+
+		$('#user').autocomplete($('#id_user').autocomplete({
 			source: function(request,response){
 				$.ajax({
 					url:"{{route('search.estudiantes')}}",
@@ -59,6 +68,7 @@
 					}
 				});
 			}
-		});
+		})
+		);
 	</script>
 @endsection
