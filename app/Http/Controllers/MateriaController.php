@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\materia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use App\Http\Requests\SaveMateriaRequest;
 use App\Controllers\grupoGuiaController;
+use App\Controllers\libroNotasController;
 use App\Models\grupo_guia;
 use App\Models\User;
+use App\Models\libro_notas;
 class materiaController extends Controller
 {
     /**
@@ -33,8 +36,10 @@ class materiaController extends Controller
     public function create()
     {
         $grupo_guia = grupo_guia::all();
+        
         $materia=new materia;
-         $user=User::all();
+        //$materia->id_libro_notas=$libro_notas->id;
+        $user=User::all();
         return view('materia.create',compact('grupo_guia','materia','user'));
     }
 
@@ -46,9 +51,19 @@ class materiaController extends Controller
      */
     public function store(SaveMateriaRequest $request)
     {
-        materia::create($request->validated());
-
-        return redirect()->route('materia.index')->with('status','materia creado exitósamente');
+        
+        $libro_notas=libro_notas::insertGetId(
+            [
+                'es_cualitativo' => $request->es_cualitativo,
+            ]
+        );
+        $request=Arr::add($request,'id_libro_notas',(string)$libro_notas);
+       
+        materia::create(
+             $request->validated()
+        );
+       return  $request;
+       //return redirect()->route('materia.index')->with('status','materia creado exitósamente');
     }
 
     /**
