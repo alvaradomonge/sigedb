@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\SaveAnioLectivo;
+use App\Models\User;
 use App\Models\anio_lectivo;
 use App\Models\grupo_guia;
 use App\Models\periodo;
-use App\Models\User;
+use App\Models\rel_grupo_guia_estudiante;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -28,6 +29,23 @@ class AdminController extends Controller
     public function create()
     {
         return view('admin.create_anio_lectivo',['anio_lectivo' => new anio_lectivo]);
+    }
+    public function storeGrupoGuiaEstudiante(Request $request, grupo_guia $grupo_guia)
+    {
+        $estudiante =user::find(strtok($request->get('id_user'), " "));
+        $tiene= $grupo_guia->estudiantes->find($estudiante->id);
+        if(empty($tiene)){
+            $grupo_guia->estudiantes()->attach($estudiante);
+            return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante añadido exitósamente');  
+        }else{
+            return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante ya existe en el grupo');
+        }
+    }
+    public function sacarEstudianteGrupo_guia(grupo_guia $grupo_guia,user $estudiante)
+    {
+        $grupo_guia->estudiantes()->detach($estudiante);
+        return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante eliminado');  
+
     }
     public function store(SaveAnioLectivo $request)
     {

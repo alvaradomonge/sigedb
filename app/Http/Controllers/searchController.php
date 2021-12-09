@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\grupo_guia;
 use Illuminate\Http\Request;
 
 class searchController extends Controller
@@ -12,18 +13,19 @@ class searchController extends Controller
         $data= [];
         foreach($queries as $query){
             $data[]=[
-                'label'=>$query->name
+                'label'=>$query->getFullName(),
             ];
         }
         return $data;
     }
-    public function estudiantesData(Request $request){
+    public function estudiantesData(Request $request,grupo_guia $grupo_guia){
         $term = $request->get('id_user');
-        $queries=user::where('name','LIKE','%'.$term.'%')->get();
+        $id=strtok($request->get('id_user'), " ");
+        $queries=user::where('id',$id)->where('id_rol_usuario','3')->get();
         $data= [];
         foreach($queries as $query){
             $data[]=[
-                'label'=>$query->name
+                'label'=>$query->getFullName(),
             ];
         }
         return $queries;
