@@ -15,6 +15,9 @@ INSERT IGNORE INTO `sigedb`.`anio_lectivo` (`id`, `nombre`) VALUES ('2', '2020')
 INSERT IGNORE INTO `sigedb`.`estado_materia` (`id`, `nombre`) VALUES ('1', 'Activo');
 INSERT IGNORE INTO `sigedb`.`estado_materia` (`id`, `nombre`) VALUES ('2', 'Bloqueado');
 INSERT IGNORE INTO `sigedb`.`estado_materia` (`id`, `nombre`) VALUES ('3', 'Finalizado');
+INSERT IGNORE INTO `sigedb`.`categoria_materia` (`id`, `nombre`) VALUES ('1', 'Materias Básicas');
+INSERT IGNORE INTO `sigedb`.`categoria_materia` (`id`, `nombre`) VALUES ('2', 'Materias Especiales');
+INSERT IGNORE INTO `sigedb`.`categoria_materia` (`id`, `nombre`) VALUES ('3', 'English Language Subjects');
 INSERT IGNORE INTO `sigedb`.`periodo` (`id`, `nombre`,`id_anio`,`activo`,`valor_porcentual`,`es_final`) VALUES ('1', 'I Bimestre','1','1','25','0');
 INSERT IGNORE INTO `sigedb`.`periodo` (`id`, `nombre`,`id_anio`,`activo`,`valor_porcentual`,`es_final`) VALUES ('2', 'II Bimestre','1','1','25','0');
 INSERT IGNORE INTO `sigedb`.`periodo` (`id`, `nombre`,`id_anio`,`activo`,`valor_porcentual`,`es_final`) VALUES ('3', 'III Bimestre','1','1','25','0');
