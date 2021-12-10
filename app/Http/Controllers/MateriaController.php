@@ -11,6 +11,8 @@ use App\Controllers\libroNotasController;
 use App\Models\grupo_guia;
 use App\Models\User;
 use App\Models\libro_notas;
+use App\Models\categoria_materia;
+use App\Models\estado_materia;
 class materiaController extends Controller
 {
     /**
@@ -36,11 +38,11 @@ class materiaController extends Controller
     public function create()
     {
         $grupo_guia = grupo_guia::all();
-        
         $materia=new materia;
-        //$materia->id_libro_notas=$libro_notas->id;
+        $categorias=categoria_materia::all();
         $user=User::all();
-        return view('materia.create',compact('grupo_guia','materia','user'));
+        $estado_materia=estado_materia::all();
+        return view('materia.create',compact('grupo_guia','materia','user','categorias','estado_materia'));
     }
 
     /**
@@ -99,7 +101,9 @@ class materiaController extends Controller
         $grupo_guia = grupo_guia::all();
         $materia= $materia;
         $user=User::all();
-        return view('materia.edit',compact('grupo_guia','materia','user'));
+        $categorias=categoria_materia::all();
+        $estado_materia=estado_materia::all();
+        return view('materia.edit',compact('grupo_guia','materia','user','categorias','estado_materia'));
     }
 
     /**

@@ -12,14 +12,20 @@
 </div> --}}
 
 <div class="form-group">
-	<label for="categoria">
-		Seleccione la categoría de la materia{!!$errors->first('categoria','(*)')!!}
+	<label for="id_categoria_materia">
+		Seleccione la categoría de la materia{!!$errors->first('id_categoria_materia','(*)')!!}
 	</label>
 	<br>
-	<select name="categoria" class="form-control">
-		<option value="{{"0"}}">Básicas</option>
-		<option value="{{"1"}}">Especiales</option>
-		<option value="{{"2"}}">Lenguas</option>
+	<select name="id_categoria_materia" class="form-control">
+		
+		@forelse ($categorias as $categoria_Item)
+			<option value="{{$categoria_Item->id}}" @if($categoria_Item->id==$materia->id_categoria_materia) selected @endif>
+				{{$categoria_Item->nombre}}
+			</option>
+		@empty
+			<option>No existen categorías</option>
+		@endforelse
+	
 	</select>
 </div>
 
@@ -63,9 +69,14 @@
 	<br>
 	
 	 <select name="id_estado" class="form-control">
-		<option value="{{"1"}}">Activo</option>
-		<option value="{{"2"}}">Bloqueado</option>
-		<option value="{{"3"}}">Finalizado</option>
+	@forelse ($estado_materia as $estado_Item)
+			<option value="{{$estado_Item->id}}" @if($estado_Item->id==$materia->estado_Item) selected @endif>
+				{{$estado_Item->nombre}}
+			</option>
+		@empty
+			<option>No existen estados</option>
+		@endforelse
+
 	</select>
 </div>
 
