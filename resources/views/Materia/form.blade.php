@@ -7,15 +7,9 @@
 	<input id="nombre" class="form-control border-0 bg-light shadow-sm" type="text" name="nombre" value="{{old('nombre',$materia->nombre)}}">
 </div>
 
-<div class="form-group">
-	<label for="id_libro_notas">
-		Seleccione el libro de nota {!!$errors->first('id_libro_notas','(*)')!!}
-	</label>
-	<br>
-	 <select name="id_libro_notas" class="form-control">
-		<option value="1">libro 1</option>
-	</select>
-</div>
+{{-- <div class="form-group">
+	<input id="id_libro_notas" type="hidden" name="id_libro_notas" value="1">
+</div> --}}
 
 
 <div class="form-group">
