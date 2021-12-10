@@ -58,17 +58,16 @@ class materiaController extends Controller
             ]
         );
        
-     //$request->merge(['id_libro_notas'=>$libro_notas]);
-        $request2=$request->all();
-        $request2['id_libro_notas']=$libro_notas;
-        $request2;
+       
+      $mat= materia::create(
+             $request->validated()
+         );
 
-      $mat= new materia($request2);
-
-      // $mat->agregarLibro($mat, $libro_notas);
-
-       return  $mat;
-       //return redirect()->route('materia.index')->with('status','materia creado exitósamente');
+      $mat->libro_notas()->associate($libro_notas);
+      $mat->save();
+     
+       //return  $mat;
+       return redirect()->route('materia.index')->with('status','materia creado exitósamente');
     }
 
     /**
