@@ -41,9 +41,9 @@ class AdminController extends Controller
             return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante ya existe en el grupo');
         }
     }
-    public function sacarEstudianteGrupo_guia(grupo_guia $grupo_guia,user $user)
+    public function sacarEstudianteGrupo_guia(grupo_guia $grupo_guia,user $estudiante)
     {
-        $grupo_guia->estudiantes()->detach($user->id);
+        $grupo_guia->estudiantes()->detach($estudiante->id);
         return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante eliminado');  
         //return $user;
     }

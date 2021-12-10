@@ -12,25 +12,35 @@
 	<div class="container">
 		<div class="bg-white p-4 shadow rounded">
 			<h2 class="display-8">Estudiantes de {{$grupo_guia->nombre}}</h2>
-			<ul class="list-group">
-				@forelse ($grupo_guia->estudiantes as $estudiante_Item)
-					<li class="list-group-item border-0 mb-2 shadow-sm" value="{{$estudiante_Item->id}}">
-						<a class="li_element text-secondary d-flex justify-content-between text-decoration-none" href="#">
-							<span class="font-weight-bold">
-								{{$estudiante_Item->name}} {{$estudiante_Item->apellido1}} {{$estudiante_Item->apellido2}} ({{$estudiante_Item->email}})
-							</span>
-							
-							<span>
+			<table class="table table-striped table-sm ">
+				<thead>
+					<tr>
+						<th scope="col">Nombre</th>
+						<th scope="col">Correo</th>
+						<th scope="col">Herramientas</th>
+					</tr>
+				</thead>
+				<tbody>
+					@forelse ($grupo_guia->estudiantes as $estudiante_Item)
+						<tr>
+							<th scope="row" class="font-weight-bold">
+								{{$estudiante_Item->name}} {{$estudiante_Item->apellido1}} {{$estudiante_Item->apellido2}}
+							</th>
+							<td>
+								<p class="text-break">{{$estudiante_Item->email}}</p>
+							</td>
+							<td>
 								<a class="btn btn-sm btn-outline-danger" href="{{route('admin.sacarEstudianteGrupo_guia',['grupo_guia'=>$grupo_guia,'estudiante'=>$estudiante_Item])}}">borrar</a>
-							</span>
-						</a>
-					</li>
-				@empty
-					<li class="list-group-item border-0 mb-2 shadow-sm" >
-						No hay estudiantes asignados en este grupo
-					</li>
-				@endforelse
-			</ul>
+							</td>
+						</tr>
+					@empty
+							<li class="list-group-item border-0 mb-2 shadow-sm" >
+								No hay estudiantes asignados en este grupo
+							</li>
+						</tr>
+					@endforelse
+				</tbody>
+			</table>
 			<div class="collapse" id="collapse">
 				<form class="bg-white py-4 px-5 shadow rounded" method="GET" action="{{route('admin.storeGrupoGuiaEstudiante',$grupo_guia)}}">
 					@csrf
