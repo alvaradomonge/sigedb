@@ -41,6 +41,10 @@ class Core extends Migration
             $table->bigIncrements('id');
             $table->string('nombre',50);
         });
+        Schema::create('categoria_materia', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre',50);
+        });
         Schema::create('libro_notas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->boolean('es_cualitativo');
@@ -50,6 +54,7 @@ class Core extends Migration
             $table->string('nombre',50);
             $table->foreignId('id_grupo_guia')->nullable()->constrained('grupo_guia');
             $table->foreignId('id_libro_notas')->nullable()->constrained('libro_notas');
+            $table->foreignId('id_categoria_materia')->nullable()->constrained('categoria_materia');
             $table->foreignId('id_user')->nullable()->constrained('users');
             $table->foreignId('id_estado')->nullable()->constrained('estado_materia');
         });
