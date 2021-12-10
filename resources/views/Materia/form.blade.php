@@ -11,6 +11,23 @@
 	<input id="id_libro_notas" type="hidden" name="id_libro_notas" value="1">
 </div> --}}
 
+<div class="form-group">
+	<label for="id_categoria_materia">
+		Seleccione la categoría de la materia{!!$errors->first('id_categoria_materia','(*)')!!}
+	</label>
+	<br>
+	<select name="id_categoria_materia" class="form-control">
+		
+		@forelse ($categorias as $categoria_Item)
+			<option value="{{$categoria_Item->id}}" @if($categoria_Item->id==$materia->id_categoria_materia) selected @endif>
+				{{$categoria_Item->nombre}}
+			</option>
+		@empty
+			<option>No existen categorías</option>
+		@endforelse
+	
+	</select>
+</div>
 
 <div class="form-group">
 	<label for="id_grupo_guia">
@@ -52,9 +69,14 @@
 	<br>
 	
 	 <select name="id_estado" class="form-control">
-		<option value="{{"1"}}">Activo</option>
-		<option value="{{"2"}}">Bloqueado</option>
-		<option value="{{"3"}}">Finalizado</option>
+	@forelse ($estado_materia as $estado_Item)
+			<option value="{{$estado_Item->id}}" @if($estado_Item->id==$materia->estado_Item) selected @endif>
+				{{$estado_Item->nombre}}
+			</option>
+		@empty
+			<option>No existen estados</option>
+		@endforelse
+
 	</select>
 </div>
 

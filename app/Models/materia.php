@@ -25,4 +25,7 @@ class materia extends Model
     public function libro_notas(){
         return $this->belongsTo(libro_notas::class,'id_libro_notas');
     }
+     public function categoria(){
+        return $this->belongsTo(categoria_materia::class,'id_categoria_materia');
+    }
 }

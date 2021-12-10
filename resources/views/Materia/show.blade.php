@@ -7,8 +7,8 @@
 		<div class="bg-white p-4 shadow rounded">
 			<h2 class="display-8">Datos de la materia</h2>
 			<p class="text-black">Nombre de materia: {{$materia->nombre}}</p>
+			<p class="text-black">Grupo: {{$materia->categoria->nombre}}</p>
 			<p class="text-black">Grupo: {{$materia->grupos_guias->nombre}}</p>
-			<p class="text-black">Libro de notas (id): {{$materia->id_libro_notas}}</p>
 			@if($materia->libro_notas->es_cualitativo==1)
 				 <p class="text-black">Tipo de libro de notas: Cuantitativo</p>
 			@else
