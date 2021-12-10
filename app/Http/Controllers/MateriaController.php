@@ -40,7 +40,7 @@ class materiaController extends Controller
         $grupo_guia = grupo_guia::all();
         $materia=new materia;
         $categorias=categoria_materia::all();
-        $user=User::all();
+        $user=User::where('id_rol_usuario',2)->get();
         $estado_materia=estado_materia::all();
         return view('materia.create',compact('grupo_guia','materia','user','categorias','estado_materia'));
     }
@@ -100,7 +100,7 @@ class materiaController extends Controller
     {
         $grupo_guia = grupo_guia::all();
         $materia= $materia;
-        $user=User::all();
+        $user=User::where('id_rol_usuario',2)->get();
         $categorias=categoria_materia::all();
         $estado_materia=estado_materia::all();
         return view('materia.edit',compact('grupo_guia','materia','user','categorias','estado_materia'));
