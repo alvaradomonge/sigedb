@@ -13,7 +13,7 @@
 
 <div class="form-group">
 	<label for="categoria">
-		Seleccione la categoría la materia{!!$errors->first('categoria','(*)')!!}
+		Seleccione la categoría de la materia{!!$errors->first('categoria','(*)')!!}
 	</label>
 	<br>
 	<select name="categoria" class="form-control">
