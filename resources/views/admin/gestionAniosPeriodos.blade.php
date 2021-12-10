@@ -52,7 +52,7 @@
 			<h2 class="display-8 mb-0">Herramientas</h2>
 				<a class="btn btn-primary" href="{{route('anio_lectivo.create')}}">Crear año lectivo</a>
 				<a class="btn btn-secondary" href="{{route('periodo.create',$anio_lectivo)}}">Crear Periodo</a>
-				<a class="btn btn-danger" href="#">Modificar años y periodos</a>
+				{{-- <a class="btn btn-danger" href="#">Modificar años y periodos</a> --}}
 		</div>
 	</div>
 @endsection

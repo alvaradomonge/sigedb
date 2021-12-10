@@ -9,6 +9,7 @@ use App\Models\periodo;
 use App\Models\rel_grupo_guia_estudiante;
 use Illuminate\Http\Request;
 
+
 class AdminController extends Controller
 {
     public function __construct(){
@@ -41,6 +42,14 @@ class AdminController extends Controller
             return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante ya existe en el grupo');
         }
     }
+    public function crearEstudianteGrupoGuia(grupo_guia $grupo_guia){
+        return view('grupo_guia.nuevoEstudiante',['estudiante'=>new user,'grupo_guia'=>$grupo_guia]);
+    }
+    public function storeNuevoEstudianteGrupoGuia(Request $request, grupo_guia $grupo_guia){
+        //$estudiante=user::create($request)->id;
+        //$grupo_guia->estudiantes()->save($estudiante);
+        return $request;
+    }
     public function sacarEstudianteGrupo_guia(grupo_guia $grupo_guia,user $estudiante)
     {
         $grupo_guia->estudiantes()->detach($estudiante->id);
@@ -64,18 +73,6 @@ class AdminController extends Controller
     {
         $anio->update($request->validated());
         return redirect()->route('admin.show',$anio)->with('status','Actualización completada exitósamente');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(anio_lectivo $anio)
-    {
-        $anio->delete();
-        return redirect()->route('admin.index')->with('status','Se ha realizado la eliminación');
     }
 
     public function edit(anio_lectivo $anio)

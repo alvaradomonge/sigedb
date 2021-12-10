@@ -55,7 +55,7 @@
 			<br>
 			<div class="d-flex align-items-center">
 				<a class="btn btn-success" href="{{route('periodo.show',$grupo_guia->periodo)}}">Regresar</a>
-				<a class="btn btn-info" href="#">Crear estudiante</a>
+				<a class="btn btn-info" href="{{route('admin.crearEstudianteGrupoGuia',$grupo_guia)}}">Crear estudiante</a>
 				<a class="btn btn-dark" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse" href="#collapse">Vincular estudiante</a>
 			</div>
 		</div>
