@@ -11,6 +11,17 @@
 	<input id="id_libro_notas" type="hidden" name="id_libro_notas" value="1">
 </div> --}}
 
+<div class="form-group">
+	<label for="categoria">
+		Seleccione la categoría la materia{!!$errors->first('categoria','(*)')!!}
+	</label>
+	<br>
+	<select name="categoria" class="form-control">
+		<option value="{{"0"}}">Básicas</option>
+		<option value="{{"1"}}">Especiales</option>
+		<option value="{{"2"}}">Lenguas</option>
+	</select>
+</div>
 
 <div class="form-group">
 	<label for="id_grupo_guia">
