@@ -8,7 +8,7 @@
                 <div class="card-header fs-4">Crear estudiante y agregar en {{$grupo_guia->nombre}}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register',$grupo_guia) }}">
+                    <form method="POST" action="{{ route('admin.storeNuevoEstudianteGrupoGuia',$grupo_guia) }}">
                         @csrf
 
                         <div class="form-group row pb-2">
@@ -113,21 +113,21 @@
                             </div>
                         </div>
 
-                        <div class="form-group row pb-2">
+                        <div class="form-group row pb-2 d-none">
                             <label for="id_estado" class="col-md-4 col-form-label text-md-right">{{ __('Estado inicial') }}</label>
 
                             <div class="col-md-6">
-                                <select id="id_estado" disabled>
+                                <select id="id_estado" name="id_estado" type="hidden">
                                     <option value="1">Activo</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group row pb-2">
+                        <div class="form-group row pb-2 d-none">
                             <label for="id_rol_usuario" class="col-md-4 col-form-label text-md-right">{{ __('Rol de usuario') }}</label>
 
-                            <div class="col-md-6">
-                                <select id="id_rol_usuario" disabled>
+                            <div class="col-md-6" >
+                                <select id="id_rol_usuario" name="id_rol_usuario" >
                                     <option value="3">Estudiante</option>
                                 </select>
                             </div>

@@ -7,7 +7,9 @@ use App\Models\anio_lectivo;
 use App\Models\grupo_guia;
 use App\Models\periodo;
 use App\Models\rel_grupo_guia_estudiante;
+use Illuminate\Auth\register;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 
 class AdminController extends Controller
@@ -46,9 +48,13 @@ class AdminController extends Controller
         return view('grupo_guia.nuevoEstudiante',['estudiante'=>new user,'grupo_guia'=>$grupo_guia]);
     }
     public function storeNuevoEstudianteGrupoGuia(Request $request, grupo_guia $grupo_guia){
-        //$estudiante=user::create($request)->id;
+        // $estudianteArray=$request->toArray();
+        // $estudianteArray= Arr::except($estudianteArray,['_token','password_confirmation']);
+        $estudiante=redirect()->post()->route('register.estudiante',$request);
         //$grupo_guia->estudiantes()->save($estudiante);
-        return $request;
+        //return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante añadido exitósamente'); 
+
+        return $estudiante;
     }
     public function sacarEstudianteGrupo_guia(grupo_guia $grupo_guia,user $estudiante)
     {
