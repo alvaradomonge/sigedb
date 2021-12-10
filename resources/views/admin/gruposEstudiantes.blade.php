@@ -21,7 +21,7 @@
 							</span>
 							
 							<span>
-								<a class="btn btn-sm btn-outline-danger" href="#">borrar</a>
+								<a class="btn btn-sm btn-outline-danger" href="{{route('admin.sacarEstudianteGrupo_guia',['grupo_guia'=>$grupo_guia,'estudiante'=>$estudiante_Item])}}">borrar</a>
 							</span>
 						</a>
 					</li>
