@@ -10,9 +10,9 @@
 			<p class="text-black">Grupo: {{$materia->categoria->nombre}}</p>
 			<p class="text-black">Grupo: {{$materia->grupo_guia->nombre}}</p>
 			@if($materia->es_cualitativo==1)
-				 <p class="text-black">Tipo de libro de notas: Cuantitativo</p>
+				 <p class="text-black">Tipo de materia: Cuantitativo</p>
 			@else
-				<p class="text-black">Tipo de libro de notas: Cualitativo</p>
+				<p class="text-black">Tipo de materia: Cualitativo</p>
 			@endif
 			<p class="text-black">Docente: {{$materia->docentes->name}} {{$materia->docentes->apellido1}} {{$materia->docentes->apellido2}}</p>
 			<p class="text-black">Estado de materia: {{$materia->estados->nombre}}</p>		

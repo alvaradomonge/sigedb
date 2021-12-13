@@ -82,13 +82,13 @@
 
 <div class="form-group">
 	<label for="es_cualitativo">
-		Seleccione el tipo de libro de notas{!!$errors->first('es_cualitativo','(*)')!!}
+		Seleccione el tipo de materia{!!$errors->first('es_cualitativo','(*)')!!}
 	</label>
 	<br>
 	
 	 <select name="es_cualitativo" class="form-control">
-		<option value="{{1}}">Cuantitativo</option>
-		<option value="{{0}}">Cualitativo</option>
+		<option value="{{1}}">Cuantitativa</option>
+		<option value="{{0}}">Cualitativa</option>
 	</select>
 </div>
 
