@@ -8,7 +8,7 @@
 			<h2 class="display-8 mb-0">Años Lectivos</h2>
 				<div class="dropdown">
 					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-				    	Seleccione...
+				    	Seleccione el año lectivo
 				  	</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 						@forelse ($anio_lectivo as $anio_lectivo_Item)
@@ -71,7 +71,7 @@
 									{{$query_Item->grupos_guias()->count('*')}}
 								</td>
 								<td>
-									<a class="btn btn-sm btn-outline-info" href="{{route('periodo.show',$query_Item)}}">Consultar</a>
+									<a class="btn btn-sm btn-outline-info" tooltip="Buscar" href="{{route('periodo.show',$query_Item)}}"><i class="fas fa-search"></i></a>
 								</td>
 							</tr>
 						@empty
