@@ -24,7 +24,9 @@ Route::resource('periodo','App\Http\Controllers\PeriodoController');
 
 Route::resource('grupo_guia','App\Http\Controllers\grupoGuiaController')->parameters(['grupo_guia' => 'grupo_guia']);
 
+
 Route::resource('materia','App\Http\Controllers\MateriaController')->parameters(['materia' => 'materia']);
+Route::get('grupo_guia/{grupo_guia}/materia/create','App\Http\Controllers\MateriaController@create_materia_grupo_guia')->name('materia.create_grupo_guia');
 
 //RUTAS DE MANEJO DE GESTION DE PERIODOS GRUPOS GUIAS Y ESTUDIANTES
 Route::get('search/estudiantes','App\Http\Controllers\searchController@estudiantes')->name('search.estudiantes');

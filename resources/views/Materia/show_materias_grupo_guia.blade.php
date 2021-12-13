@@ -63,7 +63,7 @@
 			</table>
 		<div class="d-flex align-items-center">
 			<a class="btn btn-success" href="{{route('periodo.show',$grupo_guia->periodo)}}">Regresar</a>
-			<a class="btn btn-info" href="{{route('materia.create')}}">Agregar materia</a>
+			<a class="btn btn-info" href="{{route('materia.create_grupo_guia',$grupo_guia)}}">Agregar materia</a>
 			{{-- <a class="btn btn-dark" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse" href="#collapse">Vincular estudiante</a> --}}
 		</div>
 	</div>

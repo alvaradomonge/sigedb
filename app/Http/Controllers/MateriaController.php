@@ -10,7 +10,6 @@ use App\Controllers\grupoGuiaController;
 use App\Controllers\libroNotasController;
 use App\Models\grupo_guia;
 use App\Models\User;
-use App\Models\libro_notas;
 use App\Models\categoria_materia;
 use App\Models\estado_materia;
 class materiaController extends Controller
@@ -44,7 +43,14 @@ class materiaController extends Controller
         $estado_materia=estado_materia::all();
         return view('materia.create',compact('grupo_guia','materia','user','categorias','estado_materia'));
     }
-
+    public function create_materia_grupo_guia(grupo_guia $grupo_guia)
+    {
+        $materia=new materia;
+        $categorias=categoria_materia::all();
+        $user=User::where('id_rol_usuario',2)->get();
+        $estado_materia=estado_materia::all();
+        return view('materia.create_grupo_guia',compact('grupo_guia','materia','user','categorias','estado_materia'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -52,22 +58,11 @@ class materiaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(SaveMateriaRequest $request)
-    {
-        
-        $libro_notas=libro_notas::insertGetId(
-            [
-                'es_cualitativo' => $request->es_cualitativo,
-            ]
-        );
-       
-       
+    {      
       $mat= materia::create(
              $request->validated()
          );
-
-      $mat->libro_notas()->associate($libro_notas);
-      $mat->save();
-     
+      $mat->save();  
        //return  $mat;
        return redirect()->route('materia.index')->with('status','materia creado exitósamente');
     }
