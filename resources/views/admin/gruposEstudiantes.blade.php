@@ -30,7 +30,7 @@
 								<p class="text-break">{{$estudiante_Item->email}}</p>
 							</td>
 							<td>
-								<a class="btn btn-sm btn-outline-danger" href="{{route('admin.sacarEstudianteGrupo_guia',['grupo_guia'=>$grupo_guia,'estudiante'=>$estudiante_Item])}}">borrar</a>
+								<a class="btn btn-sm btn-outline-danger" href="{{route('admin.sacarEstudianteGrupo_guia',['grupo_guia'=>$grupo_guia,'estudiante'=>$estudiante_Item])}}"><i class="far fa-trash-alt"></i></a>
 							</td>
 						</tr>
 					@empty

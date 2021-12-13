@@ -49,7 +49,7 @@
 								<p class="text-break">{{$materia_Item->estados->nombre}}</p>
 							</td>
 							<td>
-								<a class="btn btn-sm btn-outline-danger" href="{{route('materia.show',['materia'=>$materia_Item])}}">Ver</a>
+								<a class="btn btn-sm btn-outline-danger" href="{{route('materia.show',['materia'=>$materia_Item])}}"><i class="fas fa-search"></i></a>
 							</td>
 						</tr>
 					@empty
