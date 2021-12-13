@@ -45,12 +45,15 @@ trait RegistersUsers
                     : redirect($this->redirectPath());
     }
 
-    public function registerEstudiante(Request $request)
+    public function registerEstudiante(Request $request, grupo_guia $grupo_guia)
     {
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-        return redirect()->route('admin.storeNuevoEstudianteGrupoGuia',$user);
+        $grupo_guia->estudiantes()->save($user);
+        return $request->wantsJson()
+                    ? new JsonResponse([], 201)
+                    : redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante nuevo añadido exitósamente');
     }
 
     /**

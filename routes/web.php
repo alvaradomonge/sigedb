@@ -34,7 +34,7 @@ Route::post('admin/storeNuevoEstudianteGrupoGuia/{grupo_guia}','App\Http\Control
 Route::get('admin/sacarEstudianteGrupo_guia/{grupo_guia}/{estudiante}','App\Http\Controllers\adminController@sacarEstudianteGrupo_guia')->name('admin.sacarEstudianteGrupo_guia');
 Route::get('admin/crearEstudianteGrupoGuia/{grupo_guia}','App\Http\Controllers\adminController@crearEstudianteGrupoGuia')->name('admin.crearEstudianteGrupoGuia');
 Route::post('admin/storeNuevoEstudianteGrupoGuia/{grupo_guia}','App\Http\Controllers\adminController@storeNuevoEstudianteGrupoGuia')->name('admin.storeNuevoEstudianteGrupoGuia');
-Route::post('register/estudiante','App\Http\Controllers\Auth\RegisterController@registerEstudiante')->name('register.estudiante');
+Route::post('register/estudiante/{grupo_guia}','App\Http\Controllers\Auth\RegisterController@registerEstudiante')->name('register.estudiante');
 
 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');

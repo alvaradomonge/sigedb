@@ -8,7 +8,7 @@
                 <div class="card-header fs-4">Crear estudiante y agregar en {{$grupo_guia->nombre}}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.storeNuevoEstudianteGrupoGuia',$grupo_guia) }}">
+                    <form method="POST" action="{{ route('register.estudiante',['grupo_guia'=>$grupo_guia]) }}">
                         @csrf
 
                         <div class="form-group row pb-2">
@@ -150,6 +150,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Crear') }}
                                 </button>
+                                <a class="btn btn-secondary" href="{{route('admin.gruposEstudiantes',$grupo_guia)}}">Regresar</a>
                             </div>
                         </div>
                     </form>
