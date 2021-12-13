@@ -27,7 +27,8 @@ class SavePeriodoRequest extends FormRequest
             'nombre'=> 'required|max:20',
             'id_anio'=> 'required',
             'activo'=> 'required',
-            'es_final'=> 'required'
+            'es_final'=> 'required',
+            'valor_porcentual'=> 'numeric'
         ];
     }
     public function messages()
@@ -37,7 +38,9 @@ class SavePeriodoRequest extends FormRequest
             'nombre.max'=>'El nombre no debe exceder los 20 caracteres',
             'id_anio'=>'Por favor seleccione el año',
             'activo'=> 'Agregue la condición',
-            'es_final'=> 'Espacio requerido'
+            'es_final'=> 'Espacio requerido',
+            
+            'valor_porcentual.numeric'=> 'El valor porcentual debe ser numérico, no incluya símbolos (por ejemplo %) ni letras'
         ];
     }
 }

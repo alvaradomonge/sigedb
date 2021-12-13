@@ -17,6 +17,6 @@ class periodo extends Model
     }
 
     public function grupos_guias(){
-        return $this->hasMany(grupos_guia::class);
+        return $this->hasMany(grupo_guia::class,'id_periodo');
     }
 }

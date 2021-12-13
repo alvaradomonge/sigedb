@@ -10,7 +10,7 @@
 	</style>
 	<div class="container">
 		<div class="d-flex justify-content-between align-items-center">
-			<h2 class="display-8 mb-0">Materia </h2>
+			<h2 class="display-8 mb-0">Todas las Materias</h2>
 			@auth 
 				<a class="btn btn-primary" href="{{route('materia.create')}}">Agregar materia</a> 
 			@endauth

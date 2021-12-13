@@ -36,6 +36,8 @@ Route::get('admin/crearEstudianteGrupoGuia/{grupo_guia}','App\Http\Controllers\a
 Route::post('admin/storeNuevoEstudianteGrupoGuia/{grupo_guia}','App\Http\Controllers\adminController@storeNuevoEstudianteGrupoGuia')->name('admin.storeNuevoEstudianteGrupoGuia');
 Route::post('register/estudiante/{grupo_guia}','App\Http\Controllers\Auth\RegisterController@registerEstudiante')->name('register.estudiante');
 
+Route::get('{grupo_guia}/materias','App\Http\Controllers\adminController@showGrupoGuiaMaterias')->name('grupo_guia.materias');
+
 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');
 

@@ -34,9 +34,10 @@
 							</td>
 						</tr>
 					@empty
-							<li class="list-group-item border-0 mb-2 shadow-sm" >
-								No hay estudiantes asignados en este grupo
-							</li>
+						<tr>
+							<td class="list-group-item border-0 mb-2 shadow-sm" >
+								No hay estudiantes asignados 
+							</td>
 						</tr>
 					@endforelse
 				</tbody>

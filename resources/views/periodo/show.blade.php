@@ -19,7 +19,7 @@
 			</div>
 			<br>
 			<p class="text-black fs-5 text">Grupos vinculados:</p>
-			<div class="dropdown">
+			{{-- <div class="dropdown">
 				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
 			    	Seleccione un grupo guía
 			  	</a>
@@ -37,7 +37,42 @@
 							No posee grupos vinculados
 						</li>
 					@endforelse
-				</ul>
+				</ul> --}}
+				<table class="table table-striped table-sm ">
+					<thead>
+						<tr>
+							<th scope="col">Nombre</th>
+							<th scope="col">Estudiantes inscritos</th>
+							<th scope="col">Materias</th>
+							<th scope="col">Herramientas</th>
+						</tr>
+					</thead>
+					<tbody>
+						@forelse ($grupos_guia as $grupo_guia_Item)
+							<tr>
+								<th scope="row" class="font-weight-bold">
+									{{$grupo_guia_Item->nombre}}
+								</th>
+								<td>
+									{{$grupo_guia_Item->estudiantes()->count('*')}}
+								</td>
+								<td>
+									{{$grupo_guia_Item->materias()->count('*')}}
+								</td>
+								<td>
+									<a class="btn btn-sm btn-outline-info" href="{{route('admin.gruposEstudiantes',$grupo_guia_Item)}}">Estudiantes</a>
+									<a class="btn btn-sm btn-outline-success" href="{{route('grupo_guia.materias',$grupo_guia_Item)}}">Materias</a>
+								</td>
+							</tr>
+						@empty
+							<tr>
+								<td class="list-group-item border-0 mb-2 shadow-sm" >
+									No hay grupos en este periodo 
+								</td>
+							</tr>
+						@endforelse
+					</tbody>
+				</table>
 			</div>
 			<br>	
 			<div class="d-flex justify-content-between align-items-center">

@@ -24,6 +24,10 @@ class AdminController extends Controller
         $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
         return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
     }
+    public function showGrupoGuiaMaterias(grupo_guia $grupo_guia)
+    {
+        return view('materia.show_materias_grupo_guia',compact('grupo_guia'));
+    }
     public function gruposEstudiantes(grupo_guia $grupo_guia)
     {
         //return $grupo_guia->estudiantes;
@@ -41,6 +45,7 @@ class AdminController extends Controller
             $grupo_guia->estudiantes()->save($estudiante);
             foreach($grupo_guia->materias as $materia){
                 $materia->promedio_estudiante()->save($estudiante);
+                //$this->info('agregado ',$estudiante->nombre, 'a materia ', $materia->nombre);
             } 
             return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante añadido exitósamente');  
         }else{
