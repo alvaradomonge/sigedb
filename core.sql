@@ -27,8 +27,6 @@ INSERT IGNORE INTO `sigedb`.`grupo_guia` (`id`, `nombre`,`id_periodo`) VALUES ('
 INSERT IGNORE INTO `sigedb`.`materia` (`id`, `nombre`,`id_grupo_guia`) VALUES ('1', 'Matemáticas','1');
 INSERT IGNORE INTO `sigedb`.`materia` (`id`, `nombre`,`id_grupo_guia`) VALUES ('2', 'Español','1');
 INSERT IGNORE INTO `sigedb`.`materia` (`id`, `nombre`,`id_grupo_guia`) VALUES ('3', 'Matemáticas','2');
-INSERT IGNORE INTO `sigedb`.`libro_notas` (`id`, `es_cualitativo`) VALUES ('1','0');
-INSERT IGNORE INTO `sigedb`.`libro_notas` (`id`, `es_cualitativo`) VALUES ('2','0');
 INSERT IGNORE INTO `sigedb`.`escala_cualitativa` (`id`, `nombre`) VALUES ('1', 'No es Cualitativo');
 INSERT IGNORE INTO `sigedb`.`escala_cualitativa` (`id`, `nombre`) VALUES ('2', 'Preescolar CENG');
 INSERT IGNORE INTO `sigedb`.`escala_cualitativa` (`id`, `nombre`) VALUES ('3', 'CENG Cualitativo Mat Esp');

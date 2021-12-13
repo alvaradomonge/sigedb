@@ -51,6 +51,9 @@ trait RegistersUsers
 
         event(new Registered($user = $this->create($request->all())));
         $grupo_guia->estudiantes()->save($user);
+        foreach($grupo_guia->materias as $materia){
+            $materia->promedio_estudiante()->save($user);
+        }
         return $request->wantsJson()
                     ? new JsonResponse([], 201)
                     : redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante nuevo añadido exitósamente');

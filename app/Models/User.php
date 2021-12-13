@@ -52,8 +52,8 @@ class User extends Authenticatable
         return $this->hasMany(materia::class);
     }
 
-    public function libro_notas(){
-        return $this->belongsToMany(libro_notas::class,'promedio_estud_libro_cuanti','id_estudiante','id_libro_notas')->withPivot('promedio');
+    public function promedio_materia(){
+        return $this->belongsToMany(materia::class,'promedio_estud_materia_cuanti','id_estudiante','id_materia')->withPivot('promedio');
     }
 
     public function grupos_guias()

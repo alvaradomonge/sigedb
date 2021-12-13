@@ -14,7 +14,7 @@ class grupo_guia extends Model
 
     public function materias()
     {
-        return $this->hasMany(materia::class);
+        return $this->hasMany(materia::class,'id_grupo_guia');
     }
 
     public function periodo()

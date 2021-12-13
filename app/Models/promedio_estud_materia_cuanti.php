@@ -9,7 +9,7 @@ class promedio_estud_libro_cuanti extends Model
 {
     public $timestamps = false;
     protected $guarded = [];
-    protected $table = 'promedio_estud_libro_cuanti';
+    protected $table = 'promedio_estud_materia_cuanti';
     use HasFactory;
 
     // public function estudiante(){
