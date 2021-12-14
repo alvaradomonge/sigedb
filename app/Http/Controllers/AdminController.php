@@ -5,6 +5,7 @@ use App\Http\Requests\SaveAnioLectivo;
 use App\Models\User;
 use App\Models\anio_lectivo;
 use App\Models\grupo_guia;
+use App\Models\materia;
 use App\Models\periodo;
 use App\Models\rel_grupo_guia_estudiante;
 use Illuminate\Auth\register;
@@ -24,6 +25,8 @@ class AdminController extends Controller
         $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
         return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
     }
+
+    //METODOS PARA GESTION DE GRUPOS Y PERIODOS
     public function showGrupoGuiaMaterias(grupo_guia $grupo_guia)
     {
         return view('materia.show_materias_grupo_guia',compact('grupo_guia'));
@@ -65,6 +68,14 @@ class AdminController extends Controller
         return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante eliminado');  
         //return $user;
     }
+
+    //METODOS PARA GESTION DE LIBROS DE NOTAS
+    public function showLibroNotas(materia $materia){
+        return view('libro_notas.show',compact('materia'));
+    }
+
+
+    //METODOS CRUD DEL CONTROLADOR, DEBE EVALUARSE SI SE HAN USADO SINO BORRARLOS
     public function store(SaveAnioLectivo $request)
     {
         anio_lectivo::create($request->validated());

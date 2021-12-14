@@ -40,7 +40,11 @@ Route::post('register/estudiante/{grupo_guia}','App\Http\Controllers\Auth\Regist
 
 Route::get('{grupo_guia}/materias','App\Http\Controllers\adminController@showGrupoGuiaMaterias')->name('grupo_guia.materias');
 
+//RUTAS PARA LIBROS DE NOTAS
 
+Route::get('{materia}/notas','App\Http\Controllers\adminController@showLibroNotas')->name('materia.notas');
+
+//PRUEBAS 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');
 
 //Route::resource('admin','App\Http\Controllers\AdminController');

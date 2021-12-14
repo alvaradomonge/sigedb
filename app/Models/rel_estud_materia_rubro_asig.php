@@ -9,6 +9,6 @@ class rel_estud_libro_rubro_asig extends Model
 {
     public $timestamps = false;
     protected $guarded = [];
-    protected $table = 'rel_estud_libro_rubro_asig';
+    protected $table = 'rel_estud_materia_rubro_asig';
     use HasFactory;
 }

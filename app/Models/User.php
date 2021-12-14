@@ -60,6 +60,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(grupo_guia::class,'rel_grupo_guia_estudiante','id_user','id_grupo_guia');
     }
+    public function nota_asignaciones(){
+        return $this->belongsToMany(asignacion::class,'rel_estud_materia_rubro_asig','id_estud','id_asig','id_materia')->withPivot('nota','id_rubro_cualit');
+    }
 
     public function getFullName(){
         return "{$this->id} {$this->name} {$this->apellido1} {$this->apellido2}";

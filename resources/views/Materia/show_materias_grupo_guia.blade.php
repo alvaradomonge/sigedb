@@ -2,17 +2,9 @@
 @section('titulo','Materia-SIGEDB')
 
 @section ('contenido')
-	<style>
-		.li_element{
-			text-decoration: none
-		}
-	</style>
 	<div class="container">
 		<div class="d-flex justify-content-between align-items-center">
-			<h2 class="display-8 mb-0">Materias de {{$grupo_guia->nombre}}</h2>
-			@auth 
-				<a class="btn btn-primary" href="{{route('materia.create')}}">Agregar materia</a> 
-			@endauth
+			<h2 class="display-8 mb-0">Materias de {{$grupo_guia->nombre}}</h2>			
 		</div>
 		<hr>
 		<table class="table table-striped table-sm ">
@@ -49,7 +41,10 @@
 								<p class="text-break">{{$materia_Item->estados->nombre}}</p>
 							</td>
 							<td>
-								<a class="btn btn-sm btn-outline-danger" href="{{route('materia.show',['materia'=>$materia_Item])}}"><i class="fas fa-search"></i></a>
+								@auth 
+									<a class="btn btn-sm btn-outline-info" href="{{route('materia.show',['materia'=>$materia_Item])}}"><i class="fas fa-search"></i></a>
+									<a class="btn btn-sm btn-outline-danger" href="{{route('materia.notas',['materia'=>$materia_Item])}}"><i class="fas fa-chart-line"></i></a>
+								@endauth
 							</td>
 						</tr>
 					@empty
@@ -63,8 +58,7 @@
 			</table>
 		<div class="d-flex align-items-center">
 			<a class="btn btn-success" href="{{route('periodo.show',$grupo_guia->periodo)}}">Regresar</a>
-			<a class="btn btn-info" href="{{route('materia.create_grupo_guia',$grupo_guia)}}">Agregar materia</a>
-			{{-- <a class="btn btn-dark" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse" href="#collapse">Vincular estudiante</a> --}}
+			@auth <a class="btn btn-info" href="{{route('materia.create_grupo_guia',$grupo_guia)}}">Agregar materia</a>@endauth
 		</div>
 	</div>
 @endsection
