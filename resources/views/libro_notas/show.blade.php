@@ -7,29 +7,42 @@
 			<h2 class="display-8 mb-0">Notas de {{$materia->nombre}} {{$materia->grupo_guia->nombre}}</h2>			
 		</div>
 		<hr>
-		<table class="table table-striped table-sm ">
+		<div class="table-responsive">
+			<table class="table table-striped table-sm">
 				<thead>
-					<tr>
+					<tr class="align-middle text-center text-nowrap">
+						<th scope="col" colspan="2"></th>
+						@forelse ($materia->rubros as $rubro)
+							<th scope="col" class="table-active" colspan="{{$rubro->asignaciones()->count('*')}}">	
+								<th>{{$rubro->nombre}}</th>
+							</th>	
+						@empty
+							<th>Cree rubros primero</th>
+						@endforelse
+					</tr>
+					<tr class="align-middle text-center text-nowrap">
 						<th scope="col">Nombre</th>
 						<th scope="col">Promedio</th>
-						@forelse ($materia->asignaciones as $asignacion_Item)
-							<th scope="col">{{$asginacion_Item->nombre}}</th>
+						@forelse ($materia->rubros as $rubro)
+							<td>
+							@forelse ($rubro->asignaciones as $asginacion)
+								<td scope="col">{{$asginacion->nombre}}</td>
+							@empty
+								<td scope="col">No posee asignaciones</td>
+							@endforelse
+							</td>
 						@empty
 							<th>Cree asignaciones primero</th>
 						@endforelse
-						{{-- <th scope="col">Categoría</th>
-						<th scope="col">Docente</th>
-						<th scope="col">Estado</th>
-						<th scope="col">Herramientas</th> --}}
 					</tr>
 				</thead>
 				<tbody>
 					@forelse ($materia->promedio_estudiante as $promedio_estudiante_Item)
-						<tr>
+						<tr class="align-middle text-nowrap">
 							<th scope="row" class="font-weight-bold">
 								{{$promedio_estudiante_Item->apellido1}} {{$promedio_estudiante_Item->apellido2}} {{$promedio_estudiante_Item->name}}
 							</th>
-							<td>
+							<td class="text-center">
 								@if($promedio_estudiante_Item->promedio_materia == null)
 									<p class="text-break">vacío</p>
 								@else						
@@ -47,6 +60,7 @@
 					@endforelse
 				</tbody>
 			</table>
+		</div>
 		<div class="d-flex align-items-center">
 			<a class="btn btn-success" href="{{route('grupo_guia.materias',$materia->grupo_guia)}}">Regresar</a>
 			@auth <a class="btn btn-info" href="#">Guardar</a>@endauth

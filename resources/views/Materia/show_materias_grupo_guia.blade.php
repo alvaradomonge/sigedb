@@ -7,7 +7,8 @@
 			<h2 class="display-8 mb-0">Materias de {{$grupo_guia->nombre}}</h2>			
 		</div>
 		<hr>
-		<table class="table table-striped table-sm ">
+		<div class="table-responsive">
+			<table class="table table-striped table-sm ">
 				<thead>
 					<tr>
 						<th scope="col">Nombre</th>
@@ -56,6 +57,7 @@
 					@endforelse
 				</tbody>
 			</table>
+		</div>
 		<div class="d-flex align-items-center">
 			<a class="btn btn-success" href="{{route('periodo.show',$grupo_guia->periodo)}}">Regresar</a>
 			@auth <a class="btn btn-info" href="{{route('materia.create_grupo_guia',$grupo_guia)}}">Agregar materia</a>@endauth

@@ -58,6 +58,7 @@ class Core extends Migration
             $table->bigIncrements('id');
             $table->string('nombre',50);
             $table->unsignedTinyInteger('valor_porcentual')->nullable();
+            $table->foreignId('id_materia')->nullable()->constrained('materia');
         });
         Schema::create('escala_cualitativa', function (Blueprint $table) {
             $table->bigIncrements('id');

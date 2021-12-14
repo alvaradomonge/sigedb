@@ -30,12 +30,12 @@ INSERT IGNORE INTO `sigedb`.`materia` (`id`, `nombre`,`id_grupo_guia`) VALUES ('
 INSERT IGNORE INTO `sigedb`.`escala_cualitativa` (`id`, `nombre`) VALUES ('1', 'No es Cualitativo');
 INSERT IGNORE INTO `sigedb`.`escala_cualitativa` (`id`, `nombre`) VALUES ('2', 'Preescolar CENG');
 INSERT IGNORE INTO `sigedb`.`escala_cualitativa` (`id`, `nombre`) VALUES ('3', 'CENG Cualitativo Mat Esp');
-INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`) VALUES ('1', 'Trabajo Cotidiano', '15');
-INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`) VALUES ('2', 'Trabajo Extraclase', '15');
-INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`) VALUES ('3', 'Presentación Personal', '5');
-INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`) VALUES ('4', 'Proyecto', '20');
-INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`) VALUES ('5', 'Prueba', '35');
-INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`) VALUES ('6', 'Actividades de repaso', '10');
+INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`,`id_materia`) VALUES ('1', 'Trabajo Cotidiano', '15','1');
+INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`,`id_materia`) VALUES ('2', 'Trabajo Extraclase', '15','1');
+INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`,`id_materia`) VALUES ('3', 'Presentación Personal', '5','1');
+INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`,`id_materia`) VALUES ('4', 'Proyecto', '20','1');
+INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`,`id_materia`) VALUES ('5', 'Prueba', '35','1');
+INSERT IGNORE INTO `sigedb`.`rubro` (`id`, `nombre`, `valor_porcentual`,`id_materia`) VALUES ('6', 'Actividades de repaso', '10','1');
 INSERT IGNORE INTO `sigedb`.`asignacion` (`id`, `nombre`, `valor_porcentual`, `id_rubro`, `id_escala_cualitativa`) VALUES ('1', 'Trabajo 1', '7.5', '1',NULL);
 INSERT IGNORE INTO `sigedb`.`asignacion` (`id`, `nombre`, `valor_porcentual`, `id_rubro`, `id_escala_cualitativa`) VALUES ('2', 'Trabajo 2', '5', '1', NULL);
 INSERT IGNORE INTO `sigedb`.`asignacion` (`id`, `nombre`, `valor_porcentual`, `id_rubro`, `id_escala_cualitativa`) VALUES ('3', 'Extra clase 1', '8', '2', NULL);

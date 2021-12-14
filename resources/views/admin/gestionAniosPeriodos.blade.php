@@ -5,7 +5,7 @@
 @section ('contenido')
 	<div class="container">
 		<div class="">
-			<h2 class="display-8 mb-0">Años Lectivos</h2>
+			<h3 class="display-8 mb-0">Años Lectivos</h3>
 				<div class="dropdown">
 					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
 				    	Seleccione el año lectivo
@@ -27,7 +27,7 @@
 						{{$anio_lectivo->links()}}
 					</ul>
 				</div>
-			<h2 class="display-8 mb-0">Periodos activos</h2>
+			<h3 class="display-8 mb-0">Periodos activos</h3>
 				{{-- <div class="dropdown">
 					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
 				    	Seleccione...

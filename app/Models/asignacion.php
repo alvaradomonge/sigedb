@@ -12,6 +12,9 @@ class asignacion extends Model
     protected $table = 'asignacion';
     use HasFactory;
 
+    public function rubro(){
+        return $this->belongsTo(rubro::class,'id_rubro');
+    }
     public function materia(){
         return $this->belongsToMany(materia::class,'rel_estud_materia_rubro_asig','id_asig','id_materia','id_estud')->withPivot('nota','id_rubro_cualit');
     }

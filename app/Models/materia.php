@@ -31,4 +31,7 @@ class materia extends Model
     public function asignaciones(){
         return $this->belongsToMany(asignacion::class,'rel_estud_materia_rubro_asig','id_materia','id_asig','id_estud')->withPivot('nota','id_rubro_cualit');
     }
+    public function rubros(){
+        return $this->hasMany(rubro::class,'id_materia');
+    }
 }

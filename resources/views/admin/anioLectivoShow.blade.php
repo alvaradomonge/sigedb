@@ -5,34 +5,49 @@
 @section ('contenido')
 	<div class="container">
 		<div class="bg-white p-4 shadow rounded">
-			<h2 class="display-8">Año Lectivo</h2>
+			<h2 class="display-8">Año Lectivo {{$anio_lectivo->nombre}}</h2>
 			{{-- @include('partials.session-status') --}}
-			<p class="text-black">Nombre: {{$anio_lectivo->nombre}}</p>
-			<p class="text-black">Periodos vinculados</p>
-			<div class="dropdown">
-				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-			    	Seleccione...
-			  	</a>
-				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+			<p class="text-black"><h4>Periodos vinculados</h4></p>
+			<table class="table table-striped table-sm ">
+				<thead>
+					<tr>
+						<th scope="col">Nombre</th>
+						<th scope="col">Valor %</th>
+						<th scope="col">¿Es final?</th>
+						<th scope="col">Estado</th>
+						<th scope="col">Herramientas</th>
+					</tr>
+				</thead>
+				<tbody>
 					@forelse ($query as $query_Item)
-						<li>
-							<a class="dropdown-item" href="{{route('periodo.show',$query_Item)}}">
-								<span class="font-weight-bold">
-									{{$query_Item->nombre}}/
-									Valor: {{$query_Item->valor_porcentual}}%/
-									Final: @if($query_Item->es_final==1) Si @else No @endif /
-									Estado: @if($query_Item->activo==1) Activo @else Inactivo @endif
-								</span>
-							</a>
-						</li>
+						<tr>
+							<th scope="row" class="font-weight-bold">
+								{{$query_Item->nombre}}
+							</th>
+							<td>
+								{{$query_Item->valor_porcentual}}%
+							</td>
+							<td>
+								@if($query_Item->es_final==1) Si @else No @endif
+							</td>
+							<td>
+								@if($query_Item->activo==1) Activo @else Inactivo @endif
+							</td>
+							<td>
+								@auth 
+									<a class="btn btn-sm btn-outline-info" href="{{route('periodo.show',$query_Item)}}"><i class="fas fa-search"></i></a>
+								@endauth
+							</td>
+						</tr>
 					@empty
-						<li>
-							No hay periodos activos
-						</li>
+						<tr>
+							<td class="list-group-item border-0 mb-2 shadow-sm" >
+								No hay estudiantes asignados 
+							</td>
+						</tr>
 					@endforelse
-					{{-- {{$query->links()}} --}}
-				</ul>
-			</div>
+				</tbody>
+			</table>
 			<br>
 			<div class="d-flex justify-content-between align-items-center">
 				<a class="btn btn-primary" href="{{route('anio_lectivo.index')}}">Regresar</a>

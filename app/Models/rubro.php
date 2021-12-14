@@ -11,4 +11,11 @@ class rubro extends Model
     protected $guarded = [];
     protected $table = 'rubro';
     use HasFactory;
+
+    public function materia(){
+        return $this->belongsTo(materia::class,'id_materia');
+    }
+    public function asignaciones(){
+        return $this->hasMany(asignacion::class,'id_rubro');
+    }
 }

@@ -11,7 +11,6 @@
 			<ul>
 				<li>Estado de Periodo</li>
 				<li> <a href="{{route('materia.index')}}"> Administrar Materias </a></li>
-				<li><a href="#">Asignación de estudiantes a grupos</a></li>
 				<li> <a href="{{route('grupo_guia.index')}}">Mantenimiento de Gupos guías</li>
 			</ul>
 		</div>
