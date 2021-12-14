@@ -70,7 +70,7 @@
 	
 	 <select name="id_estado" class="form-control">
 	@forelse ($estado_materia as $estado_Item)
-			<option value="{{$estado_Item->id}}" @if($estado_Item->id==$materia->estado_Item) selected @endif>
+			<option value="{{$estado_Item->id}}" @if($estado_Item->id==$materia->id_estado) selected @endif>
 				{{$estado_Item->nombre}}
 			</option>
 		@empty
