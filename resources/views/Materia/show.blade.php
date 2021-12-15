@@ -11,7 +11,8 @@
 			<p class="text-black">Grupo: {{$materia->grupo_guia->nombre}}</p>
 			@if($materia->es_cualitativo==1)
 				 <p class="text-black">Tipo de materia: Cuantitativo</p>
-			@else
+			@endif
+			@if($materia->es_cualitativo==0)
 				<p class="text-black">Tipo de materia: Cualitativo</p>
 			@endif
 			<p class="text-black">Docente: {{$materia->docentes->name}} {{$materia->docentes->apellido1}} {{$materia->docentes->apellido2}}</p>

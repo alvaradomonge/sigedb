@@ -11,6 +11,19 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+	<style>
+	
+	body{
+		position: relative;
+		padding-bottom: 3em;
+		min-height: 130vh;
+	}
+	main{
+		min-height: 130vh;
+	}
+
+	</style>
+
 	@yield('css')
 </head>
 <body>
@@ -24,7 +37,7 @@
 		<main class="py-3">
 			@yield ('contenido')
 		</main>
-		<footer class="bg-white text-center text-black-50 py-3 shadow sticky-bottom">
+		<footer class="bg-white text-center text-black-50 py-10 shadow">
 			{{config('app.name')}} | Copyright @ {{date('Y')}}
 		</footer>
 	</div>
