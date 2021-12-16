@@ -13,7 +13,7 @@
 					<tr class="align-middle text-center text-nowrap">
 						<th scope="col" colspan="2"></th>
 						@forelse ($materia->rubros as $rubro)
-							<th scope="col" class="table-active" colspan="{{$rubro->asignaciones()->count('*')}}">	
+							<th class="table-active" colspan="{{$rubro->asignaciones()->count('*')}}">
 								<th>{{$rubro->nombre}}</th>
 							</th>	
 						@empty
