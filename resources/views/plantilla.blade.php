@@ -14,8 +14,13 @@
 	<style>
 		
 	
+	body{
+		position: relative;
+		padding-bottom: 3em;
+		min-height: 130vh;
+	}
 	main{
-		min-height: 91vh;
+		min-height: 130vh;
 	}
 
 	</style>
