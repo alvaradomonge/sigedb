@@ -29,6 +29,7 @@ class SaveMateriaRequest extends FormRequest
             'id_categoria_materia'=> 'required|max:20',
             'id_user'=> 'required|max:20',
             'id_estado'=> 'required|max:20',
+            'es_cualitativo'=> 'required|max:20',
         ];
     }
     public function messages()
@@ -40,6 +41,7 @@ class SaveMateriaRequest extends FormRequest
             'id_categoria_materia.required'=>'Por favor una categoría',
             'id_user.required'=>'Por favor ingrese el docente',
             'id_estado.required'=>'Por favor ingrese el estado de la materia',
+            'es_cualitativo.required'=>'Por favor ingrese el tipo de materia',
         ];
     }
 }

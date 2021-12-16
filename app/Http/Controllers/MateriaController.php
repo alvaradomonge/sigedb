@@ -59,11 +59,11 @@ class materiaController extends Controller
      */
     public function store(SaveMateriaRequest $request)
     {      
-      $mat= materia::create(
+      materia::create(
              $request->validated()
          );
-      $mat->save();  
-       //return  $mat;
+      //$mat->save();  
+       //return  $request;
        return redirect()->route('materia.index')->with('status','materia creado exitósamente');
     }
 
