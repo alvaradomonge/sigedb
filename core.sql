@@ -24,9 +24,9 @@ INSERT IGNORE INTO `sigedb`.`periodo` (`id`, `nombre`,`id_anio`,`activo`,`valor_
 INSERT IGNORE INTO `sigedb`.`periodo` (`id`, `nombre`,`id_anio`,`activo`,`valor_porcentual`,`es_final`) VALUES ('4', 'IV Bimestre','1','1','25','1');
 INSERT IGNORE INTO `sigedb`.`grupo_guia` (`id`, `nombre`,`id_periodo`) VALUES ('1', '7-1','1');
 INSERT IGNORE INTO `sigedb`.`grupo_guia` (`id`, `nombre`,`id_periodo`) VALUES ('2', '7-2','3');
-INSERT IGNORE INTO `sigedb`.`materia` (`id`, `nombre`,`id_grupo_guia`,`id_categoria_materia`,`id_user`,`id_estado`) VALUES ('1', 'Matemáticas','1','1','5','1');
-INSERT IGNORE INTO `sigedb`.`materia` (`id`, `nombre`,`id_grupo_guia`,`id_categoria_materia`,`id_user`,`id_estado`) VALUES ('2', 'Español','1','1','1','5','1');
-INSERT IGNORE INTO `sigedb`.`materia` (`id`, `nombre`,`id_grupo_guia`,`id_categoria_materia`,`id_user`,`id_estado`) VALUES ('3', 'Matemáticas','2','1','5','1');
+INSERT IGNORE INTO `sigedb`.`materia` (`id`, `nombre`,`id_grupo_guia`) VALUES ('1', 'Matemáticas','1');
+INSERT IGNORE INTO `sigedb`.`materia` (`id`, `nombre`,`id_grupo_guia`) VALUES ('2', 'Español','1');
+INSERT IGNORE INTO `sigedb`.`materia` (`id`, `nombre`,`id_grupo_guia`) VALUES ('3', 'Matemáticas','2');
 INSERT IGNORE INTO `sigedb`.`escala_cualitativa` (`id`, `nombre`) VALUES ('1', 'No es Cualitativo');
 INSERT IGNORE INTO `sigedb`.`escala_cualitativa` (`id`, `nombre`) VALUES ('2', 'Preescolar CENG');
 INSERT IGNORE INTO `sigedb`.`escala_cualitativa` (`id`, `nombre`) VALUES ('3', 'CENG Cualitativo Mat Esp');
