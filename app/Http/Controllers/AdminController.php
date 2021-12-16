@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SaveAnioLectivo;
 use App\Models\User;
 use App\Models\anio_lectivo;
+use App\Models\asignacion;
 use App\Models\grupo_guia;
 use App\Models\materia;
 use App\Models\periodo;
 use App\Models\rel_grupo_guia_estudiante;
+use App\Models\rubro;
 use Illuminate\Auth\register;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -33,7 +35,6 @@ class AdminController extends Controller
     }
     public function gruposEstudiantes(grupo_guia $grupo_guia)
     {
-        //return $grupo_guia->estudiantes;
         return view('admin.gruposEstudiantes',compact('grupo_guia'));
     }
     public function create()
@@ -48,7 +49,7 @@ class AdminController extends Controller
             $grupo_guia->estudiantes()->save($estudiante);
             foreach($grupo_guia->materias as $materia){
                 $materia->promedio_estudiante()->save($estudiante);
-                //$this->info('agregado ',$estudiante->nombre, 'a materia ', $materia->nombre);
+                $this->setNotasTodasAsignaciones($materia,$estudiante);
             } 
             return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante añadido exitósamente');  
         }else{
@@ -64,14 +65,43 @@ class AdminController extends Controller
         $grupo_guia->estudiantes()->detach($estudiante->id);
         foreach($grupo_guia->materias as $materia){
                 $materia->promedio_estudiante()->detach($estudiante);
+                $this->deleteNotasTodasAsignaciones($materia,$estudiante);
             } 
         return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante eliminado');  
-        //return $user;
     }
 
     //METODOS PARA GESTION DE LIBROS DE NOTAS
     public function showLibroNotas(materia $materia){
+        $estudiantes =$materia->promedio_estudiante()->orderBy('name')->get();
+        $notas= $materia->rubros;
         return view('libro_notas.show',compact('materia'));
+        //return $notas;
+    }
+
+    public function setNotasTodasAsignaciones(materia $materia, user $estudiante)
+    {
+         foreach($materia->rubros as $rubro){
+             $this->setNotasRubro($rubro,$estudiante);
+            //$rubro->asignaciones()->save($estudiante);
+        }
+    }
+    public function deleteNotasTodasAsignaciones(materia $materia, user $estudiante)
+    {
+         foreach($materia->rubros as $rubro){
+             $this->deleteNotasRubro($rubro,$estudiante);
+        }
+    }
+    private function setNotasRubro(rubro $rubro, user $estudiante)
+    {
+        foreach($rubro->asignaciones as $asignacion){
+            $asignacion->nota()->create(['id_estud'=>$estudiante,'id_asig'=>$asignacion->id,'id_materia'=>$rubro->materia->id]);
+        }
+    }
+    private function deleteNotasRubro(rubro $rubro, user $estudiante)
+    {
+        foreach($rubro->asignaciones as $asignacion){
+            $asignacion->nota()->detach($estudiante);
+        }
     }
 
 

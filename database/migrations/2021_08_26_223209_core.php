@@ -80,10 +80,9 @@ class Core extends Migration
             $table->foreignId('id_rubro')->constrained('rubro');
             $table->foreignId('id_escala_cualitativa')->nullable()->constrained('escala_cualitativa');
         });
-        Schema::create('rel_estud_materia_rubro_asig', function (Blueprint $table) {
+        Schema::create('nota_estudiante_asignacion', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('id_estud')->constrained('users');
-            $table->foreignId('id_materia')->constrained('materia');
             $table->foreignId('id_asig')->constrained('asignacion');
             $table->unsignedTinyInteger('nota')->default(0);
             $table->foreignId('id_rubro_cualit')->nullable()->constrained('rubro_escala_cualitativa');
@@ -103,6 +102,6 @@ class Core extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(['materia','periodo','grupo_guia','anio_lectivo','rol_usuario','estado_materia','rel_materia_docente','promedio_estud_materia_cuanti','rel_estud_materia_rubro_asig','asignacion','rel_escala_cualit_rubro_cualit','rubro_escala_cualitativa','escala_cualitativa','rubro']);
+        Schema::dropIfExists(['materia','periodo','grupo_guia','anio_lectivo','rol_usuario','estado_materia','rel_materia_docente','promedio_estud_materia_cuanti','nota_estudiante_asignacion','asignacion','rel_escala_cualit_rubro_cualit','rubro_escala_cualitativa','escala_cualitativa','rubro']);
     }
 }

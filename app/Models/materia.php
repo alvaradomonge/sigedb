@@ -28,10 +28,10 @@ class materia extends Model
     public function promedio_estudiante(){
         return $this->belongsToMany(user::class,'promedio_estud_materia_cuanti','id_materia','id_estudiante')->withPivot('promedio');
     }
-    public function asignaciones(){
-        return $this->belongsToMany(asignacion::class,'rel_estud_materia_rubro_asig','id_materia','id_asig','id_estud')->withPivot('nota','id_rubro_cualit');
-    }
     public function rubros(){
         return $this->hasMany(rubro::class,'id_materia');
     }
+    // public function calificacion_asignaciones(){
+    //     return $this->belongsToMany(asignacion::class,'nota_estudiante_asignacion','id_materia','id_asig','id_estud')->withPivot('nota','id_rubro_cualit');
+    // }
 }

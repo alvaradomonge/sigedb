@@ -15,8 +15,8 @@ class asignacion extends Model
     public function rubro(){
         return $this->belongsTo(rubro::class,'id_rubro');
     }
-    public function materia(){
-        return $this->belongsToMany(materia::class,'rel_estud_materia_rubro_asig','id_asig','id_materia','id_estud')->withPivot('nota','id_rubro_cualit');
+    public function nota(){
+        return $this->belongsToMany(user::class,'nota_estudiante_asignacion','id_estud','id_asig')->withPivot('nota','id_rubro_cualit');
     }
     // public function estudiantes(){
     //     return $this->belongsToMany(user::class,'rel_estud_materia_rubro_asig','id_asig','id_estud','id_materia')->withPivot('nota','id_rubro_cualit');

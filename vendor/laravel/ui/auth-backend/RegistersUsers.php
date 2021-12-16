@@ -2,7 +2,9 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Http\Controllers\AdminController;
 use App\Models\grupo_guia;
+use App\Models\rubro;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -53,6 +55,12 @@ trait RegistersUsers
         $grupo_guia->estudiantes()->save($user);
         foreach($grupo_guia->materias as $materia){
             $materia->promedio_estudiante()->save($user);
+            foreach($materia->rubros as $rubro){
+                foreach($rubro->asignaciones as $asignacion){
+                    $asignacion->nota()->save($user);
+                    //$asignacion->nota()->sync($materia->id);
+                }
+            }
         }
         return $request->wantsJson()
                     ? new JsonResponse([], 201)

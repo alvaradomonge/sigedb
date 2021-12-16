@@ -3,53 +3,56 @@
 
 @section ('contenido')
 	<div class="container">
-		<div class="d-flex justify-content-between align-items-center">
-			<h2 class="display-8 mb-0">Notas de {{$materia->nombre}} {{$materia->grupo_guia->nombre}}</h2>			
+		<div class="d-flex justify-content-between">
+			<h2 class="display-8 mb-0">Notas de {{$materia->nombre}} {{$materia->grupo_guia->nombre}}</h2>	
 		</div>
 		<hr>
-		<div class="table-responsive">
+		<div class="table-responsive-sm">
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr class="align-middle text-center text-nowrap">
 						<th scope="col" colspan="2"></th>
 						@forelse ($materia->rubros as $rubro)
-							<th class="table-active" colspan="{{$rubro->asignaciones()->count('*')}}">
-								<th>{{$rubro->nombre}}</th>
+							<th scope="col" class="table-active border border-secondary" colspan="{{$rubro->asignaciones()->count('*')}}">
+								{{$rubro->id}}:{{$rubro->nombre}}
 							</th>	
 						@empty
 							<th>Cree rubros primero</th>
 						@endforelse
 					</tr>
-					<tr class="align-middle text-center text-nowrap">
-						<th scope="col">Nombre</th>
-						<th scope="col">Promedio</th>
+					<tr class="align-middle text-center text-nowrap  border border-secondary">
+						<th scope="col" class="border border-secondary" >Nombre</th>
+						<th scope="col" class="border border-secondary">Promedio</th>
 						@forelse ($materia->rubros as $rubro)
-							<td>
-							@forelse ($rubro->asignaciones as $asginacion)
-								<td scope="col">{{$asginacion->nombre}}</td>
+							@forelse ($rubro->asignaciones as $asignacion)
+								<td scope="col" class="border border-secondary">{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)<a href="#"><i class="i-xlarge fas fa-pen-square"></i></a></td>
 							@empty
-								<td scope="col">No posee asignaciones</td>
+								<td scope="col" class="border border-secondary">No posee asignaciones</td>
 							@endforelse
-							</td>
 						@empty
 							<th>Cree asignaciones primero</th>
 						@endforelse
 					</tr>
 				</thead>
 				<tbody>
-					@forelse ($materia->promedio_estudiante as $promedio_estudiante_Item)
-						<tr class="align-middle text-nowrap">
+					@forelse ($materia->promedio_estudiante as $estudiante)
+						<tr class="align-middle text-nowrap border-secondary">
 							<th scope="row" class="font-weight-bold">
-								{{$promedio_estudiante_Item->apellido1}} {{$promedio_estudiante_Item->apellido2}} {{$promedio_estudiante_Item->name}}
+								{{$estudiante->apellido1}} {{$estudiante->apellido2}} {{$estudiante->name}}
 							</th>
 							<td class="text-center">
-								@if($promedio_estudiante_Item->promedio_materia == null)
+								@if($estudiante->promedio_materia == null)
 									<p class="text-break">vacío</p>
 								@else						
-									<p class="text-break">{{$promedio_estudiante_Item->pivot->promedio}}</p>
+									<p class="text-break">{{$estudiante->pivot->promedio}}</p>
 								@endif
 							</td>
-							{{-- ACA VAN MAS TD PARA LAS ASIGNACIONES --}}
+							@forelse($estudiante->nota_asignaciones as $asignacion)
+								{{-- <td class="text-center border border-secondary">R:{{$asignacion->id_rubro}}/A:{{$asignacion->id}}/E:{{$asignacion->pivot->id_estud}}/N:{{$asignacion->pivot->nota}}</td> --}}
+								<td class="text-center border border-secondary">{{$asignacion->rubro->materia->nombre}}/A:{{$asignacion->id}}/E:{{$asignacion->pivot->id_estud}}/N:{{$asignacion->pivot->nota}}</td>
+							@empty
+								<td class="text-center">No hay asignaciones en esta clase, agregue unos primero</td>	
+							@endforelse
 						</tr>
 					@empty
 						<tr>
@@ -63,7 +66,10 @@
 		</div>
 		<div class="d-flex align-items-center">
 			<a class="btn btn-success" href="{{route('grupo_guia.materias',$materia->grupo_guia)}}">Regresar</a>
-			@auth <a class="btn btn-info" href="#">Guardar</a>@endauth
+			@auth 
+				<a class="btn btn-primary" href="#">Crear Rubro</a>	
+				<a class="btn btn-secondary" href="#">Importar Rubros</a>	
+			@endauth
 		</div>
 	</div>
 @endsection
