@@ -94,7 +94,7 @@ class AdminController extends Controller
     private function setNotasRubro(rubro $rubro, user $estudiante)
     {
         foreach($rubro->asignaciones as $asignacion){
-            $asignacion->nota()->create(['id_estud'=>$estudiante,'id_asig'=>$asignacion->id,'id_materia'=>$rubro->materia->id]);
+            $asignacion->nota()->save($estudiante);
         }
     }
     private function deleteNotasRubro(rubro $rubro, user $estudiante)
