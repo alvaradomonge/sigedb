@@ -7,7 +7,7 @@
 			<h2 class="display-8 mb-0">Notas de {{$materia->nombre}} {{$materia->grupo_guia->nombre}}</h2>	
 		</div>
 		<hr>
-		<div class="table-responsive-sm">
+		<div class="table-responsive">
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr class="align-middle text-center text-nowrap">
@@ -23,12 +23,8 @@
 					<tr class="align-middle text-center text-nowrap  border border-secondary">
 						<th scope="col" class="border border-secondary" >Nombre</th>
 						<th scope="col" class="border border-secondary">Promedio</th>
-						@forelse ($materia->rubros as $rubro)
-							@forelse ($rubro->asignaciones as $asignacion)
+						@forelse ($materia->asignaciones as $asignacion)
 								<td scope="col" class="border border-secondary">{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)<a href="#"><i class="i-xlarge fas fa-pen-square"></i></a></td>
-							@empty
-								<td scope="col" class="border border-secondary">No posee asignaciones</td>
-							@endforelse
 						@empty
 							<th>Cree asignaciones primero</th>
 						@endforelse
@@ -47,9 +43,9 @@
 									<p class="text-break">{{$estudiante->pivot->promedio}}</p>
 								@endif
 							</td>
-							@forelse($estudiante->nota_asignaciones as $asignacion)
+							@forelse($notas->where('id',$estudiante->id) as $asignacion)
 								{{-- <td class="text-center border border-secondary">R:{{$asignacion->id_rubro}}/A:{{$asignacion->id}}/E:{{$asignacion->pivot->id_estud}}/N:{{$asignacion->pivot->nota}}</td> --}}
-								<td class="text-center border border-secondary">{{$asignacion->rubro->materia->nombre}}/A:{{$asignacion->id}}/E:{{$asignacion->pivot->id_estud}}/N:{{$asignacion->pivot->nota}}</td>
+								<td class="text-center border border-secondary">E:{{$asignacion->pivot->id_estud}}/M:{{$asignacion->pivot->id_materia}}/A:{{$asignacion->pivot->id_asig}}/N:{{$asignacion->pivot->nota}}</td>
 							@empty
 								<td class="text-center">No hay asignaciones en esta clase, agregue unos primero</td>	
 							@endforelse

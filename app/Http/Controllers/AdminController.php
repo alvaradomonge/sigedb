@@ -13,6 +13,8 @@ use App\Models\rubro;
 use Illuminate\Auth\register;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Seeder;
 
 
 class AdminController extends Controller
@@ -73,8 +75,8 @@ class AdminController extends Controller
     //METODOS PARA GESTION DE LIBROS DE NOTAS
     public function showLibroNotas(materia $materia){
         $estudiantes =$materia->promedio_estudiante()->orderBy('name')->get();
-        $notas= $materia->rubros;
-        return view('libro_notas.show',compact('materia'));
+        $notas= $materia->estud_asignaciones()->get();
+        return view('libro_notas.show',compact('materia','notas'));
         //return $notas;
     }
 
@@ -94,7 +96,7 @@ class AdminController extends Controller
     private function setNotasRubro(rubro $rubro, user $estudiante)
     {
         foreach($rubro->asignaciones as $asignacion){
-            $asignacion->nota()->save($estudiante);
+            $asignacion->nota()->save($estudiante,['id_materia'=>$rubro->materia->id]);
         }
     }
     private function deleteNotasRubro(rubro $rubro, user $estudiante)

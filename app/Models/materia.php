@@ -31,7 +31,14 @@ class materia extends Model
     public function rubros(){
         return $this->hasMany(rubro::class,'id_materia');
     }
-    // public function calificacion_asignaciones(){
-    //     return $this->belongsToMany(asignacion::class,'nota_estudiante_asignacion','id_materia','id_asig','id_estud')->withPivot('nota','id_rubro_cualit');
-    // }
+    public function nota_asignaciones(){
+        return $this->belongsToMany(asignacion::class,'nota_estudiante_asignacion','id_materia','id_asig')->withPivot('nota','id_estud','id_rubro_cualit');
+    }
+    public function estud_asignaciones(){
+        return $this->belongsToMany(user::class,'nota_estudiante_asignacion','id_materia','id_estud')->withPivot('nota','id_asig','id_rubro_cualit');
+    }
+    public function asignaciones()
+    {
+        return $this->hasManyThrough(asignacion::class, rubro::class,'id_materia','id_rubro');
+    }
 }

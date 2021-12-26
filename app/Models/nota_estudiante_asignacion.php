@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rel_grupo_guia_estudiante extends Model
+class nota_estudiante_asignacion extends Model
 {
     public $timestamps = false;
     protected $guarded = [];
-    protected $table = 'rel_grupo_guia_estudiante';
+    protected $table = 'nota_estudiante_asignacion';
     use HasFactory;
 }
+

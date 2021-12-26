@@ -84,6 +84,7 @@ class Core extends Migration
             $table->bigIncrements('id');
             $table->foreignId('id_estud')->constrained('users');
             $table->foreignId('id_asig')->constrained('asignacion');
+            $table->foreignId('id_materia')->nullable()->constrained('materia');
             $table->unsignedTinyInteger('nota')->default(0);
             $table->foreignId('id_rubro_cualit')->nullable()->constrained('rubro_escala_cualitativa');
         });
