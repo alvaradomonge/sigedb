@@ -80,6 +80,10 @@ class AdminController extends Controller
         //return $notas;
     }
 
+    public function showRubros(materia $materia){
+        return view('libro_notas.show_rubros',compact('materia'));
+    }
+
     public function setNotasTodasAsignaciones(materia $materia, user $estudiante)
     {
          foreach($materia->rubros as $rubro){

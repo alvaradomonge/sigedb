@@ -15,16 +15,12 @@ Auth::routes(['register'=>false]);
 
 
 Route::view('/admin.gestionClases','admin.gestionClases')->name('admin.gestionClases');
-//Route::get('/admin.gestionClases','App\Http\Controllers\AdminController@indexGestionClases')->name('admin.gestionClases');
 Route::get('/admin.gestionAniosPeriodos','App\Http\Controllers\AdminController@index')->name('admin.gestionAniosPeriodos');
 Route::get('/admin.gruposEstudiantes/{grupo_guia}','App\Http\Controllers\AdminController@gruposEstudiantes')->name('admin.gruposEstudiantes');
 
 Route::resource('anio_lectivo','App\Http\Controllers\AnioLectivoController');
 Route::resource('periodo','App\Http\Controllers\PeriodoController');
-
 Route::resource('grupo_guia','App\Http\Controllers\grupoGuiaController')->parameters(['grupo_guia' => 'grupo_guia']);
-
-
 Route::resource('materia','App\Http\Controllers\MateriaController')->parameters(['materia' => 'materia']);
 Route::get('grupo_guia/{grupo_guia}/materia/create','App\Http\Controllers\MateriaController@create_materia_grupo_guia')->name('materia.create_grupo_guia');
 
@@ -43,6 +39,7 @@ Route::get('{grupo_guia}/materias','App\Http\Controllers\adminController@showGru
 //RUTAS PARA LIBROS DE NOTAS
 
 Route::get('{materia}/notas','App\Http\Controllers\adminController@showLibroNotas')->name('materia.notas');
+Route::get('{materia}/rubros','App\Http\Controllers\adminController@showRubros')->name('materia.rubros');
 
 //PRUEBAS 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');

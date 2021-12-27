@@ -4,10 +4,30 @@
 @section ('contenido')
 	<div class="container">
 		<div class="d-flex justify-content-between">
-			<h2 class="display-8 mb-0">Notas de {{$materia->nombre}} {{$materia->grupo_guia->nombre}}</h2>	
+			<h2 class="display-8 mb-0">Rubros de {{$materia->nombre}} {{$materia->grupo_guia->nombre}}</h2>	
 		</div>
 		<hr>
-		<div class="table-responsive">
+		<div class="d-flex align-content-start flex-wrap justify-content-between">
+			@forelse ($materia->rubros as $rubro)
+				<div class="card text-white bg-info m-1" >
+				  <div class="card-header"><h5>{{$rubro->nombre}}</h5></div>
+				  <div class="card-body">
+				    <p class="card-title">Valor: {{$rubro->valor_porcentual}}%</p>
+				    <p class="card-text">Asignaciones:</p>
+				    <ul class="list-group list-group-flush">
+				    	@forelse ($rubro->asignaciones as $asignacion)
+							<li class="list-group-item">{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)</li>
+						@empty
+							<th>Cree asignaciones primero</th>
+						@endforelse
+				    </ul>
+				  </div>
+				</div>
+			@empty
+				<th>Cree rubros primero</th>
+			@endforelse
+		</div>
+		{{-- <div class="table-responsive">
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr class="align-middle text-center text-nowrap">
@@ -58,12 +78,11 @@
 					@endforelse
 				</tbody>
 			</table>
-		</div>
+		</div> --}}
 		<div class="d-flex align-items-center">
-			<a class="btn btn-success" href="{{route('grupo_guia.materias',$materia->grupo_guia)}}">Regresar</a>
+			<a class="btn btn-success" href="{{route('materia.notas',$materia)}}">Regresar</a>
 			@auth 
-				<a class="btn btn-primary" href="{{route('materia.rubros',$materia)}}">Rubros y Asignaciones</a>	
-				<a class="btn btn-secondary" href="#">Importar Rubros</a>	
+				<a class="btn btn-primary" href="#">Crear Rubro</a>		
 			@endauth
 		</div>
 	</div>
