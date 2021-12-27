@@ -57,8 +57,7 @@ trait RegistersUsers
             $materia->promedio_estudiante()->save($user);
             foreach($materia->rubros as $rubro){
                 foreach($rubro->asignaciones as $asignacion){
-                    $asignacion->nota()->save($user);
-                    //$asignacion->nota()->sync($materia->id);
+                     $asignacion->nota()->save($user,['id_materia'=>$rubro->materia->id]);
                 }
             }
         }

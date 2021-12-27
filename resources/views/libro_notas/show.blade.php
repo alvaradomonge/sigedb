@@ -44,8 +44,7 @@
 								@endif
 							</td>
 							@forelse($notas->where('id',$estudiante->id) as $asignacion)
-								{{-- <td class="text-center border border-secondary">R:{{$asignacion->id_rubro}}/A:{{$asignacion->id}}/E:{{$asignacion->pivot->id_estud}}/N:{{$asignacion->pivot->nota}}</td> --}}
-								<td class="text-center border border-secondary">E:{{$asignacion->pivot->id_estud}}/M:{{$asignacion->pivot->id_materia}}/A:{{$asignacion->pivot->id_asig}}/N:{{$asignacion->pivot->nota}}</td>
+								<td class="text-center border border-secondary">E:{{$asignacion->pivot->id_estud}}/A:{{$asignacion->pivot->id_asig}}/N:{{$asignacion->pivot->nota}}</td>
 							@empty
 								<td class="text-center">No hay asignaciones en esta clase, agregue unos primero</td>	
 							@endforelse
