@@ -9,14 +9,14 @@
 		<hr>
 		<div class="d-flex align-content-start flex-wrap justify-content-between">
 			@forelse ($materia->rubros as $rubro)
-				<div class="card text-white bg-info m-1" >
-				  <div class="card-header"><h5>{{$rubro->nombre}}</h5></div>
+				<div class="card text-white bg-info m-1 mw-50" >
+				  <div class="card-header"><h5>{{$rubro->nombre}}</h5><a href="#" class="btn btn-primary">+</a></div>
 				  <div class="card-body">
 				    <p class="card-title">Valor: {{$rubro->valor_porcentual}}%</p>
 				    <p class="card-text">Asignaciones:</p>
 				    <ul class="list-group list-group-flush">
 				    	@forelse ($rubro->asignaciones as $asignacion)
-							<li class="list-group-item">{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)</li>
+							<li class="list-group-item">{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)<a href="#"><i class="i-xlarge fas fa-pen-square"></i></a></li>
 						@empty
 							<th>Cree asignaciones primero</th>
 						@endforelse
