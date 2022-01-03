@@ -13,9 +13,13 @@
 					<tr class="align-middle text-center text-nowrap">
 						<th scope="col" colspan="2"></th>
 						@forelse ($materia->rubros as $rubro)
+							@if($rubro->asignaciones->count()==0)
+							
+							@else
 							<th scope="col" class="table-active border border-secondary" colspan="{{$rubro->asignaciones()->count('*')}}">
 								{{$rubro->id}}:{{$rubro->nombre}}
-							</th>	
+							</th>
+							@endif	
 						@empty
 							<th>Cree rubros primero</th>
 						@endforelse
@@ -24,7 +28,11 @@
 						<th scope="col" class="border border-secondary" >Nombre</th>
 						<th scope="col" class="border border-secondary">Promedio</th>
 						@forelse ($materia->asignaciones as $asignacion)
+							@if($asignacion->nota->count()==0)
+							
+							@else
 								<td scope="col" class="border border-secondary">{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)<a href="#"><i class="i-xlarge fas fa-pen-square"></i></a></td>
+							@endif
 						@empty
 							<th>Cree asignaciones primero</th>
 						@endforelse

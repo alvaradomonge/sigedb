@@ -40,7 +40,8 @@ Route::get('{grupo_guia}/materias','App\Http\Controllers\adminController@showGru
 
 Route::get('{materia}/notas','App\Http\Controllers\adminController@showLibroNotas')->name('materia.notas');
 Route::get('{materia}/rubros','App\Http\Controllers\adminController@showRubros')->name('materia.rubros');
-
+Route::post('{materia}/rubro','App\Http\Controllers\adminController@nuevoRubro')->name('nuevo.rubro');
+Route::post('{materia}/asignacion','App\Http\Controllers\adminController@nuevaAsignacion')->name('nueva.asignacion');
 //PRUEBAS 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');
 

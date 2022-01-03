@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\SaveAnioLectivo;
+use App\Http\Requests\saveRubroRequest;
+use App\Http\Requests\SaveAsignacionRequest;
 use App\Models\User;
 use App\Models\anio_lectivo;
 use App\Models\asignacion;
@@ -109,7 +111,17 @@ class AdminController extends Controller
             $asignacion->nota()->detach($estudiante);
         }
     }
-
+    public function nuevoRubro(saveRubroRequest $request,materia $materia){
+        rubro::create($request->validated());
+        return redirect()->route('materia.rubros',$materia)->with('status','Rubro creado exitósamente');
+    }
+    public function nuevaAsignacion(saveAsignacionRequest $request,materia $materia){
+        $asignacion=asignacion::create($request->validated());
+        foreach($materia->grupo_guia->estudiantes as $estudiante){
+            $asignacion->nota()->save($estudiante,['id_materia'=>$materia->id]);
+        }
+        return redirect()->route('materia.rubros',$materia)->with('status','Asignación creada exitósamente');
+    }
 
     //METODOS CRUD DEL CONTROLADOR, DEBE EVALUARSE SI SE HAN USADO SINO BORRARLOS
     public function store(SaveAnioLectivo $request)

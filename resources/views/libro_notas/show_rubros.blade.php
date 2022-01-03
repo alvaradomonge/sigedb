@@ -4,86 +4,100 @@
 @section ('contenido')
 	<div class="container">
 		<div class="d-flex justify-content-between">
-			<h2 class="display-8 mb-0">Rubros de {{$materia->nombre}} {{$materia->grupo_guia->nombre}}</h2>	
+			<h2 class="display-8 mb-0">Rubros en {{$materia->nombre}} {{$materia->grupo_guia->nombre}}</h2>	
 		</div>
 		<hr>
-		<div class="d-flex align-content-start flex-wrap justify-content-between">
-			@forelse ($materia->rubros as $rubro)
-				<div class="card text-white bg-info m-1 mw-50" >
-				  <div class="card-header"><h5>{{$rubro->nombre}}</h5><a href="#" class="btn btn-primary">+</a></div>
-				  <div class="card-body">
-				    <p class="card-title">Valor: {{$rubro->valor_porcentual}}%</p>
-				    <p class="card-text">Asignaciones:</p>
-				    <ul class="list-group list-group-flush">
-				    	@forelse ($rubro->asignaciones as $asignacion)
-							<li class="list-group-item">{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)<a href="#"><i class="i-xlarge fas fa-pen-square"></i></a></li>
-						@empty
-							<th>Cree asignaciones primero</th>
-						@endforelse
-				    </ul>
-				  </div>
-				</div>
-			@empty
-				<th>Cree rubros primero</th>
-			@endforelse
-		</div>
-		{{-- <div class="table-responsive">
-			<table class="table table-striped table-sm">
-				<thead>
-					<tr class="align-middle text-center text-nowrap">
-						<th scope="col" colspan="2"></th>
-						@forelse ($materia->rubros as $rubro)
-							<th scope="col" class="table-active border border-secondary" colspan="{{$rubro->asignaciones()->count('*')}}">
-								{{$rubro->id}}:{{$rubro->nombre}}
-							</th>	
-						@empty
-							<th>Cree rubros primero</th>
-						@endforelse
-					</tr>
-					<tr class="align-middle text-center text-nowrap  border border-secondary">
-						<th scope="col" class="border border-secondary" >Nombre</th>
-						<th scope="col" class="border border-secondary">Promedio</th>
-						@forelse ($materia->asignaciones as $asignacion)
-								<td scope="col" class="border border-secondary">{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)<a href="#"><i class="i-xlarge fas fa-pen-square"></i></a></td>
-						@empty
-							<th>Cree asignaciones primero</th>
-						@endforelse
-					</tr>
-				</thead>
-				<tbody>
-					@forelse ($materia->promedio_estudiante as $estudiante)
-						<tr class="align-middle text-nowrap border-secondary">
-							<th scope="row" class="font-weight-bold">
-								{{$estudiante->apellido1}} {{$estudiante->apellido2}} {{$estudiante->name}}
-							</th>
-							<td class="text-center">
-								@if($estudiante->promedio_materia == null)
-									<p class="text-break">vacío</p>
-								@else						
-									<p class="text-break">{{$estudiante->pivot->promedio}}</p>
-								@endif
-							</td>
-							@forelse($notas->where('id',$estudiante->id) as $asignacion)
-								<td class="text-center border border-secondary">E:{{$asignacion->pivot->id_estud}}/A:{{$asignacion->pivot->id_asig}}/N:{{$asignacion->pivot->nota}}</td>
+		<div class="d-flex row align-content-start justify-content-start">
+			<div class="col-7" >
+				@forelse ($materia->rubros as $rubro)
+					<div class="list-group py-2" >	
+						<div class="list-group-item list-group-item-action bg-info">
+							<div class=" d-flex justify-content-between" >
+								{{$rubro->nombre}} ({{$rubro->valor_porcentual}}%)
+								<a class="btn btn-primary" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse" href="#collapse_rubro_{{$rubro->id}}">
+									<i class="fas fa-bars"></i>
+								</a>
+							</div>
+							<div class="collapse" id="collapse_rubro_{{$rubro->id}}">
+								<a class="btn btn-success" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse" href="#collapse_nueva_asignacion_{{$rubro->id}}">Crear Asignación</a>
+								<a href="#" class="btn btn-danger">Eliminar Rubro</a>
+								<div class="collapse" id="collapse_nueva_asignacion_{{$rubro->id}}">
+									<form class="bg-white py-4 px-5 shadow rounded" method="POST" action="{{route('nueva.asignacion',$materia)}}">
+										@csrf
+										<h3>Nueva Asignación</h3>
+										<div class="input-group">
+											<label class="btn btn-info" for="nombre">
+												Nombre
+											</label>
+											<input type="text" name="nombre" id="nombre" class="form-control">
+											<label class="btn btn-success" for="valor_porcentual">
+												Valor
+											</label>
+											<input type="text" name="valor_porcentual" id="valor_porcentual" class="form-control">
+											<input type="text" name="id_rubro" id="id_rubro" value="{{$rubro->id}}" class="form-control d-none">
+											<div class="input-group-append">
+												<button class="btn btn-danger">Agregar</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					    <ul class="list-group">
+					    	@forelse ($rubro->asignaciones as $asignacion)
+								<li class="list-group-item">
+									<div class=" d-flex justify-content-between" >
+										{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)
+										<div>
+											<a class="px-2" href="#">
+												<i class="fas fa-pencil-alt"></i>
+											</a>
+											<a class="px-2" href="#">
+												<i class="fas fa-trash-alt"></i>
+											</a>
+										</div>
+									</div>
+								</li>
 							@empty
-								<td class="text-center">No hay asignaciones en esta clase, agregue unos primero</td>	
+								<th>Cree asignaciones primero</th>
 							@endforelse
-						</tr>
-					@empty
-						<tr>
-							<td class="list-group-item border-0 mb-2 shadow-sm" >
-								No hay estudiantes asignados 
-							</td>
-						</tr>
-					@endforelse
-				</tbody>
-			</table>
-		</div> --}}
+					    </ul>
+				  	</div>
+				@empty
+					<th>Cree rubros primero</th>
+				@endforelse
+			</div>
+			<div class="col-4" >
+				<h2 class="display-8 mb-0">Valor acumulado:{{$materia->rubros->count()}}%</h2>	
+			</div>
+		</div>
+		<div class="collapse" id="collapse_nuevo_rubro">
+			<form class="bg-white py-4 px-5 shadow rounded" method="POST" action="{{route('nuevo.rubro',$materia)}}">
+				@csrf
+				<h3>Nuevo rubro</h3>
+				<div class="input-group">
+					<label class="btn btn-info" for="nombre">
+						Nombre
+					</label>
+					<input type="text" name="nombre" id="nombre" class="form-control">
+					<label class="btn btn-success" for="valor_porcentual">
+						Valor
+					</label>
+					<input type="text" name="valor_porcentual" id="valor_porcentual" class="form-control">
+					<input type="text" name="id_materia" id="id_materia" value="{{$materia->id}}" class="form-control d-none">
+					<div class="input-group-append">
+						<button class="btn btn-danger">Agregar</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<hr>
 		<div class="d-flex align-items-center">
 			<a class="btn btn-success" href="{{route('materia.notas',$materia)}}">Regresar</a>
 			@auth 
-				<a class="btn btn-primary" href="#">Crear Rubro</a>		
+				<a class="btn btn-dark" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse" href="#collapse_nuevo_rubro">Nuevo Rubro</a>	
 			@endauth
 		</div>
+		
 	</div>
 @endsection
