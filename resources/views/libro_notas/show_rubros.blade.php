@@ -8,7 +8,7 @@
 		</div>
 		<hr>
 		<div class="d-flex row align-content-start justify-content-start">
-			<div class="col-7" >
+			<div class="col-md-7" >
 				@forelse ($materia->rubros as $rubro)
 					<div class="list-group py-2" >	
 						<div class="list-group-item list-group-item-action bg-info">
@@ -20,9 +20,12 @@
 							</div>
 							<div class="collapse" id="collapse_rubro_{{$rubro->id}}">
 								<a class="btn btn-success" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse" href="#collapse_nueva_asignacion_{{$rubro->id}}">Crear Asignación</a>
-								<a href="#" class="btn btn-danger">Eliminar Rubro</a>
+								<a class="btn btn-danger" href="#" onclick="document.getElementById('delete-grupo_guia').submit()">Eliminar Rubro</a>
+								<form id="delete-grupo_guia" class="d-none" method="POST" action="{{route('rubro.destroy',$rubro)}}">
+									@csrf @method('DELETE')
+								</form>
 								<div class="collapse" id="collapse_nueva_asignacion_{{$rubro->id}}">
-									<form class="bg-white py-4 px-5 shadow rounded" method="POST" action="{{route('nueva.asignacion',$materia)}}">
+									<form class="bg-white py-3 px-2 shadow rounded" method="POST" action="{{route('nueva.asignacion',$materia)}}">
 										@csrf
 										<h3>Nueva Asignación</h3>
 										<div class="input-group">
@@ -49,10 +52,10 @@
 									<div class=" d-flex justify-content-between" >
 										{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)
 										<div>
-											<a class="px-2" href="#">
+											<a class="px-2 text-success" href="#">
 												<i class="fas fa-pencil-alt"></i>
 											</a>
-											<a class="px-2" href="#">
+											<a class="px-2 text-danger" href="#">
 												<i class="fas fa-trash-alt"></i>
 											</a>
 										</div>
@@ -67,12 +70,12 @@
 					<th>Cree rubros primero</th>
 				@endforelse
 			</div>
-			<div class="col-4" >
-				<h2 class="display-8 mb-0">Valor acumulado:{{$materia->rubros->count()}}%</h2>	
+			<div class="col-md-4" >
+				<h2 class="display-8 mb-0">Sumatoria de rubros: {{$porcentaje_total}}%</h2>	
 			</div>
 		</div>
 		<div class="collapse" id="collapse_nuevo_rubro">
-			<form class="bg-white py-4 px-5 shadow rounded" method="POST" action="{{route('nuevo.rubro',$materia)}}">
+			<form class="bg-white py-3 px-2 shadow rounded" method="POST" action="{{route('nuevo.rubro',$materia)}}">
 				@csrf
 				<h3>Nuevo rubro</h3>
 				<div class="input-group">

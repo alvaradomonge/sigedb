@@ -77,7 +77,7 @@ class Core extends Migration
             $table->bigIncrements('id');
             $table->string('nombre',255);
             $table->float('valor_porcentual',3,1)->nullable();
-            $table->foreignId('id_rubro')->constrained('rubro');
+            $table->foreignId('id_rubro')->constrained('rubro')->onDelete('cascade');
             $table->foreignId('id_escala_cualitativa')->nullable()->constrained('escala_cualitativa');
         });
         Schema::create('nota_estudiante_asignacion', function (Blueprint $table) {

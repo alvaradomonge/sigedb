@@ -42,6 +42,7 @@ Route::get('{materia}/notas','App\Http\Controllers\adminController@showLibroNota
 Route::get('{materia}/rubros','App\Http\Controllers\adminController@showRubros')->name('materia.rubros');
 Route::post('{materia}/rubro','App\Http\Controllers\adminController@nuevoRubro')->name('nuevo.rubro');
 Route::post('{materia}/asignacion','App\Http\Controllers\adminController@nuevaAsignacion')->name('nueva.asignacion');
+Route::delete('/{rubro}/rubro/destroy','App\Http\Controllers\AdminController@destroyRubro')->name('rubro.destroy');
 //PRUEBAS 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');
 

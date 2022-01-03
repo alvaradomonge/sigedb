@@ -83,7 +83,8 @@ class AdminController extends Controller
     }
 
     public function showRubros(materia $materia){
-        return view('libro_notas.show_rubros',compact('materia'));
+        $porcentaje_total=$this->getPorcentajeTotalRubros($materia);
+        return view('libro_notas.show_rubros',compact('materia','porcentaje_total'));
     }
 
     public function setNotasTodasAsignaciones(materia $materia, user $estudiante)
@@ -99,6 +100,47 @@ class AdminController extends Controller
              $this->deleteNotasRubro($rubro,$estudiante);
         }
     }
+    public function nuevoRubro(saveRubroRequest $request,materia $materia){
+        rubro::create($request->validated());
+        $porcentaje_total=$this->getPorcentajeTotalRubros($materia);
+        return redirect()->route('materia.rubros',['materia'=>$materia,'porcentaje_total'=>$porcentaje_total])->with('status','Rubro creado exitósamente');
+    }
+    public function nuevaAsignacion(saveAsignacionRequest $request,materia $materia){
+        $rubro=$materia->rubros()->where('id',$request->id_rubro)->get()->first();
+        $asignaciones=$rubro->asignaciones;
+        $conteo=0;
+        $porcentaje_total=$this->getPorcentajeTotalRubros($materia);
+        if ($asignaciones==null) {
+        }else{
+            foreach($asignaciones as $asignacion){
+                $conteo=$conteo+$asignacion->valor_porcentual;
+            }
+        }
+        if ($conteo+$request->valor_porcentual <= $rubro->valor_porcentual) {
+           $asignacion=asignacion::create($request->validated());
+            foreach($materia->grupo_guia->estudiantes as $estudiante){
+                $asignacion->nota()->save($estudiante,['id_materia'=>$materia->id]);
+            }
+            return redirect()->route('materia.rubros',['materia'=>$materia,'porcentaje_total'=>$porcentaje_total])->with('status','Asignación creada exitósamente'); 
+        }else{
+            return redirect()->route('materia.rubros',['materia'=>$materia,'porcentaje_total'=>$porcentaje_total])->with('status','La asignación tiene un valor mayor al total del rubro'); 
+        }
+        
+    }
+    public function destroyRubro(rubro $rubro)
+    {
+        $porcentaje_total=$this->getPorcentajeTotalRubros($rubro->materia);
+        $rubro->delete();
+        return redirect()->route('materia.rubros',['materia'=>$materia,'porcentaje_total'=>$porcentaje_total])->with('status','Rubro eliminado exitósamente');
+    }
+
+    private function getPorcentajeTotalRubros(materia $materia){
+        $porcentaje_total=0;
+        foreach($materia->rubros as $rubro){
+            $porcentaje_total=$porcentaje_total+$rubro->valor_porcentual;
+        }
+        return $porcentaje_total;
+    }
     private function setNotasRubro(rubro $rubro, user $estudiante)
     {
         foreach($rubro->asignaciones as $asignacion){
@@ -110,17 +152,6 @@ class AdminController extends Controller
         foreach($rubro->asignaciones as $asignacion){
             $asignacion->nota()->detach($estudiante);
         }
-    }
-    public function nuevoRubro(saveRubroRequest $request,materia $materia){
-        rubro::create($request->validated());
-        return redirect()->route('materia.rubros',$materia)->with('status','Rubro creado exitósamente');
-    }
-    public function nuevaAsignacion(saveAsignacionRequest $request,materia $materia){
-        $asignacion=asignacion::create($request->validated());
-        foreach($materia->grupo_guia->estudiantes as $estudiante){
-            $asignacion->nota()->save($estudiante,['id_materia'=>$materia->id]);
-        }
-        return redirect()->route('materia.rubros',$materia)->with('status','Asignación creada exitósamente');
     }
 
     //METODOS CRUD DEL CONTROLADOR, DEBE EVALUARSE SI SE HAN USADO SINO BORRARLOS
