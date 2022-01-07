@@ -129,11 +129,19 @@ class AdminController extends Controller
     }
     public function destroyRubro(rubro $rubro)
     {
-        $porcentaje_total=$this->getPorcentajeTotalRubros($rubro->materia);
+        $materia=$rubro->materia;
+        $porcentaje_total=$this->getPorcentajeTotalRubros($materia);
         $rubro->delete();
         return redirect()->route('materia.rubros',['materia'=>$materia,'porcentaje_total'=>$porcentaje_total])->with('status','Rubro eliminado exitósamente');
     }
 
+    public function destroyAsignacion(asignacion $asignacion)
+    {
+        $materia=$asignacion->rubro->materia;
+        $porcentaje_total=$this->getPorcentajeTotalRubros($materia);
+        $asignacion->delete();
+        return redirect()->route('materia.rubros',['materia'=>$materia,'porcentaje_total'=>$porcentaje_total])->with('status','Asignación eliminada exitósamente');
+    }
     private function getPorcentajeTotalRubros(materia $materia){
         $porcentaje_total=0;
         foreach($materia->rubros as $rubro){
@@ -152,6 +160,47 @@ class AdminController extends Controller
         foreach($rubro->asignaciones as $asignacion){
             $asignacion->nota()->detach($estudiante);
         }
+    }
+
+    public function editAsignacion(asignacion $asignacion, materia $materia)
+    {
+        return view('libro_notas.editAsignacion',['asignacion'=>$asignacion,'materia'=>$materia]);
+    }
+    public function updateAsignacion(SaveAsignacionRequest $request, asignacion $asignacion, materia $materia)
+    {
+        $rubro=$asignacion->rubro;
+        $porcentaje_actual=0;
+        $valor_porcentual_rubro=$asignacion->rubro->valor_porcentual;
+        if ($asignacion->rubro->asignaciones->count()==1) {
+            $porcentaje_actual=$asignacion->valor_porcentual;
+            //return $porcentaje_actual;
+        }else{
+            foreach($rubro->asignaciones as $asignacion_){
+                $porcentaje_actual=$porcentaje_actual+$asignacion_->valor_porcentual;
+            }
+            //return $porcentaje_actual;
+        }
+        $porcentaje_propuesto=$porcentaje_actual-$asignacion->valor_porcentual+$request->valor_porcentual;
+        if ($porcentaje_propuesto <= $rubro->valor_porcentual) {
+            $porcentaje_total=$this->getPorcentajeTotalRubros($materia);
+            $asignacion->update($request->validated());
+            return redirect()->route('materia.rubros',['materia'=>$materia,'porcentaje_total'=>$porcentaje_total])->with('status','Asignación actualizada exitósamente');
+            //return $porcentaje_propuesto;
+        }else{
+            $porcentaje_total=$this->getPorcentajeTotalRubros($materia);
+            return redirect()->route('materia.rubros',['materia'=>$materia,'porcentaje_total'=>$porcentaje_total])->with('status','El valor porcentual es mayor a la capacidad del rubro');
+            //return $porcentaje_propuesto;
+        }
+        
+    }
+
+    public function editCalificacion(materia $materia, asignacion $asignacion)
+    {
+        return view('libro_notas.calificaAsignacion',['asignacion'=>$asignacion,'materia'=>$materia]);
+    }
+    public function updateCalificacion(request $request)
+    {
+        return $request;
     }
 
     //METODOS CRUD DEL CONTROLADOR, DEBE EVALUARSE SI SE HAN USADO SINO BORRARLOS

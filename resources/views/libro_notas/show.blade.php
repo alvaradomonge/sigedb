@@ -31,7 +31,7 @@
 							@if($asignacion->nota->count()==0)
 							
 							@else
-								<td scope="col" class="border border-secondary">{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)<a href="#"><i class="i-xlarge fas fa-pen-square"></i></a></td>
+								<td scope="col" class="border border-secondary">{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)<a href="{{route('asignacion.calificar',[$materia,$asignacion])}}"><i class="i-xlarge fas fa-pen-square"></i></a></td>
 							@endif
 						@empty
 							<th>Cree asignaciones primero</th>

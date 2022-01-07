@@ -43,6 +43,11 @@ Route::get('{materia}/rubros','App\Http\Controllers\adminController@showRubros')
 Route::post('{materia}/rubro','App\Http\Controllers\adminController@nuevoRubro')->name('nuevo.rubro');
 Route::post('{materia}/asignacion','App\Http\Controllers\adminController@nuevaAsignacion')->name('nueva.asignacion');
 Route::delete('/{rubro}/rubro/destroy','App\Http\Controllers\AdminController@destroyRubro')->name('rubro.destroy');
+Route::delete('/{asignacion}/asignacion/destroy','App\Http\Controllers\AdminController@destroyAsignacion')->name('asignacion.destroy');
+Route::get('materia/{asignacion}/asignacion/{materia}/edit','App\Http\Controllers\AdminController@editAsignacion')->name('asignacion.edit');
+Route::patch('asignacion/update/{asignacion}/{materia}','App\Http\Controllers\AdminController@updateAsignacion')->name('asignacion.update');
+Route::get('materia/{materia}/asignacion/{asignacion}/calificar','App\Http\Controllers\AdminController@editCalificacion')->name('asignacion.calificar');
+Route::patch('materia/asignacion/calificar','App\Http\Controllers\AdminController@updateCalificacion')->name('calificacion.update');
 //PRUEBAS 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');
 

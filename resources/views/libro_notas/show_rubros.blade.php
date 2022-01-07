@@ -52,12 +52,15 @@
 									<div class=" d-flex justify-content-between" >
 										{{$asignacion->id}}:{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)
 										<div>
-											<a class="px-2 text-success" href="#">
+											<a class="px-2 text-success" href="{{route('asignacion.edit',[$asignacion,$materia])}}">
 												<i class="fas fa-pencil-alt"></i>
 											</a>
-											<a class="px-2 text-danger" href="#">
+											<a class="px-2 text-danger" href="#" onclick="document.getElementById('delete_asignacion').submit()">
 												<i class="fas fa-trash-alt"></i>
 											</a>
+											<form id="delete_asignacion" class="d-none" method="POST" action="{{route('asignacion.destroy',$asignacion)}}">
+												@csrf @method('DELETE')
+											</form>
 										</div>
 									</div>
 								</li>
