@@ -78,8 +78,9 @@ class AdminController extends Controller
     public function showLibroNotas(materia $materia){
         $estudiantes =$materia->promedio_estudiante()->orderBy('name')->get();
         $notas= $materia->estud_asignaciones()->get();
+        $ordenAsignaciones=$materia->asignaciones()->get(['asignacion.id'])->toarray();
         return view('libro_notas.show',compact('materia','notas'));
-        //return $notas;
+        //return $ordenAsignaciones;
     }
 
     public function showRubros(materia $materia){

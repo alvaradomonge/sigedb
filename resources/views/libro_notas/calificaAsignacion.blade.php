@@ -38,7 +38,7 @@
 										</div>
 										<div class="col-4 col-sm-5 form-group">
 											<input id="id" class="form-control d-none border-0 bg-light shadow-sm" type="text" name="id" value="{{old('nombre',$estudiante->id)}}">
-											<input id="nota{{$estudiante->id}}" class="form-control border-0 bg-light shadow-sm" type="text" name="nota{{$estudiante->id}}" value="{{old('nombre',$estudiante->pivot->nota)}}">
+											<input id="nota{{$estudiante->id}}" class="form-control border-0 bg-transparent shadow-sm text-center" type="text" name="nota{{$estudiante->id}}" value="{{old('nombre',$estudiante->pivot->nota)}}">
 										</div>
 										<div class="col-4 col-sm-3">
 				
