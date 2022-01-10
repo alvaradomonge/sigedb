@@ -77,9 +77,12 @@ class AdminController extends Controller
     //METODOS PARA GESTION DE LIBROS DE NOTAS
     public function showLibroNotas(materia $materia){
         $estudiantes =$materia->promedio_estudiante()->orderBy('name')->get();
-        $notas= $materia->estud_asignaciones()->get();
-        $ordenAsignaciones=$materia->asignaciones()->get(['asignacion.id'])->toarray();
-        return view('libro_notas.show',compact('materia','notas'));
+        
+        $ordenAsignaciones=$materia->asignaciones()->get(['asignacion.id']);
+        $ordenAsignaciones=$ordenAsignaciones->pluck('id')->toArray();
+        $notas= $materia->estud_asignaciones()->whereIn('id_asig', $ordenAsignaciones)->get(['id_estud','id_asig','nota']);
+        return view('libro_notas.show',compact('materia','notas','ordenAsignaciones'));
+        //return $notas;
         //return $ordenAsignaciones;
     }
 

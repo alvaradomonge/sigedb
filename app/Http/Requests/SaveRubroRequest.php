@@ -26,7 +26,7 @@ class SaveRubroRequest extends FormRequest
         return [
             'nombre'=> 'required|max:50',
             'id_materia'=> 'required',
-            'valor_porcentual'=> 'numeric','required'
+            'valor_porcentual'=> 'numeric|required'
         ];
     }
     public function messages()
@@ -36,7 +36,7 @@ class SaveRubroRequest extends FormRequest
             'nombre.max'=>'El nombre no debe exceder los 50 caracteres',
             'id_materia'=>'Materia no indicada',
             'valor_porcentual.numeric'=> 'El valor porcentual debe ser numérico, no incluya símbolos (por ejemplo %) ni letras',
-            'valor_porcentual.required'=> 'El valor porcentual debe ser ingresado'
+            'valor_porcentual.required'=> 'El valor porcentual no debe estar en blanco'
         ];
     }
 }

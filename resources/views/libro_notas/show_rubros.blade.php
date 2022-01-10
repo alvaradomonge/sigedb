@@ -6,6 +6,7 @@
 		<div class="d-flex justify-content-between">
 			<h2 class="display-8 mb-0">Rubros en {{$materia->nombre}} {{$materia->grupo_guia->nombre}}</h2>	
 		</div>
+		@include('partials.validation-errors')
 		<hr>
 		<div class="d-flex row align-content-start justify-content-start">
 			<div class="col-md-7" >
@@ -85,11 +86,11 @@
 					<label class="btn btn-info" for="nombre">
 						Nombre
 					</label>
-					<input type="text" name="nombre" id="nombre" class="form-control">
+					<input type="text" name="nombre" id="nombre" class="form-control" value="{{old('nombre')}}">
 					<label class="btn btn-success" for="valor_porcentual">
 						Valor
 					</label>
-					<input type="text" name="valor_porcentual" id="valor_porcentual" class="form-control">
+					<input type="text" name="valor_porcentual" id="valor_porcentual" class="form-control" value="{{old('valor_porcentual')}}">
 					<input type="text" name="id_materia" id="id_materia" value="{{$materia->id}}" class="form-control d-none">
 					<div class="input-group-append">
 						<button class="btn btn-danger">Agregar</button>

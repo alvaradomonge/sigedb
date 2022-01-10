@@ -51,10 +51,10 @@
 									<p class="text-break">{{$estudiante->pivot->promedio}}</p>
 								@endif
 							</td>
-							@forelse($notas->where('id',$estudiante->id) as $asignacion)
+							@forelse($notas->where('id_estud',$estudiante->id) as $asignacion)
 								<td class="text-center border border-secondary">E:{{$asignacion->pivot->id_estud}}/A:{{$asignacion->pivot->id_asig}}/N:{{$asignacion->pivot->nota}}</td>
 							@empty
-								<td class="text-center">No hay asignaciones en esta clase, agregue unos primero</td>	
+								<td class="text-center">No hay asignaciones para mostrar, agregue unas primero</td>	
 							@endforelse
 						</tr>
 					@empty
