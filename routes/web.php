@@ -46,8 +46,11 @@ Route::delete('/{rubro}/rubro/destroy','App\Http\Controllers\AdminController@des
 Route::delete('/{asignacion}/asignacion/destroy','App\Http\Controllers\AdminController@destroyAsignacion')->name('asignacion.destroy');
 Route::get('materia/{asignacion}/asignacion/{materia}/edit','App\Http\Controllers\AdminController@editAsignacion')->name('asignacion.edit');
 Route::patch('asignacion/update/{asignacion}/{materia}','App\Http\Controllers\AdminController@updateAsignacion')->name('asignacion.update');
+Route::get('materia/{materia}/asignacion/{asignacion}/ajaxcalificar','App\Http\Controllers\AdminController@editCalificacionAjax')->name('ajax.asignacion.calificar');
 Route::get('materia/{materia}/asignacion/{asignacion}/calificar','App\Http\Controllers\AdminController@editCalificacion')->name('asignacion.calificar');
 Route::patch('materia/asignacion/calificar','App\Http\Controllers\AdminController@updateCalificacion')->name('calificacion.update');
+Route::get('/livetable/fetch_data/{materia}/{asignacion}','App\Http\Controllers\AdminController@fetch_data')->name('livetable/fetch_data');
+Route::post('/livetable/update', 'App\Http\Controllers\AdminController@update_data')->name('livetable.update_data');
 //PRUEBAS 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');
 

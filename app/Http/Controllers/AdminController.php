@@ -207,6 +207,43 @@ class AdminController extends Controller
         return $request;
     }
 
+    //MÉTODOS PARA CALIFICAR ASIGNACIONES
+
+    function fetch_data(Request $request,materia $materia, asignacion $asignacion){
+        if ($request->ajax()) {
+            $data = $asignacion->nota()->get(['id_estud','id_asig','name','apellido1','apellido2','nota']);
+            echo json_encode($data);
+        }
+    } 
+    function update_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            
+            if ($request->column_name==$request->column_value) {
+                $data = array(
+                $request->column_name=>$request->column_name
+                );
+                echo '<div class="alert alert-warning">Son iguales Salida, col value:',$request->column_value,'/col name:',$request->column_name,'</div>';
+            }else{
+                $data = array(
+                $request->column_name=>$request->column_value
+                );
+
+                $query= DB::table('nota_estudiante_asignacion')->where('id_asig', $request->id_asig)->where('id_estud', $request->id_estud)->update(['nota'=>$request->column_value]);
+                if ($query == NULL) {
+                    echo '<div class="alert alert-warning">Actualización no aplicada col value:',$request->column_value,'/col name:',$request->column_name,'</div>';
+                }else{
+                    echo '<div class="alert alert-success">Nota de estudiante ',$request->estudiante_name,' actualizada </div>';
+                }
+            }
+        }
+    }
+    public function editCalificacionAjax(materia $materia, asignacion $asignacion)
+    {
+        return view('libro_notas.calificaAsignacion2',['asignacion'=>$asignacion,'materia'=>$materia]);
+    }
+
     //METODOS CRUD DEL CONTROLADOR, DEBE EVALUARSE SI SE HAN USADO SINO BORRARLOS
     public function store(SaveAnioLectivo $request)
     {
