@@ -31,8 +31,11 @@ class AdminController extends Controller
         $anio_lectivo = anio_lectivo::latest('nombre')->paginate(15);
         return view('admin.gestionAniosPeriodos',compact('anio_lectivo','query'));
     }
-
-    //METODOS PARA GESTION DE GRUPOS Y PERIODOS
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+    //METODOS PARA GESTION DE GRUPOS Y PERIODOS FUNCIONES CORE
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
     public function showGrupoGuiaMaterias(grupo_guia $grupo_guia)
     {
         return view('materia.show_materias_grupo_guia',compact('grupo_guia'));
@@ -73,17 +76,18 @@ class AdminController extends Controller
             } 
         return redirect()->route('admin.gruposEstudiantes',$grupo_guia)->with('status','Estudiante eliminado');  
     }
-
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
     //METODOS PARA GESTION DE LIBROS DE NOTAS
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
     public function showLibroNotas(materia $materia){
         $estudiantes =$materia->promedio_estudiante()->orderBy('name')->get();
-        
         $ordenAsignaciones=$materia->asignaciones()->get(['asignacion.id']);
         $ordenAsignaciones=$ordenAsignaciones->pluck('id')->toArray();
-        $notas= $materia->estud_asignaciones()->whereIn('id_asig', $ordenAsignaciones)->get(['id_estud','id_asig','nota']);
+        $notas= $materia->estud_asignaciones()->orderBy('id_rubro')->get(['id_estud','id_asig','nota']);
         return view('libro_notas.show',compact('materia','notas','ordenAsignaciones'));
-        //return $notas;
-        //return $ordenAsignaciones;
+
     }
 
     public function showRubros(materia $materia){
@@ -123,7 +127,7 @@ class AdminController extends Controller
         if ($conteo+$request->valor_porcentual <= $rubro->valor_porcentual) {
            $asignacion=asignacion::create($request->validated());
             foreach($materia->grupo_guia->estudiantes as $estudiante){
-                $asignacion->nota()->save($estudiante,['id_materia'=>$materia->id]);
+                $asignacion->nota()->save($estudiante,['id_materia'=>$materia->id,'id_rubro'=>$rubro->id]);
             }
             return redirect()->route('materia.rubros',['materia'=>$materia,'porcentaje_total'=>$porcentaje_total])->with('status','Asignación creada exitósamente'); 
         }else{
@@ -156,7 +160,7 @@ class AdminController extends Controller
     private function setNotasRubro(rubro $rubro, user $estudiante)
     {
         foreach($rubro->asignaciones as $asignacion){
-            $asignacion->nota()->save($estudiante,['id_materia'=>$rubro->materia->id]);
+            $asignacion->nota()->save($estudiante,['id_materia'=>$rubro->materia->id,'id_rubro'=>$rubro->id]);
         }
     }
     private function deleteNotasRubro(rubro $rubro, user $estudiante)
@@ -215,9 +219,11 @@ class AdminController extends Controller
         $promedio_estudiante->push();
         return $promedio_calculado;
     }
-
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
     //MÉTODOS PARA CALIFICAR ASIGNACIONES USANDO AJAX
-
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
     function fetch_data(Request $request,materia $materia, asignacion $asignacion){
         if ($request->ajax()) {
             $data = $asignacion->nota()->get(['id_estud','id_asig','name','apellido1','apellido2','nota']);
@@ -257,8 +263,23 @@ class AdminController extends Controller
     {
         return view('libro_notas.calificaAsignacion2',['asignacion'=>$asignacion,'materia'=>$materia]);
     }
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+                                //METODOS PARA USUARIO DOCENTE//
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
 
-    //METODOS CRUD DEL CONTROLADOR, DEBE EVALUARSE SI SE HAN USADO SINO BORRARLOS
+
+
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+    //METODOS CRUD DEL CONTROLADOR, DEBE EVALUARSE SI SE HAN USADO SINO BORRARLOS//
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
     public function store(SaveAnioLectivo $request)
     {
         anio_lectivo::create($request->validated());
@@ -286,3 +307,7 @@ class AdminController extends Controller
     }
 
 }
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//

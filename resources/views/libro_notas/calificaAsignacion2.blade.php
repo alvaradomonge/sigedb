@@ -18,7 +18,7 @@
 				    for(var count=0; count < data.length; count++)
 				    {
 				     html +='<tr>';
-				     html +='<td class="column_name" data-column_name="name" data-id="'+data[count].name+'">'+data[count].apellido1+' '+data[count].apellido2+' '+data[count].name+'</td>';
+				     html +='<td class="column_name fw-bold" data-column_name="name" data-id="'+data[count].name+'">'+data[count].apellido1+' '+data[count].apellido2+' '+data[count].name+'</td>';
 				     html += '<td contenteditable class="column_name text-center" data-column_name="nota" data-estudiante_name="'+data[count].apellido1+' '+data[count].apellido2+' '+data[count].name+'" data-id_estud="'+data[count].id_estud+'" data-id="'+data[count].nota+'">'+data[count].nota+'</td>';
 				    }
 				    $('tbody').html(html);
@@ -68,7 +68,7 @@
 			</div>
 			<div class="d-flex table-responsive col-md-5 justify-content-between">
 				@include('partials.validation-errors')
-				<table class="table table-striped table-sm">
+				<table class="table table-striped table-sm table-hover">
 					<thead>
 						<tr class="align-middle text-center text-nowrap  border border-secondary">
 							<th scope="col" class="border border-secondary" >Nombre</th>

@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="align-items-center">
-		<h2 class="display-6 text-primary">Hola {{auth()->user()->name}}!</h2>
+		<h2 class="display-8 text-primary">Hola {{auth()->user()->name}}!</h2>
 		
 		<div>
 			<h3 class="display-7 text-secondary">Clases Activas:</h3>

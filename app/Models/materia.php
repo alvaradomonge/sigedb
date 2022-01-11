@@ -32,10 +32,10 @@ class materia extends Model
         return $this->hasMany(rubro::class,'id_materia');
     }
     public function nota_asignaciones(){
-        return $this->belongsToMany(asignacion::class,'nota_estudiante_asignacion','id_materia','id_asig')->withPivot('nota','id_estud','id_rubro_cualit');
+        return $this->belongsToMany(asignacion::class,'nota_estudiante_asignacion','id_materia','id_asig')->withPivot('nota','id_estud','id_rubro_cualit','id_rubro');
     }
     public function estud_asignaciones(){
-        return $this->belongsToMany(user::class,'nota_estudiante_asignacion','id_materia','id_estud')->withPivot('nota','id_asig','id_rubro_cualit');
+        return $this->belongsToMany(user::class,'nota_estudiante_asignacion','id_materia','id_estud')->withPivot('nota','id_asig','id_rubro_cualit','id_rubro');
     }
     public function asignaciones()
     {

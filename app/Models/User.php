@@ -49,7 +49,7 @@ class User extends Authenticatable
     ];
 
     public function materias(){
-        return $this->hasMany(materia::class);
+        return $this->hasMany(materia::class,'id_user');
     }
 
     public function promedio_materia(){
@@ -61,7 +61,7 @@ class User extends Authenticatable
         return $this->belongsToMany(grupo_guia::class,'rel_grupo_guia_estudiante','id_user','id_grupo_guia');
     }
     public function nota_asignaciones(){
-        return $this->belongsToMany(asignacion::class,'nota_estudiante_asignacion','id_estud','id_asig')->withPivot('nota','id_rubro_cualit','id_materia');
+        return $this->belongsToMany(asignacion::class,'nota_estudiante_asignacion','id_estud','id_asig')->withPivot('nota','id_rubro_cualit','id_materia','id_rubro');
     }
 
     public function getFullName(){

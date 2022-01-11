@@ -7,8 +7,9 @@
 			<h2 class="display-8 mb-0">Notas de {{$materia->nombre}} {{$materia->grupo_guia->nombre}}</h2>	
 		</div>
 		<hr>
+
 		<div class="table-responsive">
-			<table class="table table-striped table-sm table-hover">
+			<table class="table table-striped table-sm">
 				<thead>
 					<tr class="align-middle text-center text-nowrap">
 						<th scope="col" colspan="2"></th>
@@ -17,7 +18,7 @@
 							
 							@else
 							<th scope="col" class="table-active border border-secondary" colspan="{{$rubro->asignaciones()->count('*')}}">
-								{{$rubro->nombre}} ({{$rubro->valor_porcentual}}%)
+								{{$rubro->nombre}} {{$rubro->valor_porcentual}}%
 							</th>
 							@endif	
 						@empty
@@ -31,15 +32,8 @@
 							@if($asignacion->nota->count()==0)
 							
 							@else
-								<td scope="col" class="border border-secondary fw-bold">
-									{{-- {{$asignacion->id}}: --}}
-									{{$asignacion->nombre}} 
-									({{$asignacion->valor_porcentual}}%)
-									{{-- <a href="{{route('asignacion.calificar',[$materia,$asignacion])}}"><i class="i-xlarge fas fa-pen-square"></i></a> --}}
-									<a class="text-danger" href="{{route('ajax.asignacion.calificar',[$materia,$asignacion])}}">
-										<i class="i-xlarge fas fa-pen-square"></i>
-									</a>
-								</td>
+								<td scope="col" class="border border-secondary fw-bold">{{$asignacion->nombre}} ({{$asignacion->valor_porcentual}}%)
+									<a class="text-danger" href="{{route('ajax.asignacion.calificar',[$materia,$asignacion])}}"><i class="i-xlarge fas fa-pen-square"></i></a></td>
 							@endif
 						@empty
 							<th>Cree asignaciones primero</th>
@@ -60,12 +54,7 @@
 								@endif
 							</td>
 							@forelse($notas->where('id_estud',$estudiante->id) as $asignacion)
-								<td class="text-center border border-secondary">
-									{{-- E:{{$asignacion->pivot->id_estud}}
-									/A:{{$asignacion->pivot->id_asig}}
-									/N: --}}
-									{{$asignacion->pivot->nota}}
-								</td>
+								<td class="text-center border border-secondary">{{$asignacion->pivot->nota}}</td>
 							@empty
 								<td class="text-center">No hay asignaciones para mostrar, agregue unas primero</td>	
 							@endforelse
@@ -81,16 +70,10 @@
 			</table>
 		</div>
 		<div class="d-flex align-items-center">
+			<a class="btn btn-success" href="{{route('grupo_guia.materias',$materia->grupo_guia)}}">Regresar</a>
 			@auth 
-				
-				@if(auth()->user()->id_rol_usuario == '1')
-					<a class="btn btn-success" href="{{route('grupo_guia.materias',$materia->grupo_guia)}}">Regresar</a>
-				@endif
-				@if(auth()->user()->id_rol_usuario == '2')
-					<a class="btn btn-success" href="{{route('inicio')}}">Regresar</a>
-					<a class="btn btn-secondary" href="#">Importar Rubros</a>	
-				@endif
-				<a class="btn btn-primary" href="{{route('materia.rubros',$materia)}}">Rubros y Asignaciones</a>
+				<a class="btn btn-primary" href="{{route('materia.rubros',$materia)}}">Rubros y Asignaciones</a>	
+				<a class="btn btn-secondary" href="#">Importar Rubros</a>	
 			@endauth
 		</div>
 	</div>

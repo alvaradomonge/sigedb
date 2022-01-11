@@ -5,7 +5,7 @@
 @section ('contenido')
 	<div class="container">
 		<div class="row">
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-8">
 				@guest
 					<h1 class="display-6 text-primary">SIGEDB</h1>
 					<h3 class="display-7 text-secondary">Sistema de Gestión de Expediente Digital </h3>
@@ -32,7 +32,7 @@
 					<a class="btn btn-lg btn-outline-primary mx-1" href="{{route('informenotas')}}">Contáctenos</a>					
 				</div>
 			</div>
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-4">
 				<img class="img-fluid p-5 mb-3" src="/img/dev.svg" alt="Desarrollo">
 			</div>
 		</div>
