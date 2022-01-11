@@ -202,12 +202,21 @@ class AdminController extends Controller
     {
         return view('libro_notas.calificaAsignacion',['asignacion'=>$asignacion,'materia'=>$materia]);
     }
-    public function updateCalificacion(request $request)
+    public function updatePromedio($id_estud,$id_materia)
     {
-        return $request;
+        $materia= materia::findOrFail($id_materia);
+        $promedio_estudiante= $materia->promedio_estudiante()->where('id_estudiante',$id_estud)->get()->first();
+        $nota_asignaciones= $materia->nota_asignaciones()->where('id_estud',$id_estud)->get();
+        $promedio_calculado=0;
+        foreach ($nota_asignaciones as $asignacion) {
+            $promedio_calculado= $promedio_calculado+$asignacion->pivot->nota;
+        }
+        $promedio_estudiante->pivot->promedio=$promedio_calculado;
+        $promedio_estudiante->push();
+        return $promedio_calculado;
     }
 
-    //MÉTODOS PARA CALIFICAR ASIGNACIONES
+    //MÉTODOS PARA CALIFICAR ASIGNACIONES USANDO AJAX
 
     function fetch_data(Request $request,materia $materia, asignacion $asignacion){
         if ($request->ajax()) {
@@ -215,6 +224,7 @@ class AdminController extends Controller
             echo json_encode($data);
         }
     } 
+
     function update_data(Request $request)
     {
         if($request->ajax())
@@ -224,8 +234,7 @@ class AdminController extends Controller
                 $data = array(
                 $request->column_name=>$request->column_name
                 );
-                echo '<div class="alert alert-warning">Son iguales Salida, col value:',$request->column_value,'/col name:',$request->column_name,'</div>';
-            }else{
+            }elseif ($request->column_value <= $request->valor_porcentual) {
                 $data = array(
                 $request->column_name=>$request->column_value
                 );
@@ -234,8 +243,13 @@ class AdminController extends Controller
                 if ($query == NULL) {
                     echo '<div class="alert alert-warning">Actualización no aplicada col value:',$request->column_value,'/col name:',$request->column_name,'</div>';
                 }else{
-                    echo '<div class="alert alert-success">Nota de estudiante ',$request->estudiante_name,' actualizada </div>';
+                    $promedio=$this->updatePromedio($request->id_estud,$request->id_materia);
+                    echo '<div class="alert alert-success">Nota de estudiante ',$request->estudiante_name,' actualizada. Promedio General: ',$promedio,'% </div>';
+                    //
                 }
+            }else
+            {
+                echo '<div class="alert alert-danger">La nota de "',$request->estudiante_name,'" es mayor al valor de la asignación (',$request->valor_porcentual,'%), debe corregir esto</div>';
             }
         }
     }
