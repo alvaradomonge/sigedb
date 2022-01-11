@@ -50,7 +50,7 @@
 					  }
 					  else
 					  {
-					   $('#message').html("<div class='alert alert-danger'>Enter some value</div>");
+					   $('#message').html("<div class='alert alert-danger'> "+estudiante_name+": No dejar espacio en blanco</div>");
 					  }
 				});
 					 
