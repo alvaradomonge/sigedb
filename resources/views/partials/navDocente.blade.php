@@ -1,4 +1,4 @@
 <li class="nav-item">
 	<a class="nav-link"
-	href="#">Años y periodos</a>
+	href="#">Gestión de notas (en contrucción)</a>
 </li>

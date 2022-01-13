@@ -51,6 +51,12 @@ Route::get('materia/{materia}/asignacion/{asignacion}/calificar','App\Http\Contr
 Route::patch('materia/asignacion/calificar','App\Http\Controllers\AdminController@updateCalificacion')->name('calificacion.update');
 Route::get('/livetable/fetch_data/{materia}/{asignacion}','App\Http\Controllers\AdminController@fetch_data')->name('livetable/fetch_data');
 Route::post('/livetable/update', 'App\Http\Controllers\AdminController@update_data')->name('livetable.update_data');
+
+//RUTAS PARA ASISTENCIA
+Route::get('materia/{materia}/asistencia','App\Http\Controllers\AdminController@showAsistencia')->name('materia.asistencia');
+//RUTAS PARA CONDUCTA
+
+//RUTAS PARA INFORMES DE NOTAS
 //PRUEBAS 
 Route::get('Vista_prueba','App\Http\Controllers\rel_periodo_materia_Controller@index');
 

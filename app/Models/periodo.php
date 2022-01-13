@@ -19,4 +19,8 @@ class periodo extends Model
     public function grupos_guias(){
         return $this->hasMany(grupo_guia::class,'id_periodo');
     }
+    public function materias()
+    {
+        return $this->hasManyThrough(materia::class, grupo_guia::class,'id_periodo','id_grupo_guia');
+    }
 }

@@ -45,14 +45,6 @@ class PeriodoController extends Controller
     public function store(SavePeriodoRequest $request)
     {
         $id_per=periodo::create($request->validated());
-        //$anio = anio_lectivo::where('id',$request->anio)->get();
-        // rel_anio_periodo::create( NO SIRVE, CODIGO DE EJEMPLO
-        //     [
-        //         'id_anio'=>$request->anio,
-        //         'id_periodo'=>$id_per->id,
-        //         'es_final'=>$request->es_final,
-        //         'valor_porcentual'=>$request->valor_porcentual,
-        //     ]);
         return redirect()->route('admin.gestionAniosPeriodos')->with('status');
     }
 
@@ -96,6 +88,18 @@ class PeriodoController extends Controller
     public function update(SavePeriodoRequest $request, periodo $periodo)
     {
         $periodo->update($request->validated());
+        if ($periodo->activo == 0) {
+            foreach ($periodo->materias as $materia) {
+                $materia->id_estado=3;
+                $materia->push();
+            }
+        }
+        if ($periodo->activo == 1) {
+            foreach ($periodo->materias as $materia) {
+                $materia->id_estado=1;
+                $materia->push();
+            }
+        }
         return redirect()->route('periodo.show',$periodo)->with('status','Actualización completada exitósamente');
     }
 

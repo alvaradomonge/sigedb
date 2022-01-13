@@ -43,15 +43,21 @@
 							</td>
 							<td>
 								@auth 
-									<a class="btn btn-sm btn-outline-info" href="{{route('materia.show',['materia'=>$materia_Item])}}"><i class="fas fa-search"></i></a>
-									<a class="btn btn-sm btn-outline-danger" href="{{route('materia.notas',['materia'=>$materia_Item])}}"><i class="fas fa-chart-line"></i></a>
+									<a class="btn btn-sm btn-outline-secondary" href="{{route('materia.show',['materia'=>$materia_Item])}}"><i class="fas fa-search"></i></a>
+									<a class="btn btn-sm btn-outline-info" href="{{route('materia.notas',['materia'=>$materia_Item])}}">
+										{{-- <i class="fas fa-chart-line"></i> --}}
+										<i class="far fa-poll-people"></i>
+									</a>
+									<a class="btn btn-sm btn-outline-success" href="{{route('materia.asistencia',['materia'=>$materia_Item])}}">
+										<i class="fas fa-alarm-clock"></i>
+									</a>
 								@endauth
 							</td>
 						</tr>
 					@empty
 						<tr>
 							<td class="list-group-item border-0 mb-2 shadow-sm" >
-								No hay estudiantes asignados 
+								El grupo guía no posee materias 
 							</td>
 						</tr>
 					@endforelse

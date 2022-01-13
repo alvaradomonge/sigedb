@@ -60,8 +60,20 @@
 									{{$grupo_guia_Item->materias()->count('*')}}
 								</td>
 								<td>
-									<a class="btn btn-sm btn-outline-info" href="{{route('admin.gruposEstudiantes',$grupo_guia_Item)}}">Estudiantes</a>
-									<a class="btn btn-sm btn-outline-success" href="{{route('grupo_guia.materias',$grupo_guia_Item)}}">Materias</a>
+									<a class="btn btn-sm btn-outline-info" href="{{route('admin.gruposEstudiantes',$grupo_guia_Item)}}">
+									Estudiantes
+								</a>
+									<a class="btn btn-sm btn-outline-success" href="{{route('grupo_guia.materias',$grupo_guia_Item)}}">
+									Materias
+								</a>
+								</a>
+									<a class="btn btn-sm btn-outline-primary" href="{{route('grupo_guia.materias',$grupo_guia_Item)}}">
+									Asistencia
+								</a>
+								</a>
+									<a class="btn btn-sm btn-outline-danger" href="#">
+									Conducta
+								</a>
 								</td>
 							</tr>
 						@empty

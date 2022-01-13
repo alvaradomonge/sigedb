@@ -15,7 +15,7 @@
 							    	{{$materia->grupo_guia->nombre}} {{$materia->nombre}}
 							  	</div>
 								<div class="card-body">
-									<h6 class="card-subtitle mb-2 text-danger fw-bolder">{{$materia->grupo_guia->periodo->nombre}}</h6>
+									<h6 class="card-subtitle mb-2 text-danger fw-bolder">{{$materia->grupo_guia->periodo->nombre}} ({{$materia->grupo_guia->periodo->anio_lectivo->nombre}})</h6>
 									<a href="{{route('materia.notas',$materia)}}" class="btn btn-success">Libro Notas</a>
 									<a href="#" class="btn btn-danger">Asistencia</a>
 								</div>
