@@ -19,15 +19,15 @@ class AsistenciaConducta extends Migration
         });
         Schema::create('escala_asistencia', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre',20);
+            $table->string('nombre',30);
             $table->boolean('es_positiva');
-             $table->unsignedTinyInteger('valor_porcentual')->nullable();
+             $table->unsignedDecimal('valor_porcentual',$precision=3,$scale=1)->nullable();
         });
         Schema::create('escala_conducta', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre',20);
+            $table->string('nombre',30);
             $table->boolean('es_positiva');
-            $table->unsignedTinyInteger('valor_porcentual')->nullable();
+            $table->unsignedDecimal('valor_porcentual',$precision=3,$scale=1)->nullable();
         });
         Schema::create('conducta_estudiante', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -36,6 +36,7 @@ class AsistenciaConducta extends Migration
             $table->foreignId('id_user')->constrained('users');
             $table->foreignId('id_escala_conducta')->constrained('escala_conducta')->onDelete('cascade');
             $table->date('fecha_incidente')->nullable();
+            $table->unsignedDecimal('puntos',$precision=3,$scale=1)->nullable();
             $table->string('detalle',255)->nullable();
         });
         Schema::create('asistencia_estudiante', function (Blueprint $table) {
@@ -45,6 +46,7 @@ class AsistenciaConducta extends Migration
             $table->foreignId('id_user')->constrained('users');
             $table->foreignId('id_escala_asistencia')->constrained('escala_asistencia');
             $table->foreignId('id_leccion')->constrained('leccion')->onDelete('cascade');
+            $table->date('fecha_incidente')->nullable();
             $table->string('detalle',255)->nullable();
         });
         Schema::create('promedio_est_conducta', function (Blueprint $table) {

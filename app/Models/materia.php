@@ -41,4 +41,8 @@ class materia extends Model
     {
         return $this->hasManyThrough(asignacion::class, rubro::class,'id_materia','id_rubro');
     }
+
+    public function incidencias_asistencia(){
+        return $this->belongsToMany(user::class,'asistencia_estudiante','id_materia','id_user')->withPivot('id_escala_asistencia','fecha_incidente','id_leccion');
+    }
 }

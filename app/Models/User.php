@@ -64,6 +64,18 @@ class User extends Authenticatable
         return $this->belongsToMany(asignacion::class,'nota_estudiante_asignacion','id_estud','id_asig')->withPivot('nota','id_rubro_cualit','id_materia','id_rubro');
     }
 
+    public function incidencias_asistencia(){
+        return $this->belongsToMany(materia::class,'asistencia_estudiante','id_user','id_materia')->withPivot('id_escala_asistencia','fecha_incidente','id_leccion');
+    }
+
+    public function incidencias_conducta(){
+        return $this->belongsToMany(materia::class,'asistencia_estudiante','id_user','id_materia')->withPivot('id_escala_conducta','fecha_incidente','puntos','detalle');
+    }
+
+    public function promedio_conducta(){
+        return $this->belongsToMany(grupo_guia::class,'promedio_est_conducta','id_estud','id_grupo_guia')->withPivot('promedio');
+    }
+
     public function getFullName(){
         return "{$this->id} {$this->name} {$this->apellido1} {$this->apellido2}";
     }

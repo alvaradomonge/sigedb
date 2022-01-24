@@ -67,7 +67,7 @@
 									Materias
 								</a>
 								</a>
-									<a class="btn btn-sm btn-outline-primary" href="{{route('grupo_guia.materias',$grupo_guia_Item)}}">
+									<a class="btn btn-sm btn-outline-primary" href="{{route('grupo_guia.asistencia',$grupo_guia_Item)}}">
 									Asistencia
 								</a>
 								</a>

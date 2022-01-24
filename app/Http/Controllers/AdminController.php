@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\SaveAnioLectivo;
-use App\Http\Requests\saveRubroRequest;
 use App\Http\Requests\SaveAsignacionRequest;
+use App\Http\Requests\saveRubroRequest;
 use App\Models\User;
 use App\Models\anio_lectivo;
 use App\Models\asignacion;
+use App\Models\escala_asistencia;
 use App\Models\grupo_guia;
+use App\Models\leccion;
 use App\Models\materia;
 use App\Models\periodo;
 use App\Models\rel_grupo_guia_estudiante;
 use App\Models\rubro;
 use Illuminate\Auth\register;
+use Illuminate\Database\Seeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Seeder;
-
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -270,9 +272,24 @@ class AdminController extends Controller
 //-----------------------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------------------//
 public function showAsistencia(materia $materia){
-    return view('asistencia.show_materia',['materia'=>$materia]);
+    $lecciones = leccion::all(); 
+    $escala_asistencia = escala_asistencia::where('es_positiva',0)->get();
+    return view('asistencia.show_materia',['materia'=>$materia,'lecciones'=>$lecciones,'escala_asistencia'=>$escala_asistencia]);
+}
+public function showAsistenciaAdmin(grupo_guia $grupo_guia){
+    return view('asistencia.show_grupo_guia',['grupo_guia'=>$grupo_guia]);
 }
 
+public function nuevaIncidencia(materia $materia,user $estudiante, $incidencia){
+    $escala_asistencia = escala_asistencia::where('es_positiva',0)->get(); 
+    $lecciones = leccion::all(); 
+    $fecha = Carbon::now();
+    return view('asistencia.nueva_incidencia',['materia'=>$materia,'lecciones'=>$lecciones,'escala_asistencia'=>$escala_asistencia,'incidencia'=>$incidencia,'fecha'=>$fecha]);
+}
+
+public function storeIncidencia(materia $materia){
+    //return view('asistencia.show_grupo_guia',['grupo_guia'=>$grupo_guia]);
+}
 //-----------------------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------------------//
                                 //METODOS PARA CONDUCTA//

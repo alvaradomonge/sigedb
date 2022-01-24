@@ -11,4 +11,8 @@ class leccion extends Model
     protected $guarded = [];
     protected $table = 'leccion';
     use HasFactory;
+
+    public function asistencia(){
+        return $this->belongsToMany(materia::class,'asistencia_estudiante','id_leccion','id_materia')->withPivot('id_escala_asistencia','fecha_incidente','id_user');
+    }
 }
