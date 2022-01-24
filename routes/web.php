@@ -55,7 +55,7 @@ Route::post('/livetable/update', 'App\Http\Controllers\AdminController@update_da
 //RUTAS PARA ASISTENCIA
 Route::get('materia/{materia}/asistencia','App\Http\Controllers\AdminController@showAsistencia')->name('materia.asistencia');
 Route::get('grupo/{grupo_guia}/asistencia','App\Http\Controllers\AdminController@showAsistenciaAdmin')->name('grupo_guia.asistencia');
-Route::get('materia/asistencia/incidencia','App\Http\Controllers\AdminController@nuevaIncidencia')->name('incidencia.create');
+Route::get('materia/{materia}/asistencia/{user}/incidencia/{incidencia}','App\Http\Controllers\AdminController@nuevaIncidencia')->name('incidencia.create');
 Route::post('materia/{materia}/asistencia/incidencia/store','App\Http\Controllers\AdminController@storeIncidencia')->name('incidencia.store');
 //RUTAS PARA CONDUCTA
 

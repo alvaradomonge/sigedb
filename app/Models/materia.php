@@ -43,6 +43,6 @@ class materia extends Model
     }
 
     public function incidencias_asistencia(){
-        return $this->belongsToMany(user::class,'asistencia_estudiante','id_materia','id_user')->withPivot('id_escala_asistencia','fecha_incidente','id_leccion');
+        return $this->belongsToMany(user::class,'asistencia_estudiante','id_materia','id_user')->withPivot('id_escala_asistencia','fecha_incidente','id_leccion','id_grupo_guia');
     }
 }

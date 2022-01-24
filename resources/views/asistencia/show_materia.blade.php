@@ -26,9 +26,10 @@
 								{{$estudiante->apellido1}} {{$estudiante->apellido2}} {{$estudiante->name}}
 							</th>
 							<th scope="col" class="border text-center border-secondary" >
-								<a class="btn btn-sm btn-outline-success" href="{{route('incidencia.create',['materia'=>$materia,'estudiante'=>$estudiante,'incidencia'=>1])}}">Tardía</a>
-								<a class="btn btn-sm btn-outline-info" href="#">Ausencia</a>
-								<a class="btn btn-sm btn-outline-danger" href="#">Escape</a>
+								<a class="btn btn-sm btn-outline-success" 
+								href="{{route('incidencia.create',['incidencia'=>1,'materia'=>$materia,'user'=>$estudiante])}}">Tardía</a>
+								<a class="btn btn-sm btn-outline-info" href="{{route('incidencia.create',['incidencia'=>2,'materia'=>$materia,'user'=>$estudiante])}}">Ausencia</a>
+								<a class="btn btn-sm btn-outline-danger" href="{{route('incidencia.create',['incidencia'=>3,'materia'=>$materia,'user'=>$estudiante])}}">Escape</a>
 							</th>
 							<th scope="col" class="border border-secondary text-center" >
 								{{$estudiante->incidencias_asistencia->where('pivot->id_escala_asistencia',1)->count()}}
@@ -69,7 +70,7 @@
 						<label class="btn btn-sm btn-info" for="fecha">
 							Fecha{!!$errors->first('id_lecciones','(*)')!!}
 						</label>
-						<input type="text" name="fecha">
+						<input type="text" name="fecha" value="{{$fecha}}">
 			  		</div>
 			  		<div class="col-md-3">
 			  		</div>

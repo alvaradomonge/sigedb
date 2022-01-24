@@ -7,10 +7,10 @@
 		<div class="row">
 			<div class="col-12 col-sm-10 col-lg-6 mx-auto">				
 				@include('partials.validation-errors')
-				<form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{route('incidencia.create',['materia'=>$materia])}}">
+				<form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{route('incidencia.store',$materia,$estudiante)}}">
 					@csrf
 					<h2 class="display-8">
-						Agregar incidencia para {{$estudiante->name}} {{$estudiante->apellido1}}
+						Crear {{$incidencia->nombre}} para {{$estudiante->name}} {{$estudiante->apellido1}}
 					</h2> 
 					<hr>
 					<input id="id_user" class="d-none" type="text" name="id_user" value="{{$estudiante->id}}">
@@ -22,13 +22,13 @@
 						</label>
 						<br>
 						<select name="id_escala_incidencia" class="form-control">
-							@forelse ($escala_asistencia as $incidencia)
-								<option value="{{$incidencia->id}}" @if($incidencia->id==$incidencia) selected @endif>
-									{{$incidencia->nombre}}
+							@forelse ($escala_asistencia as $escala)
+								<option value="{{$escala->id}}" @if($escala->id==$incidencia->id) selected @endif>
+									{{$escala->nombre}}
 								</option>
 							@empty
 								<option>
-									Agregue primero incidencias a la lista primero
+									Agregue primero categorías de incidencia a la lista primero
 								</option>
 							@endforelse
 					  	</select>
@@ -36,14 +36,14 @@
 
 					<div class="form-group">
 						<label for="fecha_incidencia">
-							Valor Porcentual{!!$errors->first('valor_porcentual','(*)')!!}
+							Fecha{!!$errors->first('valor_porcentual','(*)')!!}
 						</label>
 						<br>
-						<input id="fecha_incidencia" class="form-control border-0 bg-light shadow-sm" type="date" value="{{$fecha}}" name="fecha_incidencia">
+						<input id="fecha_incidencia" class="form-control border-0 bg-light shadow-sm" type="date" format="d-m-Y" value="{{$fecha}}" name="fecha_incidencia">
 					</div>
 					<br>
 					<button class="btn btn-primary btn-lg btn-block">Actualizar</button>
-					<a class="btn btn-secondary btn-lg btn-block" href="{{redirect()->back()}}">Cancelar</a> 
+					<a class="btn btn-secondary btn-lg btn-block" href="{{route('materia.asistencia',['materia'=>$materia])}}">Cancelar</a> 
 				</form>
 			</div>
 		</div>

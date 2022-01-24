@@ -273,22 +273,27 @@ class AdminController extends Controller
 //-----------------------------------------------------------------------------------------------//
 public function showAsistencia(materia $materia){
     $lecciones = leccion::all(); 
+    $fecha = Carbon::now()->format('d/m/Y');
     $escala_asistencia = escala_asistencia::where('es_positiva',0)->get();
-    return view('asistencia.show_materia',['materia'=>$materia,'lecciones'=>$lecciones,'escala_asistencia'=>$escala_asistencia]);
+    return view('asistencia.show_materia',['materia'=>$materia,'lecciones'=>$lecciones,'escala_asistencia'=>$escala_asistencia,'fecha'=>$fecha]);
 }
 public function showAsistenciaAdmin(grupo_guia $grupo_guia){
     return view('asistencia.show_grupo_guia',['grupo_guia'=>$grupo_guia]);
 }
 
-public function nuevaIncidencia(materia $materia,user $estudiante, $incidencia){
+public function nuevaIncidencia(materia $materia,user $user,int $incidencia){
     $escala_asistencia = escala_asistencia::where('es_positiva',0)->get(); 
-    $lecciones = leccion::all(); 
-    $fecha = Carbon::now();
-    return view('asistencia.nueva_incidencia',['materia'=>$materia,'lecciones'=>$lecciones,'escala_asistencia'=>$escala_asistencia,'incidencia'=>$incidencia,'fecha'=>$fecha]);
+    $lecciones = leccion::all();
+    $incidencia_selected=$escala_asistencia->where('id',$incidencia)->first(); 
+    $fecha = Carbon::now()->format('d/m/Y');
+    return view('asistencia.nueva_incidencia',['materia'=>$materia,'estudiante'=>$user,'escala_asistencia'=>$escala_asistencia,'incidencia'=>$incidencia_selected,'fecha'=>$fecha]);
 }
 
-public function storeIncidencia(materia $materia){
-    //return view('asistencia.show_grupo_guia',['grupo_guia'=>$grupo_guia]);
+public function storeIncidencia(Request $request,materia $materia,user $estudiante){
+
+
+    $resultado = $materia->incidencias_asistencia()->attach($request->id_user,['id_materia'=>$materia->id,'id_grupo_guia'=>$materia->grupo_guia->id,'fecha_incidente'=>$request->fecha,'id_leccion'=>$request->id_leccion,'id_escala_asistencia'=>$request->id_escala_asistencia]);
+    return $this->showAsistencia($materia);
 }
 //-----------------------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------------------//
